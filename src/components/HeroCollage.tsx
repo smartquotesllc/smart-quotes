@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function HeroCollage() {
   return (
-    <div className="relative mx-auto h-[420px] w-full max-w-[460px] sm:h-[480px] lg:h-[520px] lg:max-w-none">
+    <div className="relative mx-auto h-[340px] w-full max-w-[420px] sm:h-[460px] sm:max-w-[460px] lg:h-[520px] lg:max-w-none">
       {/* IMAGE 01 — hero primary business visual */}
       <div className="animate-float-soft absolute left-0 top-8 z-[1] w-[58%] overflow-hidden rounded-2xl shadow-[0_28px_60px_-28px_rgba(0,0,0,0.55)] ring-1 ring-white/15">
         <Image

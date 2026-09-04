@@ -6,7 +6,7 @@ export function SolutionsShowcase() {
   return (
     <section className="overflow-hidden bg-white py-20 sm:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div className="relative">
+        <div className="relative mb-10 pb-16 sm:mb-6 sm:pb-8 lg:mb-0 lg:pb-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <div className="overflow-hidden rounded-2xl bg-sq-soft p-6">
