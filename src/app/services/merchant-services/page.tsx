@@ -108,7 +108,7 @@ export default function MerchantServicesPage() {
               className="mt-8 max-w-md"
             />
             <div className="mt-9">
-              <Button href={`/quote?service=${SLUG}`} size="lg">
+              <Button href={`/quote?service=${SLUG}`} size="lg" className="shadow-[0_12px_28px_-10px_rgba(0,0,0,0.45)]">
                 Get a Quote
               </Button>
             </div>
