@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 export function VacationOffer() {
   return (
     <section id="vacation-offer" className="relative overflow-hidden bg-sq-purple" aria-labelledby="vacation-heading">
-      <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 85% 50%, rgba(255,255,255,0.35), transparent 42%), linear-gradient(90deg, rgba(90,44,255,1) 0%, rgba(90,44,255,0.85) 55%, rgba(13,9,13,0.35) 100%)" }} aria-hidden="true" />
+      <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 85% 50%, rgba(255,255,255,0.35), transparent 42%), linear-gradient(90deg, rgba(38,61,255,1) 0%, rgba(38,61,255,0.85) 55%, rgba(8,11,34,0.35) 100%)" }} aria-hidden="true" />
       <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 bg-[url('/brand/vacation-glow.svg')] bg-cover bg-right opacity-40 md:block" aria-hidden="true" />
       <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8 lg:py-14">
         <div className="max-w-2xl">

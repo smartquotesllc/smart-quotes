@@ -1,20 +1,91 @@
+const ITEMS = [
+  {
+    title: "Trusted Partners",
+    detail: "Established providers across key categories",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
+        <path
+          d="M12 3 4.5 6.5V11c0 5 3.2 8.7 7.5 10 4.3-1.3 7.5-5 7.5-10V6.5L12 3Z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9.2 12.2 11 14l3.8-3.8"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Personalized Guidance",
+    detail: "Assistance tailored to your goals",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.2" stroke="currentColor" strokeWidth="1.6" />
+        <path
+          d="M5.5 19c1.6-3 4-4.5 6.5-4.5S17 16 18.5 19"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Simple Process",
+    detail: "Clear steps from interest to follow-up",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
+        <path
+          d="M5 7h14M5 12h14M5 17h9"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "No Pressure",
+    detail: "Explore options at your own pace",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.6" />
+        <path
+          d="M12 8v4.5l3 1.8"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+];
+
 export function TrustBar() {
-  const items = [
-    { title: "Trusted Providers", detail: "Established partners & solutions" },
-    { title: "Top Rated Solutions", detail: "Quote-based recommendations" },
-    { title: "Award Winning Support", detail: "Customer-focused assistance" },
-  ];
   return (
-    <section className="bg-[#1a161c] text-white" aria-label="Trust signals">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6 lg:px-8">
-        {items.map((item) => (
+    <section
+      className="border-b border-sq-border bg-sq-gray-light"
+      aria-label="Why customers start with Smart Quotes"
+    >
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8 lg:py-12">
+        {ITEMS.map((item) => (
           <div key={item.title} className="flex items-start gap-4">
-            <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sq-purple/50 text-sq-purple" aria-hidden="true">
-              <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor"><path d="M8.2 13.6 4.8 10.2l1.4-1.4 2 2 5-5 1.4 1.4-6.4 6.4Z" /></svg>
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-sq-border bg-white text-sq-royal">
+              {item.icon}
             </span>
             <div>
-              <p className="font-[family-name:var(--font-montserrat)] text-sm font-bold uppercase tracking-[0.12em]">{item.title}</p>
-              <p className="mt-1 text-sm text-white/60">{item.detail}</p>
+              <p className="font-heading text-sm font-bold text-sq-ink">
+                {item.title}
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-sq-gray">
+                {item.detail}
+              </p>
             </div>
           </div>
         ))}

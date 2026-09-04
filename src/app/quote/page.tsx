@@ -20,7 +20,7 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
     <div className="bg-sq-gray-light">
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-10 max-w-2xl">
-          <p className="mb-3 font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.2em] text-sq-purple">Request a Quote</p>
+          <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.2em] text-sq-purple">Request a Quote</p>
           <h1 className="text-3xl font-bold tracking-tight text-sq-ink sm:text-5xl">Get a free quote</h1>
           <p className="mt-4 text-sq-gray">
             Prefer to browse first?{" "}
@@ -42,7 +42,7 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
         ) : null}
         <div className="grid items-start gap-8 lg:grid-cols-2">
           <div className="relative min-h-[320px] overflow-hidden rounded-2xl bg-sq-black p-8 text-white">
-            <div className="absolute inset-0 opacity-50" style={{ background: "radial-gradient(circle at 70% 30%, rgba(90,44,255,0.55), transparent 50%), url('/brand/hero-lights.svg') center/cover" }} aria-hidden="true" />
+            <div className="absolute inset-0 opacity-50" style={{ background: "radial-gradient(circle at 70% 30%, rgba(38,61,255,0.55), transparent 50%), url('/brand/hero-lights.svg') center/cover" }} aria-hidden="true" />
             <div className="relative">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/60">What happens next</p>
               <ul className="mt-6 space-y-4 text-sm text-white/85">

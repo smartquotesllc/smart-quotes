@@ -1,22 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  /* Approved wireframe palette */
-  --sq-purple: #5a2cff;
-  --sq-purple-hover: #4a22e0;
-  --sq-purple-soft: #efeaff;
-  --sq-black: #0d090d;
-  --sq-ink: #111111;
-  --sq-gray: #6b6b6b;
-  --sq-gray-light: #f5f5f7;
-  --sq-border: #e6e6ea;
+  /* Smart Quotes brand — navy / royal system */
+  --sq-navy: #080b22;
+  --sq-dark-blue: #11184a;
+  --sq-royal: #263dff;
+  --sq-bright: #4169ff;
+  --sq-soft: #eef2ff;
   --sq-white: #ffffff;
+  --sq-ink: #111318;
+  --sq-gray: #5e6472;
+  --sq-gray-light: #f7f8fc;
+  --sq-border: #e4e7f0;
+
+  /* Compatibility aliases (legacy class names map to new palette) */
+  --sq-purple: var(--sq-royal);
+  --sq-purple-hover: #1e32e0;
+  --sq-purple-soft: var(--sq-soft);
+  --sq-black: var(--sq-navy);
+
   --background: var(--sq-white);
   --foreground: var(--sq-ink);
   --ink: var(--sq-ink);
-  --purple: var(--sq-purple);
-  --purple-deep: var(--sq-purple);
-  --lavender: var(--sq-purple-soft);
+  --purple: var(--sq-royal);
+  --purple-deep: var(--sq-dark-blue);
+  --lavender: var(--sq-soft);
   --mist: var(--sq-gray-light);
   --muted: var(--sq-gray);
 }
@@ -24,6 +32,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-sq-navy: var(--sq-navy);
+  --color-sq-dark-blue: var(--sq-dark-blue);
+  --color-sq-royal: var(--sq-royal);
+  --color-sq-bright: var(--sq-bright);
+  --color-sq-soft: var(--sq-soft);
   --color-sq-purple: var(--sq-purple);
   --color-sq-purple-hover: var(--sq-purple-hover);
   --color-sq-purple-soft: var(--sq-purple-soft);
@@ -39,47 +52,98 @@
   --color-lavender: var(--lavender);
   --color-mist: var(--mist);
   --color-muted: var(--muted);
-  --font-heading: var(--font-montserrat);
-  --font-sans: var(--font-poppins);
+  --font-heading: var(--font-manrope);
+  --font-sans: var(--font-inter);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-montserrat), system-ui, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--sq-purple) 28%, white);
-  color: var(--sq-black);
+  background: color-mix(in srgb, var(--sq-royal) 28%, white);
+  color: var(--sq-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--sq-purple);
+  outline: 2px solid var(--sq-royal);
   outline-offset: 2px;
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.animate-fade-up { animation: fade-up 0.7s ease-out both; }
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
 
-.hero-overlay {
-  background:
-    linear-gradient(105deg, rgba(13,9,13,0.88) 0%, rgba(13,9,13,0.62) 48%, rgba(90,44,255,0.35) 100%),
-    radial-gradient(ellipse at 70% 40%, rgba(90,44,255,0.35), transparent 55%);
+@keyframes wave-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-2%);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.animate-float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.animate-wave-drift {
+  animation: wave-drift 12s ease-in-out infinite;
+}
+
+.hero-gradient {
+  background: linear-gradient(115deg, #080b22 0%, #11184a 45%, #263dff 100%);
+}
+
+.font-heading {
+  font-family: var(--font-manrope), system-ui, sans-serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .animate-fade-up { animation: none !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-float-soft,
+  .animate-wave-drift {
+    animation: none !important;
+  }
 }

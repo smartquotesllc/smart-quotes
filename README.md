@@ -8,7 +8,7 @@ Visitors explore Merchant Services, Xfinity Residential, and Comcast Business �
 
 - Next.js 16 (App Router) + TypeScript
 - Tailwind CSS v4
-- Inter font (per brand brief)
+- Inter (body) + Manrope (headings)
 - Pluggable CRM adapter (in-memory by default)
 
 ## Run locally
@@ -33,7 +33,7 @@ Visitor → select service → request quote → lead capture (CRM) → confirma
 
 | Path | Purpose |
 |------|---------|
-| `/` | Homepage with floating hero service cards + RFQ |
+| `/` | Homepage (announcement → hero collage → services → how it works → CTA) |
 | `/quote` | Dedicated quote flow |
 | `/confirmation` | Post-RFQ confirmation |
 | `/api/rfq` | `POST` quote intake |
@@ -43,11 +43,12 @@ Visitor → select service → request quote → lead capture (CRM) → confirma
 
 ## Brand
 
-- Palette: `#171322`, `#4D1FA8`, `#6D35D8`, `#F3EFFF`, `#F8F7FA`, `#FFFFFF`, `#686273`
-- Exact phrases: **Comcast Business**, **Xfinity Residential**
+- Palette: `#080B22`, `#11184A`, `#263DFF`, `#4169FF`, `#EEF2FF`, `#F7F8FC`, `#FFFFFF`, `#111318`, `#5E6472`
+- Hero gradient: `linear-gradient(115deg, #080B22 0%, #11184A 45%, #263DFF 100%)`
+- Exact phrases: **Comcast Business**, **Xfinity Residential**, **Merchant Services**
 - Do not invent pricing, speeds, or vacation guarantees
 - SQ logo is replaceable (`src/components/Logo.tsx`)
-- Hero includes floating service cards (middle card lavender)
+- Homepage images live in `/public/images/home/` (replaceable placeholders)
 
 ## Environment
 

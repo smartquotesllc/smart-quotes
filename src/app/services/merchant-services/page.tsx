@@ -32,7 +32,7 @@ export default function MerchantServicesPage() {
           <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm">
             <div className="text-center">
               <div className="mx-auto mb-4 flex h-24 w-16 items-center justify-center rounded-lg bg-white text-sq-purple shadow-xl">
-                <span className="font-[family-name:var(--font-montserrat)] text-2xl font-bold">POS</span>
+                <span className="font-heading text-2xl font-bold">POS</span>
               </div>
               <p className="text-sm text-white/70">Premium payment technology visual</p>
             </div>

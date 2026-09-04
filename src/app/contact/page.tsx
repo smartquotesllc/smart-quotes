@@ -15,7 +15,7 @@ export default function ContactPage() {
         <p className="mt-5 text-lg text-sq-gray">
           The fastest way to get started is a free quote request. Prefer to talk first? Call our placeholder line and replace it with the official Smart Quotes number when ready.
         </p>
-        <a href="tel:+18881234567" className="mt-8 inline-block font-[family-name:var(--font-montserrat)] text-3xl font-bold text-sq-ink hover:text-sq-purple">(888) 123-4567</a>
+        <a href="tel:+18881234567" className="mt-8 inline-block font-heading text-3xl font-bold text-sq-ink hover:text-sq-purple">(888) 123-4567</a>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button href="/quote" size="lg">Get a Free Quote</Button>
           <Button href="/services" variant="outline" size="lg">Explore Services</Button>

@@ -39,7 +39,7 @@ export default function XfinityResidentialPage() {
               <article key={plan.name} className="flex h-full flex-col rounded-xl border border-sq-border bg-white p-7">
                 <h3 className="text-xl font-bold text-sq-ink">{plan.name}</h3>
                 <p className="mt-4 flex-1 text-sm text-sq-gray">{plan.blurb}</p>
-                <p className="mt-6 font-[family-name:var(--font-montserrat)] text-2xl font-bold text-sq-purple">Custom quote</p>
+                <p className="mt-6 font-heading text-2xl font-bold text-sq-purple">Custom quote</p>
                 <p className="mt-1 text-xs text-sq-gray">Pricing confirmed after RFQ — no invented rates.</p>
                 <Button href={`/quote?service=${SLUG}`} className="mt-6 w-full">Get a Quote</Button>
               </article>
