@@ -29,6 +29,16 @@ export function QuoteFormShell({
               {title}
             </h1>
             <p className="mt-2 text-base text-sq-ink">{subtitle}</p>
+            <p className="mx-auto mt-4 max-w-xl rounded-lg bg-sq-soft px-4 py-3 text-sm text-sq-ink">
+              Submit your quote through Smart Quotes and receive a free vacation
+              offer.{" "}
+              <a
+                href="/vacation-terms"
+                className="font-semibold text-sq-purple underline underline-offset-2 hover:text-sq-purple-hover"
+              >
+                Vacation Terms
+              </a>
+            </p>
           </header>
 
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(220px,320px)_1fr] lg:gap-10">

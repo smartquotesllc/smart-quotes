@@ -11,8 +11,8 @@ export default function AboutPage() {
   return (
     <section className="py-16 sm:py-24">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
-        <div className="flex min-h-[320px] items-center justify-center rounded-2xl bg-sq-black p-10">
-          <Logo variant="dark" size="lg" href={null} className="scale-125" />
+        <div className="flex min-h-[320px] items-center justify-center rounded-2xl border border-sq-border bg-white p-10 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.35)]">
+          <Logo size="lg" href={null} />
         </div>
         <div>
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-sq-purple">About Smart Quotes</p>

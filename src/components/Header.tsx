@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 
 type NavItem = { href: string; label: string; match?: "exact" | "prefix" };
 
-const DEFAULT_NAV: NavItem[] = [
+const NAV: NavItem[] = [
   { href: "/", label: "Home", match: "exact" },
   { href: "/services", label: "Services", match: "prefix" },
   { href: "/about", label: "About Us", match: "exact" },
@@ -17,18 +17,9 @@ const DEFAULT_NAV: NavItem[] = [
   { href: "/contact", label: "Contact", match: "exact" },
 ];
 
-const SERVICE_LABELS: Record<string, string> = {
-  "merchant-services": "Merchant Services",
-  "xfinity-residential": "Xfinity Residential",
-  "comcast-business": "Comcast Business",
-};
-
-function isActive(pathname: string, item: NavItem, serviceActiveHref?: string) {
-  if (serviceActiveHref && item.href === serviceActiveHref) return true;
+function isActive(pathname: string, item: NavItem) {
   if (item.match === "exact") return pathname === item.href;
   if (item.href === "/services") {
-    // When a service-detail nav item is active, do not also underline Services
-    if (serviceActiveHref) return false;
     return pathname === "/services" || pathname.startsWith("/services/");
   }
   return pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -38,42 +29,6 @@ export function Header() {
   const pathname = usePathname() || "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  const { nav, serviceActiveHref } = useMemo(() => {
-    const match = pathname.match(/^\/services\/([^/]+)/);
-    const slug = match?.[1];
-    const label = slug ? SERVICE_LABELS[slug] : undefined;
-
-    // Match mockups: service detail pages surface the current service in nav
-    if (slug && label && slug !== "merchant-services") {
-      if (slug === "xfinity-residential") {
-        return {
-          serviceActiveHref: `/services/${slug}`,
-          nav: [
-            { href: "/", label: "Home", match: "exact" as const },
-            { href: "/services", label: "Services", match: "prefix" as const },
-            { href: `/services/${slug}`, label: label.toUpperCase(), match: "exact" as const },
-            { href: "/resources", label: "Resources", match: "exact" as const },
-            { href: "/contact", label: "Contact", match: "exact" as const },
-          ],
-        };
-      }
-      if (slug === "comcast-business") {
-        return {
-          serviceActiveHref: `/services/${slug}`,
-          nav: [
-            { href: "/", label: "Home", match: "exact" as const },
-            { href: "/services", label: "Services", match: "prefix" as const },
-            { href: "/about", label: "About Us", match: "exact" as const },
-            { href: `/services/${slug}`, label: label.toUpperCase(), match: "exact" as const },
-            { href: "/contact", label: "Contact", match: "exact" as const },
-          ],
-        };
-      }
-    }
-
-    return { nav: DEFAULT_NAV, serviceActiveHref: undefined };
-  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -94,21 +49,27 @@ export function Header() {
       className={cn(
         "sticky top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "border-sq-border/70 bg-white/85 shadow-[0_10px_30px_-20px_rgba(8,11,34,0.35)] backdrop-blur-md"
+          ? "border-sq-border/70 bg-white/90 shadow-[0_10px_30px_-20px_rgba(8,11,34,0.35)] backdrop-blur-md"
           : "border-sq-border/80 bg-white",
       )}
     >
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Logo size="sm" />
-        <nav className="hidden items-center gap-7 xl:gap-8 lg:flex" aria-label="Primary">
-          {nav.map((item) => {
-            const active = isActive(pathname, item, serviceActiveHref);
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2 sm:gap-4 sm:px-6 lg:px-8">
+        {/* Left: logo */}
+        <Logo size="sm" priority />
+
+        {/* Center: primary tabs evenly distributed across remaining space */}
+        <nav
+          className="hidden min-w-0 flex-1 items-center justify-evenly lg:flex"
+          aria-label="Primary"
+        >
+          {NAV.map((item) => {
+            const active = isActive(pathname, item);
             return (
               <Link
                 key={`${item.href}-${item.label}`}
                 href={item.href}
                 className={cn(
-                  "relative font-heading text-[13px] font-semibold tracking-[0.02em] transition-colors",
+                  "relative shrink-0 px-1 py-2 font-heading text-[13px] font-semibold tracking-[0.02em] transition-colors xl:text-sm",
                   active ? "text-sq-purple" : "text-sq-ink hover:text-sq-purple",
                 )}
                 aria-current={active ? "page" : undefined}
@@ -116,7 +77,7 @@ export function Header() {
                 {item.label}
                 {active ? (
                   <span
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full bg-sq-purple"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full bg-sq-purple"
                     aria-hidden="true"
                   />
                 ) : null}
@@ -124,12 +85,16 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="hidden lg:block">
+
+        {/* Far right: CTA */}
+        <div className="hidden shrink-0 lg:block">
           <Button href="/quote" size="sm">
             Get a Free Quote
           </Button>
         </div>
-        <div className="flex items-center gap-2 lg:hidden">
+
+        {/* Mobile: Quote + hamburger stay accessible */}
+        <div className="ml-auto flex items-center gap-2 lg:hidden">
           <Button href="/quote" size="sm" className="!h-9 !px-3 !text-[10px]">
             Quote
           </Button>
@@ -165,6 +130,7 @@ export function Header() {
           </button>
         </div>
       </div>
+
       <div
         id="mobile-nav"
         className={cn(
@@ -176,8 +142,8 @@ export function Header() {
           className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4"
           aria-label="Mobile"
         >
-          {nav.map((item) => {
-            const active = isActive(pathname, item, serviceActiveHref);
+          {NAV.map((item) => {
+            const active = isActive(pathname, item);
             return (
               <Link
                 key={`m-${item.href}-${item.label}`}

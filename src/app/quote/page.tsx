@@ -104,7 +104,27 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
           ))}
         </div>
 
-        <aside className="mt-10 flex flex-col items-center gap-4 rounded-2xl bg-[#ebe4ff] px-6 py-5 sm:mt-12 sm:flex-row sm:gap-5 sm:px-8">
+        <aside className="mt-10 overflow-hidden rounded-2xl bg-sq-purple px-6 py-6 text-white sm:mt-12 sm:px-8 sm:py-7">
+          <h2 className="font-heading text-xl font-extrabold uppercase tracking-tight sm:text-2xl">
+            Free Vacation with Your Quote
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm text-white/95 sm:text-base">
+            When you submit a quote request through Smart Quotes, you receive a
+            free vacation offer. Choose a service above to get started.
+          </p>
+          <p className="mt-3 text-xs text-white/75">
+            Offer subject to{" "}
+            <Link
+              href="/vacation-terms"
+              className="underline underline-offset-2 hover:text-white"
+            >
+              Vacation Terms
+            </Link>
+            .
+          </p>
+        </aside>
+
+        <aside className="mt-6 flex flex-col items-center gap-4 rounded-2xl bg-[#ebe4ff] px-6 py-5 sm:flex-row sm:gap-5 sm:px-8">
           <span
             className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sq-purple text-white"
             aria-hidden="true"

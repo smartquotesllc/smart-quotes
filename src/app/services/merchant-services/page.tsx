@@ -175,16 +175,16 @@ export default function MerchantServicesPage() {
             aria-hidden="true"
           />
           <div className="relative mx-auto flex min-h-[240px] max-w-7xl flex-col justify-center px-4 py-12 sm:min-h-[280px] sm:px-6 lg:min-h-[300px] lg:px-8">
-            <div className="max-w-md">
+            <div className="max-w-lg">
               <h2
                 id="merchant-vacation-heading"
                 className="font-heading text-3xl font-extrabold uppercase tracking-tight text-white sm:text-4xl"
               >
-                Get a Free Quote
+                Get a Free Vacation
               </h2>
-              <p className="mt-2 text-base text-white/90">and get a chance to</p>
-              <p className="mt-1 font-heading text-2xl font-extrabold uppercase tracking-tight text-white sm:text-3xl">
-                Win a Free Vacation!
+              <p className="mt-3 text-base text-white/95 sm:text-lg">
+                Request a quote through Smart Quotes and receive a free vacation
+                offer with your quote request.
               </p>
               <div className="mt-7">
                 <Link

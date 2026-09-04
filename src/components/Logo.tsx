@@ -1,72 +1,49 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type LogoProps = {
   className?: string;
+  /** Kept for API compatibility; wordmark is part of the official logo asset. */
   showWordmark?: boolean;
+  /** Kept for API compatibility; official asset includes its own colors. */
   variant?: "light" | "dark";
   size?: "sm" | "md" | "lg";
   href?: string | null;
+  priority?: boolean;
 };
 
-/** Bold black SQ mark + SMART QUOTES wordmark — styled to match approved homepage mockup. */
+const SIZE_WIDTH: Record<NonNullable<LogoProps["size"]>, string> = {
+  // Header: mobile ~135–150px, desktop ~155–175px
+  sm: "w-[138px] sm:w-[148px] lg:w-[165px]",
+  md: "w-[150px] sm:w-[165px]",
+  lg: "w-[180px] sm:w-[200px]",
+};
+
+/** Official Smart Quotes brand mark (SQ monogram + SMART QUOTES wordmark). */
 export function Logo({
   className,
-  showWordmark = true,
-  variant = "light",
   size = "md",
   href = "/",
+  priority = false,
 }: LogoProps) {
-  const markSize =
-    size === "lg"
-      ? "h-11 w-12 text-[1.75rem]"
-      : size === "sm"
-        ? "h-9 w-10 text-[1.35rem]"
-        : "h-10 w-11 text-[1.5rem]";
-  const wordSize =
-    size === "lg"
-      ? "text-[13px] tracking-[0.18em]"
-      : size === "sm"
-        ? "text-[11px] tracking-[0.16em]"
-        : "text-xs tracking-[0.17em]";
-  const ink = variant === "dark" ? "text-white" : "text-sq-ink";
-
   const content = (
-    <span
-      className={cn(
-        "inline-flex items-center gap-2.5 sm:gap-3",
-        className,
-      )}
-    >
-      <span
-        className={cn(
-          "relative inline-flex shrink-0 items-center justify-center font-heading font-extrabold leading-none select-none",
-          markSize,
-          ink,
-        )}
-        aria-hidden="true"
-      >
-        <span className="absolute left-0 top-0 z-[1]">S</span>
-        <span className="absolute right-0 bottom-0 opacity-95">Q</span>
-      </span>
-      {showWordmark ? (
-        <span
-          className={cn(
-            "font-heading font-extrabold uppercase leading-none",
-            wordSize,
-            ink,
-          )}
-        >
-          Smart Quotes
-        </span>
-      ) : null}
-      <span className="sr-only">Smart Quotes</span>
+    <span className={cn("inline-flex shrink-0", SIZE_WIDTH[size], className)}>
+      <Image
+        src="/brand/sq-logo.jpg"
+        alt="Smart Quotes"
+        width={449}
+        height={380}
+        className="h-auto w-full object-contain"
+        sizes="(max-width: 1024px) 150px, 175px"
+        priority={priority}
+      />
     </span>
   );
 
   if (href === null) return content;
   return (
-    <Link href={href} className="inline-flex shrink-0 rounded-sm">
+    <Link href={href} className="inline-flex shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple">
       {content}
     </Link>
   );

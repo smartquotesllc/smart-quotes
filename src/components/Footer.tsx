@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 
 const LEGAL = [
   { href: "/privacy", label: "Privacy Policy" },
@@ -78,11 +79,11 @@ export function Footer() {
 
       {/* Brand / phone / social — matches service mockups */}
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-8 text-center sm:flex-row sm:justify-between sm:text-left sm:px-6 lg:px-8">
-        <div>
-          <p className="font-heading text-sm font-extrabold uppercase tracking-[0.12em] text-white">
-            Smart Quotes LLC
-          </p>
-          <p className="mt-1.5 text-sm text-white/75">
+        <div className="flex flex-col items-center gap-3 sm:items-start">
+          <div className="rounded-md bg-white px-3 py-2">
+            <Logo size="sm" href="/" className="!w-[140px]" />
+          </div>
+          <p className="text-sm text-white/75">
             We Connect You to Better Solutions
           </p>
         </div>

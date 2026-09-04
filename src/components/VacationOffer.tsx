@@ -9,7 +9,6 @@ export function VacationOffer() {
       aria-labelledby="vacation-heading"
     >
       <div className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px]">
-        {/* Beach photo on the right */}
         <div className="absolute inset-0">
           <Image
             src="/images/home/vacation-beach.jpg"
@@ -22,7 +21,6 @@ export function VacationOffer() {
           />
         </div>
 
-        {/* Purple gradient fading into beach */}
         <div
           className="absolute inset-0"
           style={{
@@ -41,7 +39,18 @@ export function VacationOffer() {
               Get a Free Vacation
             </h2>
             <p className="mt-3 text-base text-white/95 sm:text-lg">
-              When You Get a FREE Quote!
+              When you request a quote through Smart Quotes, you receive a free
+              vacation offer.
+            </p>
+            <p className="mt-3 text-xs text-white/75 sm:text-sm">
+              Offer subject to{" "}
+              <Link
+                href="/vacation-terms"
+                className="underline underline-offset-2 hover:text-white"
+              >
+                Vacation Terms
+              </Link>
+              .
             </p>
           </div>
           <div className="shrink-0">
@@ -49,7 +58,7 @@ export function VacationOffer() {
               href="/quote"
               className="inline-flex h-12 items-center justify-center rounded-md border border-white px-8 font-heading text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white/10"
             >
-              Learn More
+              Get a Free Quote
             </Link>
           </div>
         </div>

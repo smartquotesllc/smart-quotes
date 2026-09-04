@@ -5,9 +5,8 @@ export function AboutSection() {
   return (
     <section id="about" className="bg-white py-20 sm:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-2xl bg-sq-black p-10">
-          <div className="absolute inset-0 opacity-40" style={{ background: "radial-gradient(circle at 30% 30%, rgba(38,61,255,0.55), transparent 55%)" }} aria-hidden="true" />
-          <Logo showWordmark variant="dark" size="lg" href={null} className="relative scale-125" />
+        <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-2xl border border-sq-border bg-sq-gray-light p-10">
+          <Logo showWordmark size="lg" href={null} className="relative" />
         </div>
         <div>
           <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.2em] text-sq-purple">About Smart Quotes</p>
