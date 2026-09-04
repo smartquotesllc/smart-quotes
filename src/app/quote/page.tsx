@@ -1,60 +1,124 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { QuoteForm } from "@/components/QuoteForm";
-import { SERVICES } from "@/lib/services";
+import { redirect } from "next/navigation";
 import type { ServiceSlug } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Get a Free Quote",
-  description: "Choose Merchant Services, Xfinity Residential, or Comcast Business and submit your Smart Quotes request.",
+  description:
+    "Choose Merchant Services, Xfinity Residential, or Comcast Business and submit your Smart Quotes request.",
+};
+
+const CARDS: Array<{
+  slug: ServiceSlug;
+  label: string;
+  href: string;
+  /** IMAGE REPLACE: swap under /public/images/quote/ */
+  image: string;
+  alt: string;
+}> = [
+  {
+    slug: "merchant-services",
+    label: "Merchant Services",
+    href: "/quote/merchant-services",
+    image: "/images/quote/merchant-pos.png",
+    alt: "Handheld point-of-sale payment terminal",
+  },
+  {
+    slug: "xfinity-residential",
+    label: "Xfinity Residential",
+    href: "/quote/xfinity-residential",
+    image: "/images/quote/xfinity-modem.png",
+    alt: "Home internet gateway modem",
+  },
+  {
+    slug: "comcast-business",
+    label: "Comcast Business",
+    href: "/quote/comcast-business",
+    image: "/images/quote/comcast-card.png",
+    alt: "Modern glass office building",
+  },
+];
+
+const LEGACY: Record<string, string> = {
+  "merchant-services": "/quote/merchant-services",
+  "xfinity-residential": "/quote/xfinity-residential",
+  "comcast-business": "/quote/comcast-business",
 };
 
 type QuotePageProps = { searchParams: Promise<{ service?: string }> };
 
-export default async function QuotePage({ searchParams }: QuotePageProps) {
+export default async function QuoteChoosePage({ searchParams }: QuotePageProps) {
   const params = await searchParams;
-  const slug = params.service;
-  const valid = SERVICES.some((s) => s.slug === slug) ? (slug as ServiceSlug) : undefined;
+  if (params.service && LEGACY[params.service]) {
+    redirect(LEGACY[params.service]);
+  }
 
   return (
     <div className="bg-sq-gray-light">
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mb-10 max-w-2xl">
-          <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.2em] text-sq-purple">Request a Quote</p>
-          <h1 className="text-3xl font-bold tracking-tight text-sq-ink sm:text-5xl">Get a free quote</h1>
-          <p className="mt-4 text-sq-gray">
-            Prefer to browse first?{" "}
-            <Link href="/services" className="font-semibold text-sq-purple underline-offset-2 hover:underline">Explore services</Link>
-            {" "}or call <a href="tel:+18881234567" className="font-semibold text-sq-ink">(888) 123-4567</a>.
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+        <header className="mb-10 text-center sm:mb-12">
+          <h1 className="font-heading text-3xl font-extrabold uppercase tracking-[0.02em] text-sq-ink sm:text-4xl lg:text-[2.75rem]">
+            Let&apos;s Get Started
+          </h1>
+          <p className="mt-3 text-base text-sq-ink sm:text-lg">
+            Choose the service you&apos;re interested in.
           </p>
+        </header>
+
+        <div className="grid gap-6 md:grid-cols-3 md:gap-7">
+          {CARDS.map((card) => (
+            <article
+              key={card.slug}
+              className="flex flex-col overflow-hidden rounded-2xl border border-[#e2e5eb] bg-white shadow-[0_12px_32px_-20px_rgba(15,23,42,0.25)]"
+            >
+              <div className="relative aspect-[4/3] w-full bg-white p-5">
+                {/* IMAGE REPLACE: {card.image} */}
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  fill
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority={card.slug === "merchant-services"}
+                />
+              </div>
+              <div className="flex flex-1 flex-col px-6 pb-7 pt-1 text-center">
+                <h2 className="font-heading text-lg font-extrabold uppercase tracking-[0.04em] text-sq-ink">
+                  {card.label}
+                </h2>
+                <Link
+                  href={card.href}
+                  className="mt-3 inline-flex justify-center font-heading text-sm font-bold text-sq-purple transition hover:text-sq-purple-hover"
+                >
+                  Get a Quote
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
-        {!valid ? (
-          <div className="mb-10 grid gap-5 md:grid-cols-3">
-            {SERVICES.map((service) => (
-              <Link key={service.slug} href={`/quote?service=${service.slug}`} className="rounded-xl border border-sq-border bg-white p-6 transition hover:-translate-y-0.5 hover:border-sq-purple/40 hover:shadow-lg">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-sq-purple">{service.kicker}</p>
-                <h2 className="mt-2 text-xl font-bold text-sq-ink">{service.label}</h2>
-                <p className="mt-3 text-sm text-sq-gray">{service.description}</p>
-                <p className="mt-5 text-sm font-bold uppercase tracking-wide text-sq-purple">Get a Quote →</p>
-              </Link>
-            ))}
-          </div>
-        ) : null}
-        <div className="grid items-start gap-8 lg:grid-cols-2">
-          <div className="relative min-h-[320px] overflow-hidden rounded-2xl bg-sq-black p-8 text-white">
-            <div className="absolute inset-0 opacity-50" style={{ background: "radial-gradient(circle at 70% 30%, rgba(38,61,255,0.55), transparent 50%), url('/brand/hero-lights.svg') center/cover" }} aria-hidden="true" />
-            <div className="relative">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/60">What happens next</p>
-              <ul className="mt-6 space-y-4 text-sm text-white/85">
-                <li>1. Your RFQ is captured and classified by service type.</li>
-                <li>2. You see an on-site confirmation.</li>
-                <li>3. A specialist follow-up is prepared for your category.</li>
-                <li>4. A vacation-stay offer link may be sent separately when applicable (subject to official terms).</li>
-              </ul>
-            </div>
-          </div>
-          <QuoteForm defaultService={valid} />
-        </div>
+
+        <aside className="mt-10 flex flex-col items-center gap-4 rounded-2xl bg-[#ebe4ff] px-6 py-5 sm:mt-12 sm:flex-row sm:gap-5 sm:px-8">
+          <span
+            className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sq-purple text-white"
+            aria-hidden="true"
+          >
+            <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path
+                d="M8.5 4.8c.4-1 1.2-1.3 2-.8l1.4.9c.7.4.9 1.2.5 1.9l-.7 1.2a1.4 1.4 0 0 0 .2 1.7l2.4 2.4c.5.5 1.2.6 1.7.2l1.2-.7c.7-.4 1.5-.2 1.9.5l.9 1.4c.5.8.2 1.6-.8 2-.9.4-2 .7-3.1.4-2.5-.6-4.8-2.3-6.7-4.2-1.9-1.9-3.6-4.2-4.2-6.7-.3-1.1 0-2.2.4-3.1Z"
+                strokeLinejoin="round"
+              />
+              <path d="M16.2 4.5c1.6.4 2.9 1.5 3.5 3.1M15 6.8c.8.2 1.4.8 1.7 1.6" strokeLinecap="round" />
+            </svg>
+          </span>
+          <p className="text-center text-base text-sq-ink sm:text-left sm:text-lg">
+            Not sure which service is right for you? Call or text us and we&apos;ll help!{" "}
+            <a href="tel:+18881234567" className="font-bold text-sq-ink hover:text-sq-purple">
+              (888) 123-4567
+            </a>
+          </p>
+        </aside>
       </section>
     </div>
   );

@@ -70,6 +70,23 @@ export interface LeadRecord {
   additionalInformation?: string;
 }
 
+/** Optional service-specific fields collected on quote forms */
+export interface QuoteFormExtras {
+  fullName?: string;
+  businessType?: string;
+  monthlyCardVolume?: string;
+  hearAboutUs?: string;
+  serviceInterestedIn?: string;
+  bestTimeToContact?: string;
+  numberOfEmployees?: string;
+  streetAddress?: string;
+  aptSuite?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+  message?: string;
+}
+
 export interface QuoteFormPayload {
   serviceSlug: ServiceSlug;
   firstName: string;
@@ -83,4 +100,5 @@ export interface QuoteFormPayload {
   leadSource?: string;
   campaign?: string;
   landingPage?: string;
+  extras?: QuoteFormExtras;
 }

@@ -23,7 +23,7 @@ const CARDS = [
     // IMAGE REPLACE: /public/images/services/merchant-pos-card.png
     image: "/images/services/merchant-pos-card.png",
     imageAlt: "Modern point-of-sale payment terminal",
-    href: "/quote?service=merchant-services",
+    href: "/quote/merchant-services",
     detailsHref: "/services/merchant-services",
   },
   {
@@ -34,7 +34,7 @@ const CARDS = [
     // IMAGE REPLACE: /public/images/services/xfinity-entertainment.png
     image: "/images/services/xfinity-entertainment.png",
     imageAlt: "TV, streaming box, and entertainment setup",
-    href: "/quote?service=xfinity-residential",
+    href: "/quote/xfinity-residential",
     detailsHref: "/services/xfinity-residential",
   },
   {
@@ -45,7 +45,7 @@ const CARDS = [
     // IMAGE REPLACE: /public/images/services/comcast-office.png
     image: "/images/services/comcast-office.png",
     imageAlt: "Modern glass office building",
-    href: "/quote?service=comcast-business",
+    href: "/quote/comcast-business",
     detailsHref: "/services/comcast-business",
   },
 ] as const;

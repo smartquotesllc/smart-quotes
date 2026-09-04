@@ -56,6 +56,11 @@ export function buildLeadFromPayload(payload: QuoteFormPayload): LeadRecord {
   const dateSubmitted = now.toISOString().slice(0, 10);
   const timeSubmitted = now.toISOString().slice(11, 19);
 
+  const specific =
+    payload.extras?.serviceInterestedIn
+      ? `${service.label} — ${payload.extras.serviceInterestedIn}`
+      : service.label;
+
   return {
     id: randomUUID(),
     firstName: payload.firstName,
@@ -65,7 +70,7 @@ export function buildLeadFromPayload(payload: QuoteFormPayload): LeadRecord {
     address: payload.address,
     businessName: payload.businessName,
     serviceType: service.serviceType,
-    specificServiceRequested: service.label,
+    specificServiceRequested: specific,
     serviceSlug: payload.serviceSlug,
     dateSubmitted,
     timeSubmitted,

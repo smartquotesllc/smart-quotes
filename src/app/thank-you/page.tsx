@@ -1,12 +1,53 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
+export const metadata: Metadata = {
+  title: "Thank You",
+  description: "Your Smart Quotes LLC quote request was submitted successfully.",
+  robots: { index: false, follow: false },
+};
 
-export default async function ThankYouRedirect({ searchParams }: Props) {
-  const params = await searchParams;
-  const qs = new URLSearchParams();
-  for (const [key, value] of Object.entries(params)) {
-    if (typeof value === "string") qs.set(key, value);
-  }
-  redirect(`/confirmation?${qs.toString()}`);
+type Props = {
+  searchParams: Promise<{
+    lead?: string;
+    ref?: string;
+    service?: string;
+    type?: string;
+  }>;
+};
+
+export default async function ThankYouPage({ searchParams }: Props) {
+  // searchParams retained for CRM analytics / reference links
+  await searchParams;
+
+  return (
+    <div className="bg-sq-gray-light">
+      <section className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+        <div className="w-full rounded-2xl border border-[#c8ccd4] bg-white px-6 py-14 text-center shadow-[0_1px_0_rgba(15,23,42,0.04)] sm:px-12 sm:py-16">
+          <div
+            className="mx-auto mb-8 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-sq-purple text-white"
+            aria-hidden="true"
+          >
+            <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="2.8">
+              <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <h1 className="font-heading text-4xl font-extrabold uppercase tracking-[0.02em] text-sq-ink sm:text-5xl">
+            Thank You!
+          </h1>
+          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-sq-ink sm:text-lg">
+            We&apos;ve received your request.
+            <br />
+            A Smart Quotes specialist will be in touch with you soon!
+          </p>
+          <Link
+            href="/"
+            className="mt-10 inline-flex h-12 min-w-[240px] items-center justify-center rounded-md bg-sq-purple px-8 font-heading text-sm font-bold uppercase tracking-[0.1em] text-white transition hover:bg-sq-purple-hover"
+          >
+            Return to Home Page
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
 }

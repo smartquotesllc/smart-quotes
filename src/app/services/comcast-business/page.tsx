@@ -136,7 +136,7 @@ export default function ComcastBusinessPage() {
               className="mt-8"
             />
             <div className="mt-9">
-              <Button href={`/quote?service=${SLUG}`} size="lg">
+              <Button href={`/quote/${SLUG}`} size="lg">
                 Get a Quote
               </Button>
             </div>
