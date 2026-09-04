@@ -11,6 +11,7 @@ export function Hero() {
           alt="Night city skyline with purple highway light trails"
           fill
           priority
+          quality={92}
           sizes="100vw"
           className="animate-hero-kenburns object-cover object-center"
         />

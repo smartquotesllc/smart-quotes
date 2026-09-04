@@ -16,6 +16,7 @@ export function VacationOffer() {
             alt="Tropical beach vacation destination"
             fill
             sizes="100vw"
+            quality={92}
             className="object-cover object-[70%_center]"
             priority={false}
           />

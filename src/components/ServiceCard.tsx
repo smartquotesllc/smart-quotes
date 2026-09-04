@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 import type { ServiceOption } from "@/lib/types";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  "merchant-services": "/images/home/merchant-services.jpg",
-  "xfinity-residential": "/images/home/xfinity-residential.jpg",
-  "comcast-business": "/images/home/comcast-business.jpg",
+  "merchant-services": "/images/home/merchant-pos.jpg",
+  "xfinity-residential": "/images/home/xfinity-modem.jpg",
+  "comcast-business": "/images/home/comcast-office.jpg",
 };
 
 type ServiceCardProps = {
@@ -48,6 +48,7 @@ export function ServiceCard({
             alt={`${service.label} visual`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
+            quality={92}
             className="object-cover transition duration-500 group-hover:scale-[1.04]"
           />
         </div>
