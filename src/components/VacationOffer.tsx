@@ -1,32 +1,27 @@
 import Link from "next/link";
 import { Button } from "@/components/Button";
-import { FadeIn } from "@/components/FadeIn";
 
 export function VacationOffer() {
   return (
-    <FadeIn>
-      <div className="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-10 text-white sm:px-10 sm:py-12">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-purple/40 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 left-10 h-48 w-48 rounded-full bg-purple-deep/50 blur-3xl" />
-        <div className="relative max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-lavender/80">After you submit</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            A separate vacation-stay offer may follow
+    <section id="vacation-offer" className="relative overflow-hidden bg-sq-purple" aria-labelledby="vacation-heading">
+      <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 85% 50%, rgba(255,255,255,0.35), transparent 42%), linear-gradient(90deg, rgba(90,44,255,1) 0%, rgba(90,44,255,0.85) 55%, rgba(13,9,13,0.35) 100%)" }} aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 bg-[url('/brand/vacation-glow.svg')] bg-cover bg-right opacity-40 md:block" aria-hidden="true" />
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8 lg:py-14">
+        <div className="max-w-2xl">
+          <h2 id="vacation-heading" className="text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl lg:text-4xl">
+            Request your quote.
+            <span className="block text-white/90">Then unlock your vacation-stay offer.</span>
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/75 sm:text-lg">
-            After a successful quote request, Smart Quotes LLC may send a
-            separate vacation-stay offer link by email or text. Eligibility,
-            destinations, and redemption details are defined only in the
-            official offer terms — not on this page.
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base">
+            After a qualifying RFQ is submitted, customers may receive a separate link with information about the Smart Quotes vacation-stay offer, subject to the{" "}
+            <Link href="/vacation-terms" className="underline underline-offset-2">official offer terms</Link>
+            . Eligibility, destinations, and redemption details are placeholders until the official program is finalized.
           </p>
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Button href="#request-quote" variant="secondary">Request a quote first</Button>
-            <Link href="/vacation-terms" className="text-sm font-medium text-lavender underline-offset-4 hover:underline">
-              Read vacation offer terms
-            </Link>
-          </div>
+        </div>
+        <div className="shrink-0">
+          <Button href="/quote" variant="white" size="lg">Start My Quote</Button>
         </div>
       </div>
-    </FadeIn>
+    </section>
   );
 }

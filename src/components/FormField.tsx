@@ -1,47 +1,32 @@
 import { cn } from "@/lib/utils";
 
-interface FormFieldProps {
-  label: string;
-  htmlFor?: string;
+type FormFieldProps = {
   id?: string;
-  error?: string;
-  optional?: boolean;
-  hint?: string;
+  htmlFor?: string;
+  label: string;
   children: React.ReactNode;
+  error?: string;
+  hint?: string;
+  optional?: boolean;
   className?: string;
-}
+};
 
-export function FormField({
-  label,
-  htmlFor,
-  id,
-  error,
-  optional,
-  hint,
-  children,
-  className,
-}: FormFieldProps) {
+export function FormField({ id, htmlFor, label, children, error, hint, optional, className }: FormFieldProps) {
   const fieldId = htmlFor ?? id;
   return (
-    <div className={cn("space-y-1.5", className)}>
-      <label htmlFor={fieldId} className="block text-sm font-medium text-ink">
+    <div className={cn("space-y-2", className)}>
+      <label htmlFor={fieldId} className="block font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.12em] text-sq-ink">
         {label}
-        {optional ? (
-          <span className="ml-1 font-normal text-muted">(optional)</span>
-        ) : null}
+        {optional ? <span className="ml-1 font-normal normal-case tracking-normal text-sq-gray">(optional)</span> : null}
       </label>
       {children}
-      {hint && !error ? <p className="text-xs text-muted">{hint}</p> : null}
-      {error ? (
-        <p className="text-sm text-red-600" role="alert">
-          {error}
-        </p>
-      ) : null}
+      {hint && !error ? <p className="text-xs text-sq-gray">{hint}</p> : null}
+      {error ? <p className="text-xs text-red-600" role="alert">{error}</p> : null}
     </div>
   );
 }
 
-export const inputClassName =
-  "w-full rounded-xl border border-ink/10 bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/70 outline-none transition-[border-color,box-shadow] focus:border-purple/40 focus:ring-2 focus:ring-purple/15";
+export const fieldControlClass =
+  "w-full rounded-md border border-sq-border bg-white px-4 py-3 text-sm text-sq-ink placeholder:text-sq-gray/70 transition focus:border-sq-purple focus:outline-none focus:ring-2 focus:ring-sq-purple/20";
 
-export const fieldControlClass = inputClassName;
+export const inputClassName = fieldControlClass;

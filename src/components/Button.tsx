@@ -1,62 +1,38 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost" | "outline" | "white";
-type Size = "sm" | "md" | "lg";
+const variants = {
+  primary: "bg-sq-purple text-white hover:bg-sq-purple-hover shadow-[0_10px_24px_-12px_rgba(90,44,255,0.7)]",
+  secondary: "bg-transparent text-white border border-white/80 hover:bg-white/10",
+  outline: "bg-white text-sq-purple border border-sq-purple hover:bg-sq-purple-soft",
+  ghost: "bg-transparent text-sq-ink hover:text-sq-purple",
+  white: "bg-white text-sq-purple border border-white hover:bg-white/90",
+} as const;
 
-const variants: Record<Variant, string> = {
-  primary:
-    "bg-purple-deep text-white shadow-[0_12px_28px_-14px_rgba(77,31,168,0.7)] hover:bg-purple focus-visible:ring-purple/40",
-  secondary:
-    "bg-lavender text-purple-deep hover:bg-[#ebe4ff] focus-visible:ring-purple/30",
-  ghost: "bg-transparent text-ink hover:bg-mist focus-visible:ring-purple/20",
-  outline:
-    "bg-white text-ink border border-ink/10 hover:border-purple/30 hover:bg-mist focus-visible:ring-purple/25",
-  white:
-    "bg-white text-purple-deep border border-white hover:bg-lavender focus-visible:ring-white/40",
-};
+const sizes = {
+  sm: "h-10 px-4 text-xs tracking-[0.08em]",
+  md: "h-12 px-6 text-xs tracking-[0.1em]",
+  lg: "h-14 px-8 text-sm tracking-[0.12em]",
+} as const;
 
-const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-12 px-6 text-base",
-};
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: Variant;
-  size?: Size;
-  href?: string;
-  className?: string;
+type ButtonProps = {
   children: React.ReactNode;
-}
+  href?: string;
+  variant?: keyof typeof variants;
+  size?: keyof typeof sizes;
+  className?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  onClick?: () => void;
+};
 
 export function Button({
-  variant = "primary",
-  size = "md",
-  className,
-  children,
-  href,
-  type = "button",
-  ...rest
+  children, href, variant = "primary", size = "md", className, type = "button", disabled, onClick,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-55",
-    variants[variant],
-    sizes[size],
-    className,
+    "inline-flex items-center justify-center gap-2 rounded-md font-[family-name:var(--font-montserrat)] font-bold uppercase transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple disabled:pointer-events-none disabled:opacity-60",
+    variants[variant], sizes[size], className,
   );
-
-  if (href) {
-    return (
-      <Link href={href} className={classes}>
-        {children}
-      </Link>
-    );
-  }
-
-  return (
-    <button type={type} className={classes} {...rest}>
-      {children}
-    </button>
-  );
+  if (href) return <Link href={href} className={classes}>{children}</Link>;
+  return <button type={type} className={classes} disabled={disabled} onClick={onClick}>{children}</button>;
 }

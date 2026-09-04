@@ -1,78 +1,70 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Button } from "@/components/Button";
+import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
+import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { href: "/#services", label: "Services" },
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#vacation-offer", label: "Offer" },
-  { href: "/#request-quote", label: "Request a quote" },
-  { href: "/#about", label: "About" },
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About Us" },
+  { href: "/resources", label: "Resources" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/5 bg-white/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className={cn("sticky top-0 z-50 border-b border-sq-border/80 transition-all", scrolled ? "bg-white/90 shadow-[0_8px_24px_-18px_rgba(0,0,0,0.35)] backdrop-blur-md" : "bg-white")}>
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Logo size="sm" />
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
           {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-muted transition-colors hover:text-ink"
-            >
+            <Link key={item.href} href={item.href} className="font-[family-name:var(--font-montserrat)] text-[13px] font-semibold text-sq-ink transition-colors hover:text-sq-purple">
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden md:block">
-          <Button href="/#request-quote" size="sm">
-            Get a quote
-          </Button>
+        <div className="hidden lg:block">
+          <Button href="/quote" size="sm">Get a Free Quote</Button>
         </div>
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="sr-only">Menu</span>
-          <span className="relative block h-3.5 w-4">
-            <span className={cn("absolute left-0 top-0 h-0.5 w-4 rounded bg-ink transition-transform", open && "top-1.5 rotate-45")} />
-            <span className={cn("absolute left-0 top-1.5 h-0.5 w-4 rounded bg-ink transition-opacity", open && "opacity-0")} />
-            <span className={cn("absolute left-0 top-3 h-0.5 w-4 rounded bg-ink transition-transform", open && "top-1.5 -rotate-45")} />
-          </span>
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <Button href="/quote" size="sm" className="!h-9 !px-3 !text-[10px]">Quote</Button>
+          <button type="button" className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-sq-border" aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((v) => !v)}>
+            <span className="sr-only">Menu</span>
+            <span className="flex w-5 flex-col gap-1.5">
+              <span className={cn("h-0.5 w-full bg-sq-ink transition", open && "translate-y-[7px] rotate-45")} />
+              <span className={cn("h-0.5 w-full bg-sq-ink transition", open && "opacity-0")} />
+              <span className={cn("h-0.5 w-full bg-sq-ink transition", open && "-translate-y-[7px] -rotate-45")} />
+            </span>
+          </button>
+        </div>
       </div>
-      <div id="mobile-nav" className={cn("border-t border-ink/5 bg-white md:hidden", open ? "block" : "hidden")}>
-        <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3" aria-label="Mobile">
+      <div id="mobile-nav" className={cn("border-t border-sq-border bg-white lg:hidden", open ? "block" : "hidden")}>
+        <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4" aria-label="Mobile">
           {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-lg px-3 py-2.5 text-sm font-medium text-ink hover:bg-mist"
-              onClick={() => setOpen(false)}
-            >
+            <Link key={item.href} href={item.href} className="rounded-md px-3 py-3 font-[family-name:var(--font-montserrat)] text-sm font-semibold text-sq-ink hover:bg-sq-purple-soft hover:text-sq-purple" onClick={() => setOpen(false)}>
               {item.label}
             </Link>
           ))}
-          <div className="px-3 pb-1 pt-2">
-            <Link
-              href="/#request-quote"
-              onClick={() => setOpen(false)}
-              className="inline-flex h-9 w-full items-center justify-center rounded-full bg-purple-deep text-sm font-medium text-white"
-            >
-              Get a quote
-            </Link>
+          <div className="mt-2" onClick={() => setOpen(false)}>
+            <Button href="/quote" className="w-full">Get a Free Quote</Button>
           </div>
         </nav>
       </div>

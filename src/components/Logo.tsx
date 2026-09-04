@@ -1,58 +1,43 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-interface LogoProps {
+type LogoProps = {
   className?: string;
-  href?: string | null;
-  size?: "sm" | "md" | "lg";
   showWordmark?: boolean;
-}
+  variant?: "light" | "dark";
+  size?: "sm" | "md" | "lg";
+  href?: string | null;
+};
 
-/** Replaceable SQ brand mark — swap when final assets arrive. */
+/** Replaceable SQ mark — S black / Q purple overlapping (wireframe). */
 export function Logo({
   className,
-  href = "/",
-  size = "md",
   showWordmark = true,
+  variant = "light",
+  size = "md",
+  href = "/",
 }: LogoProps) {
-  const mark =
-    size === "sm"
-      ? "h-8 w-8 text-sm"
-      : size === "lg"
-        ? "h-12 w-12 text-lg"
-        : "h-10 w-10 text-base";
-  const word =
-    size === "sm" ? "text-sm" : size === "lg" ? "text-xl" : "text-base";
+  const markSize =
+    size === "lg" ? "h-12 w-14 text-[1.75rem]" : size === "sm" ? "h-8 w-9 text-lg" : "h-10 w-11 text-xl";
+  const wordSize =
+    size === "lg" ? "text-sm tracking-[0.18em]" : size === "sm" ? "text-[10px] tracking-[0.16em]" : "text-xs tracking-[0.18em]";
+  const wordColor = variant === "dark" ? "text-white" : "text-sq-ink";
 
   const content = (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <span
-        className={cn(
-          "inline-flex items-center justify-center rounded-xl bg-purple-deep font-semibold tracking-tight text-white shadow-[0_10px_30px_-12px_rgba(77,31,168,0.65)]",
-          mark,
-        )}
-        aria-hidden
-      >
-        SQ
+    <span className={cn("inline-flex items-center gap-3", className)}>
+      <span className={cn("relative inline-flex items-center justify-center font-[family-name:var(--font-montserrat)] font-extrabold leading-none select-none", markSize)} aria-hidden="true">
+        <span className="absolute left-0 top-0 text-sq-ink">S</span>
+        <span className="absolute right-0 bottom-0 text-sq-purple">Q</span>
       </span>
       {showWordmark ? (
-        <span className={cn("font-semibold tracking-tight text-ink", word)}>
+        <span className={cn("font-[family-name:var(--font-montserrat)] font-bold uppercase", wordSize, wordColor)}>
           Smart Quotes
-          <span className="ml-1 font-normal text-muted">LLC</span>
         </span>
       ) : null}
+      <span className="sr-only">Smart Quotes</span>
     </span>
   );
 
-  if (!href) return content;
-
-  return (
-    <Link
-      href={href}
-      className="inline-flex rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple/40 focus-visible:ring-offset-2"
-    >
-      {content}
-      <span className="sr-only">Smart Quotes LLC home</span>
-    </Link>
-  );
+  if (href === null) return content;
+  return <Link href={href} className="inline-flex shrink-0 rounded-sm">{content}</Link>;
 }

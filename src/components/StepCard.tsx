@@ -1,20 +1,14 @@
 import { cn } from "@/lib/utils";
 
-interface StepCardProps {
-  step: number | string;
-  title: string;
-  description: string;
-  className?: string;
-}
+type StepCardProps = { step: number | string; title: string; description: string; className?: string };
 
 export function StepCard({ step, title, description, className }: StepCardProps) {
+  const display = typeof step === "number" ? String(step).padStart(2, "0") : step;
   return (
-    <div className={cn("relative rounded-2xl border border-ink/8 bg-white p-6", className)}>
-      <div className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-lavender text-sm font-semibold text-purple-deep">
-        {step}
-      </div>
-      <h3 className="text-lg font-semibold tracking-tight text-ink">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
-    </div>
+    <article className={cn("relative rounded-xl border border-sq-border bg-white p-6 sm:p-7", className)}>
+      <p className="mb-4 font-[family-name:var(--font-montserrat)] text-4xl font-bold text-sq-purple/25">{display}</p>
+      <h3 className="mb-2 font-[family-name:var(--font-montserrat)] text-sm font-bold uppercase tracking-[0.14em] text-sq-ink">{title}</h3>
+      <p className="text-sm leading-relaxed text-sq-gray">{description}</p>
+    </article>
   );
 }

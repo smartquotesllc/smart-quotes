@@ -1,168 +1,114 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
 import { Button } from "@/components/Button";
-import { FormField, inputClassName } from "@/components/FormField";
+import { FormField, fieldControlClass } from "@/components/FormField";
 import { SERVICES } from "@/lib/services";
 import type { ServiceSlug } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-interface QuoteFormProps {
-  defaultService?: ServiceSlug;
-  className?: string;
-}
+type QuoteFormProps = { defaultService?: ServiceSlug; className?: string };
 
-export function QuoteForm({
-  defaultService = "merchant-services",
-  className,
-}: QuoteFormProps) {
+export function QuoteForm({ defaultService, className }: QuoteFormProps) {
   const router = useRouter();
-  const [pending, startTransition] = useTransition();
-  const [serviceSlug, setServiceSlug] = useState<ServiceSlug>(defaultService);
+  const [serviceSlug, setServiceSlug] = useState<ServiceSlug | "">(defaultService ?? "");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [additionalInformation, setAdditionalInformation] = useState("");
+  const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
-  const selected = SERVICES.find((s) => s.slug === serviceSlug);
-  const showBusinessName =
-    serviceSlug === "merchant-services" || serviceSlug === "comcast-business";
+  const selected = useMemo(() => SERVICES.find((s) => s.slug === serviceSlug), [serviceSlug]);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSubmitting(true);
     setFormError(null);
     setErrors({});
-    const fd = new FormData(e.currentTarget);
-    const payload = {
-      serviceSlug,
-      firstName: String(fd.get("firstName") ?? ""),
-      lastName: String(fd.get("lastName") ?? ""),
-      phone: String(fd.get("phone") ?? ""),
-      email: String(fd.get("email") ?? ""),
-      additionalInformation: String(fd.get("additionalInformation") ?? ""),
-      address: String(fd.get("address") ?? ""),
-      businessName: String(fd.get("businessName") ?? ""),
-      consent: fd.get("consent") === "on",
-      leadSource: "website",
-      landingPage: typeof window !== "undefined" ? window.location.pathname : "/",
-    };
-
     try {
       const res = await fetch("/api/rfq", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          serviceSlug, firstName, lastName, phone, email,
+          businessName: businessName || undefined,
+          additionalInformation: additionalInformation || undefined,
+          consent, leadSource: "website",
+          landingPage: typeof window !== "undefined" ? window.location.pathname : "/quote",
+        }),
       });
-      const data = (await res.json()) as {
-        ok?: boolean;
-        errors?: Record<string, string>;
-        message?: string;
-        leadId?: string;
-        vacationOfferQueued?: boolean;
-        next?: { vacationOfferCommunication?: string };
-      };
+      const data = (await res.json()) as { ok?: boolean; errors?: Record<string, string>; message?: string; leadId?: string; serviceType?: string };
       if (!res.ok || !data.ok) {
         if (data.errors) setErrors(data.errors);
-        setFormError(data.message ?? "Unable to submit. Please try again.");
+        setFormError(data.message ?? "Unable to submit your request.");
+        setSubmitting(false);
         return;
       }
-      const params = new URLSearchParams();
-      if (data.leadId) params.set("ref", data.leadId.slice(0, 8));
-      if (selected) params.set("service", selected.label);
-      const offerQueued =
-        data.vacationOfferQueued === true ||
-        data.next?.vacationOfferCommunication === "queued_separately";
-      if (offerQueued) params.set("offer", "1");
-      startTransition(() => {
-        router.push(`/confirmation?${params.toString()}`);
-      });
+      const params = new URLSearchParams({ lead: data.leadId ?? "", service: selected?.label ?? "", type: data.serviceType ?? "" });
+      router.push(`/thank-you?${params.toString()}`);
     } catch {
-      setFormError("Network error. Please check your connection and try again.");
+      setFormError("Something went wrong. Please try again.");
+      setSubmitting(false);
     }
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className={cn(
-        "rounded-[1.75rem] border border-ink/8 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(23,19,34,0.45)] sm:p-8",
-        className,
-      )}
-      noValidate
-    >
-      <div className="mb-6">
-        <h3 className="text-xl font-semibold tracking-tight text-ink">Request a quote</h3>
-        <p className="mt-1.5 text-sm text-muted">
-          Share a few details and we&apos;ll follow up about next steps toward an appointment.
-        </p>
+    <form onSubmit={onSubmit} className={cn("rounded-2xl border border-sq-border bg-white p-6 shadow-[0_30px_60px_-40px_rgba(13,9,13,0.35)] sm:p-8", className)} noValidate>
+      <div className="mb-6 space-y-2">
+        <h2 className="text-2xl font-bold text-sq-ink sm:text-3xl">What are you looking for?</h2>
+        <p className="text-sm text-sq-gray sm:text-base">Choose a service and we&apos;ll route your request to the right Smart Quotes process.</p>
       </div>
-      <fieldset className="mb-6">
-        <legend className="mb-2.5 text-sm font-medium text-ink">Service interest</legend>
-        <div className="grid gap-2 sm:grid-cols-3">
-          {SERVICES.map((service) => {
-            const active = service.slug === serviceSlug;
-            return (
-              <button
-                key={service.slug}
-                type="button"
-                onClick={() => setServiceSlug(service.slug)}
-                className={cn(
-                  "rounded-xl border px-3 py-3 text-left text-sm transition-colors",
-                  active
-                    ? "border-purple/30 bg-lavender text-purple-deep"
-                    : "border-ink/10 bg-white text-ink hover:bg-mist",
-                )}
-                aria-pressed={active}
-              >
-                <span className="block font-medium">{service.label}</span>
-              </button>
-            );
-          })}
-        </div>
-        {errors.serviceSlug ? (
-          <p className="mt-1.5 text-sm text-red-600" role="alert">{errors.serviceSlug}</p>
+      <div className="grid gap-5">
+        <FormField id="service" label="Service" error={errors.serviceSlug}>
+          <select id="service" name="serviceSlug" className={fieldControlClass} value={serviceSlug} onChange={(e) => setServiceSlug(e.target.value as ServiceSlug | "")} required>
+            <option value="">Select a service</option>
+            {SERVICES.map((s) => <option key={s.slug} value={s.slug}>{s.label}</option>)}
+          </select>
+        </FormField>
+        {selected ? (
+          <p className="rounded-md bg-sq-purple-soft px-3 py-2 text-xs text-sq-purple">
+            Routing classification: <strong>SERVICE TYPE = {selected.serviceType}</strong> · Specific service: {selected.label}
+          </p>
         ) : null}
-      </fieldset>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <FormField label="First name" htmlFor="firstName" error={errors.firstName}>
-          <input id="firstName" name="firstName" autoComplete="given-name" required className={inputClassName} />
-        </FormField>
-        <FormField label="Last name" htmlFor="lastName" error={errors.lastName}>
-          <input id="lastName" name="lastName" autoComplete="family-name" required className={inputClassName} />
-        </FormField>
-        <FormField label="Phone" htmlFor="phone" error={errors.phone}>
-          <input id="phone" name="phone" type="tel" autoComplete="tel" required className={inputClassName} />
-        </FormField>
-        <FormField label="Email" htmlFor="email" error={errors.email}>
-          <input id="email" name="email" type="email" autoComplete="email" required className={inputClassName} />
-        </FormField>
-        <FormField label="Address" htmlFor="address" optional error={errors.address} className="sm:col-span-2">
-          <input id="address" name="address" autoComplete="street-address" className={inputClassName} />
-        </FormField>
-        {showBusinessName ? (
-          <FormField label="Business name" htmlFor="businessName" optional error={errors.businessName} className="sm:col-span-2">
-            <input id="businessName" name="businessName" autoComplete="organization" className={inputClassName} />
+        <div className="grid gap-5 sm:grid-cols-2">
+          <FormField id="firstName" label="First Name" error={errors.firstName}>
+            <input id="firstName" name="firstName" autoComplete="given-name" className={fieldControlClass} value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
           </FormField>
-        ) : null}
-        <FormField label="Additional information" htmlFor="additionalInformation" optional error={errors.additionalInformation} className="sm:col-span-2">
-          <textarea id="additionalInformation" name="additionalInformation" rows={3} className={cn(inputClassName, "resize-y")} />
+          <FormField id="lastName" label="Last Name" error={errors.lastName}>
+            <input id="lastName" name="lastName" autoComplete="family-name" className={fieldControlClass} value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+          </FormField>
+        </div>
+        {(serviceSlug === "merchant-services" || serviceSlug === "comcast-business") && (
+          <FormField id="businessName" label="Business Name" hint="Optional — helps route business consultations.">
+            <input id="businessName" name="businessName" className={fieldControlClass} value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
+          </FormField>
+        )}
+        <div className="grid gap-5 sm:grid-cols-2">
+          <FormField id="phone" label="Phone" error={errors.phone}>
+            <input id="phone" name="phone" type="tel" autoComplete="tel" className={fieldControlClass} value={phone} onChange={(e) => setPhone(e.target.value)} required />
+          </FormField>
+          <FormField id="email" label="Email" error={errors.email}>
+            <input id="email" name="email" type="email" autoComplete="email" className={fieldControlClass} value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </FormField>
+        </div>
+        <FormField id="additionalInformation" label="Additional Information">
+          <textarea id="additionalInformation" name="additionalInformation" rows={4} className={cn(fieldControlClass, "min-h-[110px] resize-y")} value={additionalInformation} onChange={(e) => setAdditionalInformation(e.target.value)} placeholder="Tell us anything that helps personalize your quote." />
         </FormField>
-      </div>
-      <div className="mt-5 space-y-3">
-        <label className="flex items-start gap-3 text-sm text-muted">
-          <input type="checkbox" name="consent" className="mt-1 h-4 w-4 rounded border-ink/20 text-purple-deep focus:ring-purple/30" required />
-          <span>
-            I agree to be contacted by Smart Quotes LLC about my quote request and related appointment follow-up. See our{" "}
-            <a href="/privacy" className="font-medium text-purple-deep underline-offset-2 hover:underline">Privacy Policy</a>.
-          </span>
-        </label>
-        {errors.consent ? <p className="text-sm text-red-600" role="alert">{errors.consent}</p> : null}
-      </div>
-      {formError ? (
-        <p className="mt-4 rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">{formError}</p>
-      ) : null}
-      <div className="mt-6">
-        <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={pending}>
-          {pending ? "Submitting…" : "Submit quote request"}
+        <FormField id="consent" label="Consent" error={errors.consent}>
+          <label htmlFor="consent" className="flex cursor-pointer items-start gap-3 text-sm text-sq-gray">
+            <input id="consent" name="consent" type="checkbox" className="mt-1 h-4 w-4 rounded border-sq-border text-sq-purple focus:ring-sq-purple" checked={consent} onChange={(e) => setConsent(e.target.checked)} required />
+            <span>I agree to be contacted regarding my request.</span>
+          </label>
+        </FormField>
+        {formError ? <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">{formError}</p> : null}
+        <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
+          {submitting ? "Submitting…" : "Submit Request for Quote"}
         </Button>
       </div>
     </form>
