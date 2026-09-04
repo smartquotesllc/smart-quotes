@@ -1,58 +1,109 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/Button";
-import { SectionHeading } from "@/components/SectionHeading";
-import { SERVICES } from "@/lib/services";
+import { CheckList } from "@/components/CheckList";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Explore Merchant Services, Xfinity Residential, and Comcast Business with Smart Quotes LLC.",
+  description:
+    "Explore Merchant Services, Xfinity Residential, and Comcast Business solutions with Smart Quotes LLC.",
 };
 
-const VISUALS: Record<string, { bg: string; label: string }> = {
-  "merchant-services": { bg: "from-[#5A2CFF] to-[#2a1458]", label: "Payment technology" },
-  "xfinity-residential": { bg: "from-[#1a161c] to-[#3b1d7a]", label: "Home connectivity" },
-  "comcast-business": { bg: "from-[#0D090D] to-[#2a1458]", label: "Business connectivity" },
-};
+const CARDS = [
+  {
+    slug: "merchant-services",
+    title: "Merchant Services",
+    tagline: "Accept payments. Save money. Grow your business.",
+    checks: [
+      "0% Processing Options",
+      "Next Day Funding",
+      "No Long-Term Contracts",
+    ],
+    // IMAGE REPLACE: /public/images/services/merchant-pos-card.png
+    image: "/images/services/merchant-pos-card.png",
+    imageAlt: "Modern point-of-sale payment terminal",
+    href: "/quote?service=merchant-services",
+    detailsHref: "/services/merchant-services",
+  },
+  {
+    slug: "xfinity-residential",
+    title: "Xfinity Residential",
+    tagline: "Fast, reliable internet. Entertainment your way.",
+    checks: ["Internet", "TV & Streaming", "Mobile"],
+    // IMAGE REPLACE: /public/images/services/xfinity-entertainment.png
+    image: "/images/services/xfinity-entertainment.png",
+    imageAlt: "TV, streaming box, and entertainment setup",
+    href: "/quote?service=xfinity-residential",
+    detailsHref: "/services/xfinity-residential",
+  },
+  {
+    slug: "comcast-business",
+    title: "Comcast Business",
+    tagline: "Power your business with smart solutions.",
+    checks: ["Internet", "Voice", "Cybersecurity"],
+    // IMAGE REPLACE: /public/images/services/comcast-office.png
+    image: "/images/services/comcast-office.png",
+    imageAlt: "Modern glass office building",
+    href: "/quote?service=comcast-business",
+    detailsHref: "/services/comcast-business",
+  },
+] as const;
 
 export default function ServicesPage() {
   return (
-    <div>
-      <section className="bg-sq-gray-light py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading label="Our Services" title="Solutions for home and business." description="Select a category to learn more, then request a personalized quote. Official plan details and pricing are provided during the quote process — not invented on this page." />
+    <div className="bg-white">
+      <section className="px-4 pb-4 pt-14 sm:px-6 sm:pt-16 lg:px-8">
+        <div className="mx-auto max-w-7xl text-center">
+          <h1 className="font-heading text-3xl font-extrabold uppercase tracking-[0.08em] text-sq-ink sm:text-4xl">
+            Our Services
+          </h1>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-sq-gray sm:text-lg">
+            Solutions designed to fit your life and your business.
+          </p>
         </div>
       </section>
-      <section className="py-10 sm:py-16">
-        <div className="mx-auto flex max-w-7xl flex-col gap-16 px-4 sm:px-6 lg:px-8">
-          {SERVICES.map((service, index) => {
-            const visual = VISUALS[service.slug];
-            const reverse = index % 2 === 1;
-            return (
-              <article key={service.slug} className={`grid items-center gap-8 lg:grid-cols-2 ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
-                <div className={`relative flex min-h-[280px] items-end overflow-hidden rounded-2xl bg-gradient-to-br ${visual.bg} p-8 text-white`}>
-                  <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "url('/brand/hero-lights.svg')", backgroundSize: "cover" }} />
-                  <div className="relative">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">{visual.label}</p>
-                    <p className="mt-2 text-2xl font-bold">{service.label}</p>
+
+      <section className="px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:gap-10">
+          {CARDS.map((card) => (
+            <article
+              key={card.slug}
+              className="overflow-hidden rounded-2xl border border-sq-border bg-white shadow-[0_8px_30px_-18px_rgba(10,10,18,0.28)]"
+            >
+              <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)]">
+                <Link
+                  href={card.detailsHref}
+                  className="relative min-h-[220px] bg-sq-gray-light sm:min-h-[260px] lg:min-h-full"
+                >
+                  <Image
+                    src={card.image}
+                    alt={card.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    quality={95}
+                    className="object-cover"
+                    priority={card.slug === "merchant-services"}
+                  />
+                </Link>
+
+                <div className="flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
+                  <h2 className="font-heading text-xl font-extrabold uppercase tracking-[0.06em] text-sq-ink sm:text-2xl">
+                    <Link href={card.detailsHref} className="hover:text-sq-purple">
+                      {card.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-3 text-[15px] text-sq-gray sm:text-base">
+                    {card.tagline}
+                  </p>
+                  <CheckList items={[...card.checks]} className="mt-6" />
+                  <div className="mt-8 flex justify-start sm:justify-end">
+                    <Button href={card.href}>Get a Quote</Button>
                   </div>
                 </div>
-                <div>
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-sq-purple">{service.kicker}</p>
-                  <h2 className="text-3xl font-bold text-sq-ink">{service.label}</h2>
-                  <p className="mt-4 text-sq-gray">{service.description}</p>
-                  <ul className="mt-6 space-y-3 text-sm text-sq-gray">
-                    <li className="flex gap-2"><span className="text-sq-purple">✓</span> Guided quote request routed to the right specialist</li>
-                    <li className="flex gap-2"><span className="text-sq-purple">✓</span> Clear next steps after you submit</li>
-                    <li className="flex gap-2"><span className="text-sq-purple">✓</span> No invented speeds, pricing, or partner guarantees on-site</li>
-                  </ul>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <Button href={`/quote?service=${service.slug}`}>Get a Quote</Button>
-                    <Button href={`/services/${service.slug}`} variant="outline">View Details</Button>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </div>

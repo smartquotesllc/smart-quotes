@@ -61,7 +61,7 @@ const SOCIAL = [
 export function Footer() {
   return (
     <footer className="bg-sq-navy text-white">
-      {/* Trust row — matches approved mockup */}
+      {/* Trust row — homepage + site-wide pattern */}
       <div className="border-b border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-4 py-8 sm:flex-row sm:gap-12 sm:px-6 lg:gap-20 lg:px-8">
           {TRUST.map((item) => (
@@ -76,9 +76,16 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Info row */}
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-4 py-7 text-center sm:flex-row sm:justify-between sm:text-left sm:px-6 lg:px-8">
-        <p className="text-sm text-white/75">We Connect You to Better Solutions</p>
+      {/* Brand / phone / social — matches service mockups */}
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-8 text-center sm:flex-row sm:justify-between sm:text-left sm:px-6 lg:px-8">
+        <div>
+          <p className="font-heading text-sm font-extrabold uppercase tracking-[0.12em] text-white">
+            Smart Quotes LLC
+          </p>
+          <p className="mt-1.5 text-sm text-white/75">
+            We Connect You to Better Solutions
+          </p>
+        </div>
         <a
           href="tel:+18881234567"
           className="font-heading text-base font-bold tracking-wide text-white hover:text-sq-bright"
@@ -101,7 +108,7 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Legal strip — keep Vacation Terms for compliance */}
+      {/* Legal strip — Vacation Terms retained for compliance */}
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>© 2026 Smart Quotes LLC. All rights reserved.</p>

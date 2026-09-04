@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 import type { ServiceOption } from "@/lib/types";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  "merchant-services": "/images/home/merchant-pos.jpg",
-  "xfinity-residential": "/images/home/xfinity-modem.jpg",
-  "comcast-business": "/images/home/comcast-office.jpg",
+  // IMAGE REPLACE: prefer /public/images/services/* high-res assets
+  "merchant-services": "/images/services/merchant-pos-card.png",
+  "xfinity-residential": "/images/services/xfinity-entertainment.png",
+  "comcast-business": "/images/services/comcast-office.png",
 };
 
 type ServiceCardProps = {

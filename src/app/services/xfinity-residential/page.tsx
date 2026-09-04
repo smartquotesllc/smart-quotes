@@ -1,47 +1,116 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button } from "@/components/Button";
-import { getServiceBySlug } from "@/lib/services";
-import type { ServiceSlug } from "@/lib/types";
+import { CheckList } from "@/components/CheckList";
 
-const SLUG: ServiceSlug = "xfinity-residential";
+const SLUG = "xfinity-residential";
 
 export const metadata: Metadata = {
   title: "Xfinity Residential",
-  description: "Explore residential internet and connectivity options with Smart Quotes — Xfinity Residential.",
+  description:
+    "Fast internet, TV & streaming, and mobile options. Request a free quote with Smart Quotes LLC.",
 };
 
+const HERO_CHECKS = [
+  "Fast & Reliable Internet",
+  "Top-Rated TV & Streaming",
+  "Xfinity Mobile",
+  "No Annual Contracts",
+];
+
+const PLANS = [
+  {
+    title: "Internet",
+    price: "35",
+    details: ["Up to 300 Mbps"],
+  },
+  {
+    title: "Internet + TV",
+    price: "65",
+    details: ["Up to 600 Mbps", "125+ Channels"],
+  },
+  {
+    title: "Xfinity Mobile",
+    price: "30",
+    details: ["5G Nationwide", "Save with Internet"],
+  },
+];
+
 export default function XfinityResidentialPage() {
-  const service = getServiceBySlug(SLUG)!;
-  const plans = [
-    { name: "Internet", blurb: "Explore internet options for your household." },
-    { name: "Internet + TV", blurb: "Discuss bundled connectivity and entertainment options." },
-    { name: "Mobile Add-On", blurb: "Ask about mobile options that may pair with your home service." },
-  ];
   return (
-    <div>
-      <section className="relative overflow-hidden bg-sq-black text-white">
-        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "url('/brand/hero-lights.svg')", backgroundSize: "cover" }} />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-white/70">{service.kicker}</p>
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">Xfinity Residential</h1>
-          <p className="mt-5 max-w-2xl text-white/80">{service.description}</p>
-          <div className="mt-8"><Button href={`/quote?service=${SLUG}`} size="lg">Get a Free Quote</Button></div>
+    <div className="bg-white">
+      {/* Hero — dark charcoal with entertainment collage */}
+      <section className="relative overflow-hidden bg-[#12141c] text-white">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
+          <div className="animate-fade-up">
+            <h1 className="font-heading text-4xl font-extrabold uppercase tracking-[0.04em] sm:text-5xl lg:text-[3.25rem]">
+              Xfinity Residential
+            </h1>
+            <p className="mt-4 max-w-lg text-base text-white/90 sm:text-lg">
+              Fast internet. Amazing TV. Mobile that keeps you connected.
+            </p>
+            <CheckList
+              items={HERO_CHECKS}
+              variant="white"
+              className="mt-8 max-w-md"
+            />
+            <div className="mt-9">
+              <Button href={`/quote?service=${SLUG}`} size="lg">
+                Get a Quote
+              </Button>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
+            {/* IMAGE REPLACE: /public/images/services/xfinity-entertainment.png */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl">
+              <Image
+                src="/images/services/xfinity-entertainment.png"
+                alt="TV, tablet, and streaming box entertainment setup"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={95}
+                priority
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
         </div>
       </section>
-      <section className="bg-sq-gray-light py-16 sm:py-20">
+
+      {/* Popular Plans */}
+      <section className="bg-sq-gray-light py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-3 text-center text-3xl font-bold text-sq-ink">Popular plan conversations</h2>
-          <p className="mx-auto mb-10 max-w-2xl text-center text-sm text-sq-gray">
-            Official speeds, promotions, and monthly rates are not listed here. Request a quote for current, location-specific options.
+          <h2 className="text-center font-heading text-2xl font-extrabold uppercase tracking-[0.08em] text-sq-ink sm:text-3xl">
+            Popular Plans
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-center text-xs text-sq-gray sm:text-sm">
+            Rates shown are illustrative and subject to quote, location, and
+            availability.
           </p>
-          <div className="grid gap-5 md:grid-cols-3">
-            {plans.map((plan) => (
-              <article key={plan.name} className="flex h-full flex-col rounded-xl border border-sq-border bg-white p-7">
-                <h3 className="text-xl font-bold text-sq-ink">{plan.name}</h3>
-                <p className="mt-4 flex-1 text-sm text-sq-gray">{plan.blurb}</p>
-                <p className="mt-6 font-heading text-2xl font-bold text-sq-purple">Custom quote</p>
-                <p className="mt-1 text-xs text-sq-gray">Pricing confirmed after RFQ — no invented rates.</p>
-                <Button href={`/quote?service=${SLUG}`} className="mt-6 w-full">Get a Quote</Button>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3 md:gap-7">
+            {PLANS.map((plan) => (
+              <article
+                key={plan.title}
+                className="flex h-full flex-col rounded-2xl border border-sq-border/80 bg-white px-7 py-8 text-center shadow-[0_12px_32px_-20px_rgba(10,10,18,0.35)]"
+              >
+                <h3 className="font-heading text-lg font-extrabold uppercase tracking-[0.06em] text-sq-purple">
+                  {plan.title}
+                </h3>
+                <p className="mt-5 text-sm text-sq-gray">Starting at</p>
+                <p className="mt-1 font-heading text-4xl font-extrabold tracking-tight text-sq-ink">
+                  ${plan.price}
+                  <span className="text-lg font-bold text-sq-gray">/mo</span>
+                </p>
+                <ul className="mt-5 flex-1 space-y-1.5 text-sm text-sq-ink/80">
+                  {plan.details.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+                <Button href={`/quote?service=${SLUG}`} className="mt-8 w-full">
+                  Get a Quote
+                </Button>
               </article>
             ))}
           </div>
