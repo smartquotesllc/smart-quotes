@@ -23,7 +23,7 @@ export function Footer() {
           <p className="max-w-sm text-sm leading-relaxed text-white/70">Better Solutions. Better Connections.</p>
           <p className="text-sm text-white/60">We connect you to better solutions.</p>
           <a href="tel:+18881234567" className="inline-block font-[family-name:var(--font-montserrat)] text-lg font-bold tracking-wide text-white hover:text-sq-purple">(888) 123-4567</a>
-          <p className="text-xs text-white/40">Phone number placeholder — replace with official Smart Quotes line.</p>
+          <p className="text-xs text-white/40">Placeholder line — replace before launch.</p>
         </div>
         <div>
           <h2 className="mb-4 font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.16em] text-white/50">Navigate</h2>
