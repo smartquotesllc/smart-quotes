@@ -9,7 +9,7 @@ type LogoProps = {
   href?: string | null;
 };
 
-/** Existing SQ mark — S dark / Q royal overlapping. Replaceable later. */
+/** Bold black SQ mark + SMART QUOTES wordmark — styled to match approved homepage mockup. */
 export function Logo({
   className,
   showWordmark = true,
@@ -19,24 +19,22 @@ export function Logo({
 }: LogoProps) {
   const markSize =
     size === "lg"
-      ? "h-11 w-12 text-[1.6rem]"
+      ? "h-11 w-12 text-[1.75rem]"
       : size === "sm"
-        ? "h-8 w-9 text-lg"
-        : "h-9 w-10 text-xl";
+        ? "h-9 w-10 text-[1.35rem]"
+        : "h-10 w-11 text-[1.5rem]";
   const wordSize =
     size === "lg"
-      ? "text-[13px] tracking-[0.16em]"
+      ? "text-[13px] tracking-[0.18em]"
       : size === "sm"
-        ? "text-[11px] tracking-[0.14em]"
-        : "text-xs tracking-[0.15em]";
-  const wordColor = variant === "dark" ? "text-white" : "text-sq-ink";
-  const sColor = variant === "dark" ? "text-white" : "text-sq-ink";
+        ? "text-[11px] tracking-[0.16em]"
+        : "text-xs tracking-[0.17em]";
+  const ink = variant === "dark" ? "text-white" : "text-sq-ink";
 
   const content = (
     <span
       className={cn(
         "inline-flex items-center gap-2.5 sm:gap-3",
-        "w-[135px] sm:w-[155px] lg:w-[170px]",
         className,
       )}
     >
@@ -44,14 +42,21 @@ export function Logo({
         className={cn(
           "relative inline-flex shrink-0 items-center justify-center font-heading font-extrabold leading-none select-none",
           markSize,
+          ink,
         )}
         aria-hidden="true"
       >
-        <span className={cn("absolute left-0 top-0", sColor)}>S</span>
-        <span className="absolute right-0 bottom-0 text-sq-royal">Q</span>
+        <span className="absolute left-0 top-0 z-[1]">S</span>
+        <span className="absolute right-0 bottom-0 opacity-95">Q</span>
       </span>
       {showWordmark ? (
-        <span className={cn("font-heading font-bold uppercase leading-tight", wordSize, wordColor)}>
+        <span
+          className={cn(
+            "font-heading font-extrabold uppercase leading-none",
+            wordSize,
+            ink,
+          )}
+        >
           Smart Quotes
         </span>
       ) : null}

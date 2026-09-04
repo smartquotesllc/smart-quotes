@@ -48,7 +48,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="font-heading text-[13px] font-semibold text-sq-ink transition-colors hover:text-sq-royal"
+              className="font-heading text-[13px] font-semibold text-sq-ink transition-colors hover:text-sq-purple"
             >
               {item.label}
             </Link>
@@ -110,7 +110,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-3 font-heading text-sm font-semibold text-sq-ink hover:bg-sq-soft hover:text-sq-royal"
+              className="rounded-md px-3 py-3 font-heading text-sm font-semibold text-sq-ink hover:bg-sq-soft hover:text-sq-purple"
               onClick={() => setOpen(false)}
             >
               {item.label}

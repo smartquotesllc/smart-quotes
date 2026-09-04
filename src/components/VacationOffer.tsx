@@ -1,25 +1,56 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/Button";
 
 export function VacationOffer() {
   return (
-    <section id="vacation-offer" className="relative overflow-hidden bg-sq-purple" aria-labelledby="vacation-heading">
-      <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 85% 50%, rgba(255,255,255,0.35), transparent 42%), linear-gradient(90deg, rgba(38,61,255,1) 0%, rgba(38,61,255,0.85) 55%, rgba(8,11,34,0.35) 100%)" }} aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 bg-[url('/brand/vacation-glow.svg')] bg-cover bg-right opacity-40 md:block" aria-hidden="true" />
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8 lg:py-14">
-        <div className="max-w-2xl">
-          <h2 id="vacation-heading" className="text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl lg:text-4xl">
-            Request your quote.
-            <span className="block text-white/90">Then unlock your vacation-stay offer.</span>
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base">
-            After a qualifying RFQ is submitted, customers may receive a separate link with information about the Smart Quotes vacation-stay offer, subject to the{" "}
-            <Link href="/vacation-terms" className="underline underline-offset-2">official offer terms</Link>
-            . Eligibility, destinations, and redemption details are placeholders until the official program is finalized.
-          </p>
+    <section
+      id="vacation-offer"
+      className="relative overflow-hidden"
+      aria-labelledby="vacation-heading"
+    >
+      <div className="relative min-h-[220px] sm:min-h-[260px] lg:min-h-[280px]">
+        {/* Beach photo on the right */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/home/vacation-beach.jpg"
+            alt="Tropical beach vacation destination"
+            fill
+            sizes="100vw"
+            className="object-cover object-[70%_center]"
+            priority={false}
+          />
         </div>
-        <div className="shrink-0">
-          <Button href="/quote" variant="white" size="lg">Start My Quote</Button>
+
+        {/* Purple gradient fading into beach */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, #3d1abc 0%, #4a20e0 28%, #5a2cff 48%, rgba(90,44,255,0.55) 68%, rgba(90,44,255,0.12) 88%, transparent 100%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto flex min-h-[220px] max-w-7xl flex-col justify-center gap-6 px-4 py-12 sm:min-h-[260px] sm:px-6 md:flex-row md:items-center md:justify-between lg:min-h-[280px] lg:px-8">
+          <div className="max-w-xl">
+            <h2
+              id="vacation-heading"
+              className="font-heading text-3xl font-extrabold uppercase tracking-tight text-white sm:text-4xl lg:text-[2.75rem]"
+            >
+              Get a Free Vacation
+            </h2>
+            <p className="mt-3 text-base text-white/95 sm:text-lg">
+              When You Get a FREE Quote!
+            </p>
+          </div>
+          <div className="shrink-0">
+            <Link
+              href="/quote"
+              className="inline-flex h-12 items-center justify-center rounded-md border border-white px-8 font-heading text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white/10"
+            >
+              Learn More
+            </Link>
+          </div>
         </div>
       </div>
     </section>

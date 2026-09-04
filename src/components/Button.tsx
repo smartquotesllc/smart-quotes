@@ -3,13 +3,13 @@ import { cn } from "@/lib/utils";
 
 const variants = {
   primary:
-    "bg-sq-royal text-white hover:bg-sq-purple-hover shadow-[0_12px_28px_-14px_rgba(38,61,255,0.75)]",
+    "bg-sq-purple text-white hover:bg-sq-purple-hover shadow-[0_12px_28px_-14px_rgba(90,44,255,0.65)]",
   secondary:
-    "bg-transparent text-white border border-white/85 hover:bg-white/10",
+    "bg-transparent text-white border border-white/90 hover:bg-white/10",
   outline:
-    "bg-white text-sq-royal border border-sq-royal hover:bg-sq-soft",
-  ghost: "bg-transparent text-sq-ink hover:text-sq-royal",
-  white: "bg-white text-sq-royal border border-white hover:bg-white/90",
+    "bg-white text-sq-purple border border-sq-purple hover:bg-sq-soft",
+  ghost: "bg-transparent text-sq-ink hover:text-sq-purple",
+  white: "bg-white text-sq-purple border border-white hover:bg-white/90",
 } as const;
 
 const sizes = {
@@ -40,7 +40,7 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-md font-heading font-bold uppercase transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-royal disabled:pointer-events-none disabled:opacity-60",
+    "inline-flex items-center justify-center gap-2 rounded-md font-heading font-bold uppercase transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple disabled:pointer-events-none disabled:opacity-60",
     variants[variant],
     sizes[size],
     className,
