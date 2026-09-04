@@ -38,10 +38,15 @@ export function QuoteFormShell({
                 src={imageSrc}
                 alt={imageAlt}
                 width={1536}
-                height={1024}
+                height={serviceSlug === "comcast-business" ? 1536 : 1024}
                 priority={imagePriority}
-                className="h-auto w-full object-cover"
+                className={
+                  serviceSlug === "comcast-business"
+                    ? "h-full max-h-[520px] w-full rounded-xl object-cover"
+                    : "h-auto w-full rounded-xl object-contain"
+                }
                 sizes="(max-width: 1024px) 90vw, 320px"
+                quality={92}
               />
             </div>
             <ServiceQuoteForm serviceSlug={serviceSlug} />

@@ -73,15 +73,20 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
               key={card.slug}
               className="flex flex-col overflow-hidden rounded-2xl border border-[#e2e5eb] bg-white shadow-[0_12px_32px_-20px_rgba(15,23,42,0.25)]"
             >
-              <div className="relative aspect-[4/3] w-full bg-white p-5">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-white">
                 {/* IMAGE REPLACE: {card.image} */}
                 <Image
                   src={card.image}
                   alt={card.alt}
                   fill
-                  className="object-contain p-2"
+                  className={
+                    card.slug === "comcast-business"
+                      ? "object-cover"
+                      : "object-contain p-4"
+                  }
                   sizes="(max-width: 768px) 100vw, 33vw"
                   priority={card.slug === "merchant-services"}
+                  quality={92}
                 />
               </div>
               <div className="flex flex-1 flex-col px-6 pb-7 pt-1 text-center">

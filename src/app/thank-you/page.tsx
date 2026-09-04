@@ -21,8 +21,8 @@ export default async function ThankYouPage({ searchParams }: Props) {
   await searchParams;
 
   return (
-    <div className="bg-sq-gray-light">
-      <section className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+    <div className="flex min-h-[calc(100vh-12rem)] flex-col justify-center bg-sq-gray-light">
+      <section className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-16 sm:px-6 sm:py-20">
         <div className="w-full rounded-2xl border border-[#c8ccd4] bg-white px-6 py-14 text-center shadow-[0_1px_0_rgba(15,23,42,0.04)] sm:px-12 sm:py-16">
           <div
             className="mx-auto mb-8 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-sq-purple text-white"
