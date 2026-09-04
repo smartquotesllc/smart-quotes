@@ -51,7 +51,7 @@ export function QuoteForm({ defaultService, className }: QuoteFormProps) {
         return;
       }
       const params = new URLSearchParams({ lead: data.leadId ?? "", service: selected?.label ?? "", type: data.serviceType ?? "" });
-      router.push(`/thank-you?${params.toString()}`);
+      router.push(`/confirmation?${params.toString()}`);
     } catch {
       setFormError("Something went wrong. Please try again.");
       setSubmitting(false);
