@@ -46,12 +46,12 @@ export default async function ThankYouPage({ searchParams }: Props) {
           </p>
           <div className="mx-auto mt-8 max-w-lg rounded-xl bg-sq-soft px-5 py-5 text-left sm:px-6">
             <p className="font-heading text-sm font-bold uppercase tracking-[0.08em] text-sq-purple">
-              Free Vacation Offer
+              Complimentary Vacation Incentive
             </p>
             <p className="mt-2 text-sm leading-relaxed text-sq-ink sm:text-base">
-              Because you submitted your quote through Smart Quotes, you&apos;ll
-              receive a free vacation offer. Watch for a separate follow-up with
-              details.
+              Because you submitted your quote through Smart Quotes, you may
+              receive a complimentary hotel accommodation incentive. Watch for a
+              separate follow-up with redemption details.
             </p>
             <p className="mt-3 text-xs text-sq-gray">
               Offer subject to{" "}
@@ -59,7 +59,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
                 href="/vacation-terms"
                 className="font-semibold text-sq-purple underline underline-offset-2 hover:text-sq-purple-hover"
               >
-                Vacation Terms
+                Vacation Redemption Terms
               </Link>
               .
             </p>

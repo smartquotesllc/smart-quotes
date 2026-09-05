@@ -106,11 +106,12 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
 
         <aside className="mt-10 overflow-hidden rounded-2xl bg-sq-purple px-6 py-6 text-white sm:mt-12 sm:px-8 sm:py-7">
           <h2 className="font-heading text-xl font-extrabold uppercase tracking-tight sm:text-2xl">
-            Free Vacation with Your Quote
+            Complimentary Vacation Incentive
           </h2>
           <p className="mt-2 max-w-3xl text-sm text-white/95 sm:text-base">
-            When you submit a quote request through Smart Quotes, you receive a
-            free vacation offer. Choose a service above to get started.
+            When you submit a quote request through Smart Quotes, you may receive
+            a complimentary hotel accommodation incentive. Choose a service above
+            to get started.
           </p>
           <p className="mt-3 text-xs text-white/75">
             Offer subject to{" "}
@@ -118,7 +119,7 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
               href="/vacation-terms"
               className="underline underline-offset-2 hover:text-white"
             >
-              Vacation Terms
+              Vacation Redemption Terms
             </Link>
             .
           </p>

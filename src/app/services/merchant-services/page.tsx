@@ -180,11 +180,11 @@ export default function MerchantServicesPage() {
                 id="merchant-vacation-heading"
                 className="font-heading text-3xl font-extrabold uppercase tracking-tight text-white sm:text-4xl"
               >
-                Get a Free Vacation
+                Complimentary Vacation Incentive
               </h2>
               <p className="mt-3 text-base text-white/95 sm:text-lg">
-                Request a quote through Smart Quotes and receive a free vacation
-                offer with your quote request.
+                Request a quote through Smart Quotes and you may receive a
+                complimentary hotel accommodation incentive.
               </p>
               <div className="mt-7">
                 <Link
@@ -197,7 +197,7 @@ export default function MerchantServicesPage() {
               <p className="mt-4 text-xs text-white/70">
                 Offer subject to{" "}
                 <Link href="/vacation-terms" className="underline hover:text-white">
-                  Vacation Terms
+                  Vacation Redemption Terms
                 </Link>
                 .
               </p>

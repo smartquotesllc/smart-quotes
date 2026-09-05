@@ -30,13 +30,13 @@ export function QuoteFormShell({
             </h1>
             <p className="mt-2 text-base text-sq-ink">{subtitle}</p>
             <p className="mx-auto mt-4 max-w-xl rounded-lg bg-sq-soft px-4 py-3 text-sm text-sq-ink">
-              Submit your quote through Smart Quotes and receive a free vacation
-              offer.{" "}
+              Submit your quote through Smart Quotes and receive a complimentary
+              vacation incentive.{" "}
               <a
                 href="/vacation-terms"
                 className="font-semibold text-sq-purple underline underline-offset-2 hover:text-sq-purple-hover"
               >
-                Vacation Terms
+                Vacation Redemption Terms
               </a>
             </p>
           </header>

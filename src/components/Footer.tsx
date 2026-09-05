@@ -4,7 +4,7 @@ import { Logo } from "@/components/Logo";
 const LEGAL = [
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms & Conditions" },
-  { href: "/vacation-terms", label: "Vacation Terms" },
+  { href: "/vacation-terms", label: "Vacation Redemption Terms" },
 ];
 
 const TRUST = [

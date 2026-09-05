@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const RESOURCES = [
   { title: "How the quote process works", href: "/#how-it-works", copy: "See the four steps from service selection to specialist follow-up." },
-  { title: "Vacation-stay offer terms", href: "/vacation-terms", copy: "Read the placeholder terms for the vacation-stay communication." },
+  { title: "Vacation Redemption Terms & Conditions", href: "/vacation-terms", copy: "Review activation deadlines, fees, occupancy rules, and RedeemVacations.com redemption requirements." },
   { title: "Privacy & data handling", href: "/privacy", copy: "Learn how Smart Quotes intends to handle lead information." },
 ];
 

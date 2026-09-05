@@ -36,11 +36,11 @@ export function VacationOffer() {
               id="vacation-heading"
               className="font-heading text-3xl font-extrabold uppercase tracking-tight text-white sm:text-4xl lg:text-[2.75rem]"
             >
-              Get a Free Vacation
+              Complimentary Vacation Incentive
             </h2>
             <p className="mt-3 text-base text-white/95 sm:text-lg">
-              When you request a quote through Smart Quotes, you receive a free
-              vacation offer.
+              When you request a quote through Smart Quotes, you may receive a
+              complimentary hotel accommodation incentive.
             </p>
             <p className="mt-3 text-xs text-white/75 sm:text-sm">
               Offer subject to{" "}
@@ -48,7 +48,7 @@ export function VacationOffer() {
                 href="/vacation-terms"
                 className="underline underline-offset-2 hover:text-white"
               >
-                Vacation Terms
+                Vacation Redemption Terms
               </Link>
               .
             </p>
