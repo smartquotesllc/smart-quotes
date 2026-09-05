@@ -38,7 +38,7 @@ Visitor → select service → request quote → lead capture (CRM) → confirma
 | `/confirmation` | Post-RFQ confirmation |
 | `/api/rfq` | `POST` quote intake |
 | `/services/*` | Service detail pages |
-| `/privacy` `/terms` `/vacation-terms` | Legal |
+| `/privacy` `/terms` `/vacation-terms` | Legal (incl. Vacation Redemption Terms) |
 | `/sitemap.xml` `/robots.txt` | SEO |
 
 ## Brand
