@@ -22,11 +22,13 @@ import { getServiceBySlug } from "@/lib/services";
 import type { ServiceSlug } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
+type FormState = Record<string, string>;
+
 type ServiceQuoteFormProps = {
   serviceSlug: ServiceSlug;
+  /** Optional defaults from URL search params (e.g. BYOD → Mobile). */
+  defaultValues?: Partial<FormState>;
 };
-
-type FormState = Record<string, string>;
 
 function SelectOne({
   id,
@@ -63,10 +65,15 @@ function SelectOne({
   );
 }
 
-export function ServiceQuoteForm({ serviceSlug }: ServiceQuoteFormProps) {
+export function ServiceQuoteForm({
+  serviceSlug,
+  defaultValues,
+}: ServiceQuoteFormProps) {
   const router = useRouter();
   const service = getServiceBySlug(serviceSlug);
-  const [values, setValues] = useState<FormState>({});
+  const [values, setValues] = useState<FormState>(() => ({
+    ...(defaultValues ?? {}),
+  }));
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);

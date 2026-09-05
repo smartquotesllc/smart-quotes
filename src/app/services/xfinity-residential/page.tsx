@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
+import { ByodPromoCard } from "@/components/xfinity/ByodPromoCard";
+import { XfinityMobileSection } from "@/components/xfinity/XfinityMobileSection";
 
 const SLUG = "xfinity-residential";
 
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 const HERO_CHECKS = [
   "Fast & Reliable Internet",
   "Top-Rated TV & Streaming",
-  "Xfinity Mobile",
+  "Xfinity Mobile + BYOD Options",
   "No Annual Contracts",
 ];
 
@@ -74,9 +76,19 @@ export default function XfinityResidentialPage() {
                 className="object-cover object-center"
               />
             </div>
+            {/* Subtle product strip under TV visual — secondary to entertainment image */}
+            <p className="mt-3 text-center font-heading text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55 sm:text-xs">
+              Internet • TV • Mobile
+            </p>
           </div>
         </div>
       </section>
+
+      {/* BYOD promo — immediately after TV/streaming image */}
+      <ByodPromoCard />
+
+      {/* Xfinity Mobile mini section */}
+      <XfinityMobileSection />
 
       {/* Popular Plans */}
       <section className="bg-sq-gray-light py-14 sm:py-20">

@@ -98,6 +98,17 @@ h6 {
   }
 }
 
+@keyframes fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes float-soft {
   0%,
   100% {
@@ -121,6 +132,10 @@ h6 {
   animation: fade-up 0.7s ease-out both;
 }
 
+.animate-fade-scale {
+  animation: fade-scale 0.75s ease-out both;
+}
+
 .animate-float-soft {
   animation: float-soft 6s ease-in-out infinite;
 }
@@ -138,6 +153,7 @@ h6 {
     scroll-behavior: auto;
   }
   .animate-fade-up,
+  .animate-fade-scale,
   .animate-float-soft,
   .animate-hero-kenburns {
     animation: none !important;

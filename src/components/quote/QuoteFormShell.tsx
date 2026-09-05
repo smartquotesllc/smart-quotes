@@ -10,6 +10,7 @@ type QuoteFormShellProps = {
   imageSrc: string;
   imageAlt: string;
   imagePriority?: boolean;
+  formDefaults?: Record<string, string>;
 };
 
 export function QuoteFormShell({
@@ -19,6 +20,7 @@ export function QuoteFormShell({
   imageSrc,
   imageAlt,
   imagePriority,
+  formDefaults,
 }: QuoteFormShellProps) {
   return (
     <div className="bg-sq-gray-light">
@@ -59,7 +61,10 @@ export function QuoteFormShell({
                 quality={92}
               />
             </div>
-            <ServiceQuoteForm serviceSlug={serviceSlug} />
+            <ServiceQuoteForm
+              serviceSlug={serviceSlug}
+              defaultValues={formDefaults}
+            />
           </div>
         </div>
       </section>
