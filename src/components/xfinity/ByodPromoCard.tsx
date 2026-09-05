@@ -22,9 +22,9 @@ export function ByodPromoCard() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-2xl border border-sq-border/80 bg-white shadow-[0_16px_40px_-24px_rgba(10,10,18,0.35)] sm:rounded-3xl">
-          <div className="grid items-center gap-8 p-7 sm:gap-10 sm:p-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12 lg:p-12">
-            {/* Content ~55% */}
-            <div className="animate-fade-up min-w-0">
+          <div className="grid items-center gap-8 p-7 sm:gap-10 sm:p-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-10 lg:gap-12 lg:p-12">
+            {/* Content ~55% — CTAs stay with copy on desktop; reorder on mobile */}
+            <div className="animate-fade-up order-1 min-w-0 md:order-none">
               <p className="font-heading text-xs font-bold uppercase tracking-[0.18em] text-sq-purple">
                 Xfinity Mobile
               </p>
@@ -51,7 +51,11 @@ export function ByodPromoCard() {
                       className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sq-soft text-sq-purple"
                       aria-hidden="true"
                     >
-                      <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none">
+                      <svg
+                        viewBox="0 0 20 20"
+                        className="h-3.5 w-3.5"
+                        fill="none"
+                      >
                         <path
                           d="M4.5 10.5 8 14l7.5-8"
                           stroke="currentColor"
@@ -65,25 +69,25 @@ export function ByodPromoCard() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <Button href={BYOD_QUOTE_HREF} size="lg" className="w-full sm:w-auto">
+              {/* Desktop/tablet CTAs — with copy in 2-col layout */}
+              <div className="mt-8 hidden flex-col gap-3 md:flex md:flex-row md:flex-wrap md:items-center">
+                <Button href={BYOD_QUOTE_HREF} size="lg" className="w-auto">
                   Check BYOD Options
                 </Button>
                 <Button
                   href={BYOD_QUOTE_HREF}
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto"
+                  className="w-auto"
                 >
                   Get a Mobile Quote →
                 </Button>
               </div>
             </div>
 
-            {/* Visual ~45% */}
-            <div className="relative mx-auto flex w-full max-w-[280px] justify-center sm:max-w-[320px] lg:max-w-none">
-              <div className="animate-fade-scale relative w-full max-w-[260px] sm:max-w-[300px]">
-                {/* Soft accent wash — not a full-page purple treatment */}
+            {/* Visual ~45% — centered on mobile between benefits and CTAs */}
+            <div className="relative order-2 mx-auto flex w-full max-w-[280px] justify-center sm:max-w-[320px] md:order-none md:max-w-none">
+              <div className="animate-fade-scale relative w-full max-w-[240px] sm:max-w-[300px]">
                 <div
                   className="pointer-events-none absolute inset-[-12%] rounded-full bg-sq-soft/80 blur-2xl"
                   aria-hidden="true"
@@ -94,14 +98,29 @@ export function ByodPromoCard() {
                   alt="Smartphone representing Bring Your Own Device options with Xfinity Mobile"
                   width={720}
                   height={980}
-                  className="relative z-[1] mx-auto h-auto w-full max-h-[380px] object-contain sm:max-h-[420px]"
-                  sizes="(max-width: 1024px) 280px, 320px"
+                  className="relative z-[1] mx-auto h-auto w-full max-h-[300px] object-contain sm:max-h-[420px]"
+                  sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, 320px"
                   quality={90}
                 />
-                <span className="absolute bottom-3 left-1/2 z-[2] -translate-x-1/2 whitespace-nowrap rounded-full border border-sq-purple/20 bg-white/95 px-3 py-1.5 font-heading text-[10px] font-bold uppercase tracking-[0.1em] text-sq-purple shadow-sm sm:bottom-4">
+                <span className="absolute bottom-2 left-1/2 z-[2] -translate-x-1/2 whitespace-nowrap rounded-full border border-sq-purple/20 bg-white/95 px-3 py-1.5 font-heading text-[10px] font-bold uppercase tracking-[0.1em] text-sq-purple shadow-sm sm:bottom-4">
                   Bring Your Own Device
                 </span>
               </div>
+            </div>
+
+            {/* Mobile CTAs — after phone visual; hidden when 2-col */}
+            <div className="order-3 flex flex-col gap-3 md:hidden">
+              <Button href={BYOD_QUOTE_HREF} size="lg" className="w-full">
+                Check BYOD Options
+              </Button>
+              <Button
+                href={BYOD_QUOTE_HREF}
+                variant="outline"
+                size="lg"
+                className="w-full"
+              >
+                Get a Mobile Quote →
+              </Button>
             </div>
           </div>
         </div>
