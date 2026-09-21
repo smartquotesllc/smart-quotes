@@ -6,7 +6,9 @@
     "dev": "next dev --port 4321",
     "build": "next build",
     "start": "next start --port 4321",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/**/*.test.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -23,7 +25,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   },
-  "description": "Smart Quotes LLC \u2014 lead generation and appointment conversion website"
+  "description": "Smart Quotes LLC — lead generation and appointment conversion website"
 }
