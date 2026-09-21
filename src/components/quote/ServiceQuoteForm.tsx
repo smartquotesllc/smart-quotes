@@ -71,9 +71,13 @@ export function ServiceQuoteForm({
 }: ServiceQuoteFormProps) {
   const router = useRouter();
   const service = getServiceBySlug(serviceSlug);
-  const [values, setValues] = useState<FormState>(() => ({
-    ...(defaultValues ?? {}),
-  }));
+  const [values, setValues] = useState<FormState>(() => {
+    const initial: FormState = {};
+    for (const [key, value] of Object.entries(defaultValues ?? {})) {
+      if (typeof value === "string") initial[key] = value;
+    }
+    return initial;
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);

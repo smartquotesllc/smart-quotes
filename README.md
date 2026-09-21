@@ -9,7 +9,7 @@ Visitors explore Merchant Services, Xfinity Residential, and Comcast Business �
 - Next.js 16 (App Router) + TypeScript
 - Tailwind CSS v4
 - Inter (body) + Manrope (headings)
-- Pluggable CRM adapter (in-memory by default)
+- Pluggable CRM adapter (Smart Quotes OS HTTP ingest in production; in-memory locally)
 
 ## Run locally
 
@@ -52,7 +52,23 @@ Visitor → select service → request quote → lead capture (CRM) → confirma
 
 ## Environment
 
+Copy `.env.example` to `.env.local` for local development.
+
 | Variable | Description |
 |----------|-------------|
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL |
+| `CRM_INGEST_URL` | Smart Quotes OS ingest endpoint (server-only). Default: `https://app.smartquotesllc.com/api/ingest/lead` |
+| `CRM_INGEST_API_KEY` | Same secret as OS `INGEST_API_KEY`. Sent as `x-sq-ingest-key`. **Never** use `NEXT_PUBLIC_` |
 | `VACATION_OFFER_ENABLED` | Set `false` to disable vacation offer queueing |
+
+### CRM lead path
+
+```
+Browser → POST /api/rfq → CRM_INGEST_URL (Smart Quotes OS /api/ingest/lead)
+```
+
+When `CRM_INGEST_URL` and `CRM_INGEST_API_KEY` are both set, the server posts the CRM `LeadRecord` to OS. If either is unset, leads stay in the in-memory adapter (local/dev only).
+
+### Vercel
+
+Set `CRM_INGEST_URL` and `CRM_INGEST_API_KEY` in the Vercel project (Production + Preview). Do not commit real keys. Do not prefix the API key with `NEXT_PUBLIC_`.

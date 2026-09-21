@@ -2,6 +2,7 @@ import {
   buildLeadFromPayload,
   checkRateLimit,
   getCrmAdapter,
+  isCrmIngestConfigured,
   triggerVacationOfferCommunication,
 } from "@/lib/crm";
 import { validateQuotePayload } from "@/lib/validation";
@@ -16,6 +17,23 @@ function clientKey(request: Request): string {
 
 export async function POST(request: Request) {
   try {
+    if (
+      process.env.NODE_ENV === "production" &&
+      process.env.CRM_INGEST_REQUIRED !== "false" &&
+      !isCrmIngestConfigured()
+    ) {
+      console.error(
+        "[api/rfq] CRM_INGEST_URL / CRM_INGEST_API_KEY are required in production",
+      );
+      return Response.json(
+        {
+          ok: false,
+          message: "Quote intake is temporarily unavailable. Please try again shortly.",
+        },
+        { status: 503 },
+      );
+    }
+
     if (!checkRateLimit(`rfq:${clientKey(request)}`)) {
       return Response.json(
         { ok: false, message: "Too many requests. Please wait a moment and try again." },
