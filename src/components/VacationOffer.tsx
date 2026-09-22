@@ -59,7 +59,7 @@ export function VacationOffer() {
               href="/quote"
               className="inline-flex h-12 items-center justify-center rounded-md border border-white px-8 font-heading text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white/10"
             >
-              Get a Free Quote
+              Get a Smart Quote
             </Link>
           </div>
         </div>

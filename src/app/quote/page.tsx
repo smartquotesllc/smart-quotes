@@ -6,7 +6,7 @@ import { COMPANY } from "@/lib/company";
 import type { ServiceSlug } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Get a Free Quote",
+  title: "Get a Smart Quote",
   description:
     "Choose Merchant Services, Xfinity Residential, or Comcast Business and submit your Smart Quotes request.",
 };

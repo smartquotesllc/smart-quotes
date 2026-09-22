@@ -135,7 +135,7 @@ export default function BecomeAnAgentPage() {
               href="/quote"
               className="font-semibold text-sq-purple underline underline-offset-2"
             >
-              Request a free quote
+              Request a Smart Quote
             </Link>
             .
           </p>

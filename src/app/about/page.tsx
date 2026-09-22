@@ -50,7 +50,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/quote" size="lg">
-              Get a Free Quote
+              Get a Smart Quote
             </Button>
             <Button href="/services" variant="outline" size="lg">
               Explore Services

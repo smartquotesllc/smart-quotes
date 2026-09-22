@@ -34,7 +34,7 @@ export function FinalCTA() {
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button href="/quote" size="lg">
-            Get a Free Quote
+            Get a Smart Quote
           </Button>
           <Button href={COMPANY.phoneHref} variant="secondary" size="lg">
             Call Us Now
