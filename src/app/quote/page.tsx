@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { COMPANY } from "@/lib/company";
 import type { ServiceSlug } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -140,8 +141,8 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
           </span>
           <p className="text-center text-base text-sq-ink sm:text-left sm:text-lg">
             Not sure which service is right for you? Call or text us and we&apos;ll help!{" "}
-            <a href="tel:+18881234567" className="font-bold text-sq-ink hover:text-sq-purple">
-              (888) 123-4567
+            <a href={COMPANY.phoneHref} className="font-bold text-sq-ink hover:text-sq-purple">
+              {COMPANY.phoneDisplay}
             </a>
           </p>
         </aside>

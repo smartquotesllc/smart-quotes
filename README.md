@@ -33,8 +33,10 @@ Visitor → select service → request quote → lead capture (CRM) → confirma
 
 | Path | Purpose |
 |------|---------|
-| `/` | Homepage (announcement → hero collage → services → how it works → CTA) |
+| `/` | Homepage (hero → services → how it works → vacation incentive) |
 | `/quote` | Dedicated quote flow |
+| `/quote/internet` `/quote/mobile` `/quote/streaming` | Xfinity interest convenience routes |
+| `/become-an-agent` | Contractor (1099) recruitment / TurfQuest apply |
 | `/confirmation` | Post-RFQ confirmation |
 | `/api/rfq` | `POST` quote intake |
 | `/services/*` | Service detail pages |
@@ -48,7 +50,8 @@ Visitor → select service → request quote → lead capture (CRM) → confirma
 - Exact phrases: **Comcast Business**, **Xfinity Residential**, **Merchant Services**
 - Do not invent pricing, speeds, or vacation guarantees
 - SQ logo is replaceable (`src/components/Logo.tsx`)
-- Homepage images live in `/public/images/home/` (replaceable placeholders)
+- Homepage images live in `/public/images/home/`
+- Company phone, email, address, and hours live in `src/lib/company.ts`
 
 ## Environment
 

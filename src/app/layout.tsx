@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 import { AnnouncementBar } from "@/components/AnnouncementBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { COMPANY } from "@/lib/company";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,7 +19,8 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://127.0.0.1:4321";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || COMPANY.website;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,6 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Smart Quotes LLC",
+    url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",

@@ -25,16 +25,19 @@ const PLANS = [
     title: "Internet",
     price: "35",
     details: ["Up to 300 Mbps"],
+    quoteHref: "/quote/internet",
   },
   {
     title: "Internet + TV",
     price: "65",
     details: ["Up to 600 Mbps", "125+ Channels"],
+    quoteHref: "/quote/streaming",
   },
   {
     title: "Xfinity Mobile",
     price: "30",
     details: ["5G Nationwide", "Save with Internet"],
+    quoteHref: "/quote/mobile",
   },
 ];
 
@@ -120,7 +123,7 @@ export default function XfinityResidentialPage() {
                     <li key={line}>{line}</li>
                   ))}
                 </ul>
-                <Button href={`/quote/${SLUG}`} className="mt-8 w-full">
+                <Button href={plan.quoteHref} className="mt-8 w-full">
                   Get a Quote
                 </Button>
               </article>

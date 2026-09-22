@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/Button";
+import { COMPANY } from "@/lib/company";
 
 export function Hero() {
   return (
@@ -42,7 +43,7 @@ export function Hero() {
             <Button href="/quote" size="lg">
               Get a Free Quote
             </Button>
-            <Button href="tel:+18881234567" variant="secondary" size="lg">
+            <Button href={COMPANY.phoneHref} variant="secondary" size="lg">
               Call Us Now
             </Button>
           </div>

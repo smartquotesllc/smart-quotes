@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { COMPANY } from "@/lib/company";
 
 const LEGAL = [
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms & Conditions" },
   { href: "/vacation-terms", label: "Vacation Redemption Terms" },
+  { href: "/become-an-agent", label: "Become an Agent" },
 ];
 
 const TRUST = [
@@ -62,7 +64,6 @@ const SOCIAL = [
 export function Footer() {
   return (
     <footer className="bg-sq-navy text-white">
-      {/* Trust row — homepage + site-wide pattern */}
       <div className="border-b border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-4 py-8 sm:flex-row sm:gap-12 sm:px-6 lg:gap-20 lg:px-8">
           {TRUST.map((item) => (
@@ -77,42 +78,61 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Brand / phone / social — matches service mockups */}
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-8 text-center sm:flex-row sm:justify-between sm:text-left sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-center sm:px-6 sm:text-left lg:grid-cols-[1.1fr_1fr_0.9fr] lg:gap-10 lg:px-8">
         <div className="flex flex-col items-center gap-3 sm:items-start">
           <div className="rounded-md bg-white px-3 py-2">
             <Logo size="sm" href="/" className="!w-[140px]" />
           </div>
-          <p className="text-sm text-white/75">
-            We Connect You to Better Solutions
-          </p>
+          <p className="text-sm text-white/75">{COMPANY.tagline}</p>
         </div>
-        <a
-          href="tel:+18881234567"
-          className="font-heading text-base font-bold tracking-wide text-white hover:text-sq-bright"
-        >
-          (888) 123-4567
-        </a>
-        <div className="flex items-center gap-3" aria-label="Social links">
-          {SOCIAL.map((item) => (
-            <span
-              key={item.label}
-              className="inline-flex h-8 w-8 items-center justify-center text-white/80"
-              title={`${item.label} (placeholder)`}
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
-                <path d={item.path} />
-              </svg>
-              <span className="sr-only">{item.label}</span>
-            </span>
-          ))}
+
+        <div className="space-y-2 text-sm text-white/80">
+          <p className="font-heading text-xs font-bold uppercase tracking-[0.14em] text-white/55">
+            Contact
+          </p>
+          <a
+            href={COMPANY.phoneHref}
+            className="block font-heading text-base font-bold tracking-wide text-white hover:text-sq-bright"
+          >
+            {COMPANY.phoneDisplay}
+          </a>
+          <a
+            href={COMPANY.emailHref}
+            className="block hover:text-white"
+          >
+            {COMPANY.email}
+          </a>
+          <p>{COMPANY.addressLine}</p>
+          <p>{COMPANY.hours}</p>
+        </div>
+
+        <div className="flex flex-col items-center gap-4 sm:items-start lg:items-end">
+          <div className="flex items-center gap-3" aria-label="Social links">
+            {SOCIAL.map((item) => (
+              <span
+                key={item.label}
+                className="inline-flex h-8 w-8 items-center justify-center text-white/80"
+                title={item.label}
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+                  <path d={item.path} />
+                </svg>
+                <span className="sr-only">{item.label}</span>
+              </span>
+            ))}
+          </div>
+          <Link
+            href="/become-an-agent"
+            className="text-sm font-semibold text-white/80 underline-offset-2 hover:text-white hover:underline"
+          >
+            Become an Agent
+          </Link>
         </div>
       </div>
 
-      {/* Legal strip — Vacation Terms retained for compliance */}
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>© 2026 Smart Quotes LLC. All rights reserved.</p>
+          <p>{COMPANY.copyright}</p>
           <ul className="flex flex-wrap gap-x-4 gap-y-1">
             {LEGAL.map((link) => (
               <li key={link.href}>
