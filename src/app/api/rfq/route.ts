@@ -2,6 +2,7 @@ import {
   buildLeadFromPayload,
   checkRateLimit,
   getCrmAdapter,
+  isCrmIngestConfigured,
   triggerVacationOfferCommunication,
 } from "@/lib/crm";
 import { validateQuotePayload } from "@/lib/validation";
@@ -16,9 +17,30 @@ function clientKey(request: Request): string {
 
 export async function POST(request: Request) {
   try {
+    if (
+      process.env.NODE_ENV === "production" &&
+      process.env.CRM_INGEST_REQUIRED !== "false" &&
+      !isCrmIngestConfigured()
+    ) {
+      console.error(
+        "[api/rfq] CRM_INGEST_URL / CRM_INGEST_API_KEY are required in production",
+      );
+      return Response.json(
+        {
+          ok: false,
+          message:
+            "Quote intake is temporarily unavailable. Please try again shortly.",
+        },
+        { status: 503 },
+      );
+    }
+
     if (!checkRateLimit(`rfq:${clientKey(request)}`)) {
       return Response.json(
-        { ok: false, message: "Too many requests. Please wait a moment and try again." },
+        {
+          ok: false,
+          message: "Too many requests. Please wait a moment and try again.",
+        },
         { status: 429 },
       );
     }
@@ -27,13 +49,20 @@ export async function POST(request: Request) {
     try {
       body = await request.json();
     } catch {
-      return Response.json({ ok: false, message: "Invalid JSON body." }, { status: 400 });
+      return Response.json(
+        { ok: false, message: "Invalid JSON body." },
+        { status: 400 },
+      );
     }
 
     const result = validateQuotePayload(body);
     if (!result.ok || !result.data) {
       return Response.json(
-        { ok: false, errors: result.errors, message: "Please correct the highlighted fields." },
+        {
+          ok: false,
+          errors: result.errors,
+          message: "Please correct the highlighted fields.",
+        },
         { status: 400 },
       );
     }
@@ -53,7 +82,9 @@ export async function POST(request: Request) {
         message: "Quote request received.",
         next: {
           confirmation: true,
-          vacationOfferCommunication: vacation.queued ? "queued_separately" : "skipped",
+          vacationOfferCommunication: vacation.queued
+            ? "queued_separately"
+            : "skipped",
           appointmentWorkflow: "ready_for_integration",
         },
       },
@@ -62,7 +93,10 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("[api/rfq]", error);
     return Response.json(
-      { ok: false, message: "Something went wrong while saving your request." },
+      {
+        ok: false,
+        message: "Something went wrong while saving your request.",
+      },
       { status: 500 },
     );
   }

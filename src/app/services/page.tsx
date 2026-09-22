@@ -14,37 +14,34 @@ const CARDS = [
   {
     slug: "merchant-services",
     title: "Merchant Services",
-    tagline: "Accept payments. Save money. Grow your business.",
+    tagline: "Modern payment solutions for businesses of every size.",
     checks: [
       "0% Processing Options",
       "Next Day Funding",
       "No Long-Term Contracts",
     ],
-    // IMAGE REPLACE: /public/images/services/merchant-pos-card.png
-    image: "/images/services/merchant-pos-card.png",
-    imageAlt: "Modern point-of-sale payment terminal",
+    image: "/images/services/merchant-services-pos.jpg",
+    imageAlt: "Point-of-sale and payment terminal equipment",
     href: "/quote/merchant-services",
     detailsHref: "/services/merchant-services",
   },
   {
     slug: "xfinity-residential",
     title: "Xfinity Residential",
-    tagline: "Internet. Mobile. Streaming. Connected solutions for your home.",
+    tagline: "Internet. Mobile. Streaming. All in one place.",
     checks: ["Internet", "Mobile", "Streaming"],
-    // Modem-forward residential category image (Internet + Mobile + Streaming)
-    image: "/images/quote/xfinity-modem.png",
-    imageAlt: "Xfinity residential Internet gateway",
-    href: "/quote/xfinity-residential",
+    image: "/images/services/xfinity-residential-entertainment.jpg",
+    imageAlt: "Home internet gateway, mobile phone and streaming equipment",
+    href: "/services/xfinity-residential",
     detailsHref: "/services/xfinity-residential",
   },
   {
     slug: "comcast-business",
     title: "Comcast Business",
-    tagline: "Power your business with smart solutions.",
+    tagline: "Reliable solutions to keep your business moving forward.",
     checks: ["Internet", "Voice", "Cybersecurity"],
-    // IMAGE REPLACE: /public/images/services/comcast-office.png
-    image: "/images/services/comcast-office.png",
-    imageAlt: "Modern glass office building",
+    image: "/images/services/comcast-business-solutions.jpg",
+    imageAlt: "Business connectivity, phone and cybersecurity equipment",
     href: "/quote/comcast-business",
     detailsHref: "/services/comcast-business",
   },
@@ -55,11 +52,14 @@ export default function ServicesPage() {
     <div className="bg-white">
       <section className="px-4 pb-4 pt-14 sm:px-6 sm:pt-16 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
+          <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.18em] text-sq-purple sm:text-sm">
+            Same Great Services. A Smarter Way to Connect.
+          </p>
           <h1 className="font-heading text-3xl font-extrabold uppercase tracking-[0.08em] text-sq-ink sm:text-4xl">
-            Our Services
+            Let&apos;s Get Started
           </h1>
           <p className="mx-auto mt-3 max-w-2xl text-base text-sq-gray sm:text-lg">
-            Solutions designed to fit your life and your business.
+            Choose the service you&apos;re interested in.
           </p>
         </div>
       </section>
@@ -82,7 +82,7 @@ export default function ServicesPage() {
                     fill
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     quality={95}
-                    className="object-cover"
+                    className="object-cover object-center"
                     priority={card.slug === "merchant-services"}
                   />
                 </Link>
@@ -98,7 +98,7 @@ export default function ServicesPage() {
                   </p>
                   <CheckList items={[...card.checks]} className="mt-6" />
                   <div className="mt-8 flex justify-start sm:justify-end">
-                    <Button href={card.href}>Get a Quote</Button>
+                    <Button href={card.href}>Get a Smart Quote</Button>
                   </div>
                 </div>
               </div>

@@ -28,7 +28,7 @@ export function FinalCTA() {
           Ready for better solutions?
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-          Request a free quote for Merchant Services, Xfinity Residential, or
+          Request a Smart Quote for Merchant Services, Xfinity Residential, or
           Comcast Business. Simple process. Personalized assistance. No
           pressure.
         </p>

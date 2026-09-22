@@ -9,9 +9,9 @@ import { XfinityMobileSection } from "@/components/xfinity/XfinityMobileSection"
 const SLUG = "xfinity-residential";
 
 export const metadata: Metadata = {
-  title: "Xfinity Residential",
+  title: "Xfinity Residential Quotes",
   description:
-    "Explore Xfinity Internet, Mobile, and Streaming options. Request a free Smart Quote with Smart Quotes LLC.",
+    "Explore Xfinity Internet, Mobile, and Streaming options. Request a Smart Quote with Smart Quotes LLC.",
 };
 
 const HERO_CHECKS = [
@@ -27,9 +27,10 @@ const SELECTOR_CARDS = [
     description: "Explore residential Internet options available at your address.",
     cta: "Get an Internet Quote",
     href: "/quote/internet",
-    image: "/images/home/xfinity-residential.jpg",
-    imageAlt: "Xfinity residential Internet gateway",
+    image: "/images/services/xfinity-residential-connectivity.jpg",
+    imageAlt: "Home internet gateway representing Xfinity Internet",
     notice: null as string | null,
+    objectFit: "cover" as const,
   },
   {
     title: "Xfinity Mobile",
@@ -40,6 +41,7 @@ const SELECTOR_CARDS = [
     image: "/images/xfinity/byod-phone.png",
     imageAlt: "Smartphone representing Xfinity Mobile options",
     notice: "Xfinity Internet service is required.",
+    objectFit: "contain" as const,
   },
   {
     title: "Xfinity Streaming",
@@ -47,11 +49,10 @@ const SELECTOR_CARDS = [
       "Explore entertainment and streaming options available with Xfinity Internet.",
     cta: "Get a Streaming Quote",
     href: "/quote/streaming",
-    // Best available streaming hardware visual in-repo (TV / set-top).
-    // Dedicated Xumo streaming box + remote asset still needed for exact screenshot match.
-    image: "/images/quote/xfinity-tv.png",
-    imageAlt: "Xfinity entertainment and streaming setup",
+    image: "/images/services/xfinity-residential-entertainment.jpg",
+    imageAlt: "Streaming box, remote and entertainment equipment",
     notice: "Xfinity Internet service is required.",
+    objectFit: "cover" as const,
   },
 ] as const;
 
@@ -83,8 +84,8 @@ export default function XfinityResidentialPage() {
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#1a1d28] sm:rounded-2xl">
               <Image
-                src="/images/home/xfinity-residential.jpg"
-                alt="Xfinity Internet gateway representing residential connectivity"
+                src="/images/services/xfinity-residential-entertainment.jpg"
+                alt="Home internet gateway, mobile phone and streaming equipment"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}
@@ -116,7 +117,7 @@ export default function XfinityResidentialPage() {
             Select Internet, Mobile, or Streaming to start a Smart Quote request.
           </p>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:gap-8">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
             {SELECTOR_CARDS.map((card) => (
               <article
                 key={card.title}
@@ -129,7 +130,11 @@ export default function XfinityResidentialPage() {
                     fill
                     sizes="(max-width: 640px) 100vw, 50vw"
                     quality={92}
-                    className="object-contain object-center p-6 sm:p-8"
+                    className={
+                      card.objectFit === "contain"
+                        ? "object-contain object-center p-6 sm:p-8"
+                        : "object-cover object-center"
+                    }
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-6 py-7 text-center sm:px-8 sm:py-8">

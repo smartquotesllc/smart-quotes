@@ -6,9 +6,9 @@ import { CheckList } from "@/components/CheckList";
 const SLUG = "comcast-business";
 
 export const metadata: Metadata = {
-  title: "Comcast Business",
+  title: "Comcast Business Solutions",
   description:
-    "Reliable, secure, scalable business connectivity solutions. Request a free quote with Smart Quotes LLC.",
+    "Reliable, secure, scalable business connectivity solutions. Request a Smart Quote with Smart Quotes LLC.",
 };
 
 const HERO_CHECKS = [
@@ -101,12 +101,11 @@ const SOLUTIONS = [
 export default function ComcastBusinessPage() {
   return (
     <div className="bg-white">
-      {/* Hero with office building background */}
+      {/* Hero with business connectivity equipment */}
       <section className="relative min-h-[480px] overflow-hidden text-white sm:min-h-[560px]">
-        {/* IMAGE REPLACE: /public/images/services/comcast-office.png */}
         <Image
-          src="/images/services/comcast-office.png"
-          alt="Modern glass office building at dusk"
+          src="/images/services/comcast-business-solutions.jpg"
+          alt="Business connectivity, phone and cybersecurity equipment"
           fill
           priority
           sizes="100vw"
@@ -117,7 +116,7 @@ export default function ComcastBusinessPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(8,10,18,0.88) 0%, rgba(8,10,18,0.72) 42%, rgba(8,10,18,0.35) 70%, rgba(8,10,18,0.15) 100%)",
+              "linear-gradient(90deg, rgba(8,10,18,0.88) 0%, rgba(8,10,18,0.72) 42%, rgba(8,10,18,0.45) 70%, rgba(8,10,18,0.28) 100%)",
           }}
           aria-hidden="true"
         />
@@ -128,7 +127,7 @@ export default function ComcastBusinessPage() {
               Comcast Business
             </h1>
             <p className="mt-4 text-base text-white/90 sm:text-lg">
-              Power your business with smart solutions.
+              Reliable solutions to keep your business moving forward.
             </p>
             <CheckList
               items={HERO_CHECKS}
@@ -137,7 +136,7 @@ export default function ComcastBusinessPage() {
             />
             <div className="mt-9">
               <Button href={`/quote/${SLUG}`} size="lg">
-                Get a Quote
+                Get a Smart Quote
               </Button>
             </div>
           </div>

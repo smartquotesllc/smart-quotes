@@ -4,7 +4,7 @@ import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Contact ${COMPANY.legalName} or request a free quote.`,
+  description: `Contact ${COMPANY.legalName} or request a Smart Quote.`,
 };
 
 export default function ContactPage() {
@@ -18,13 +18,17 @@ export default function ContactPage() {
           Let&apos;s connect.
         </h1>
         <p className="mt-5 text-lg text-sq-gray">
-          The fastest way to get started is a free quote request. Prefer to talk
+          The fastest way to get started is a Smart Quote request. Prefer to talk
           first? Call or email us — we&apos;re here to help.
+        </p>
+
+        <p className="mt-6 font-heading text-lg font-bold text-sq-ink">
+          {COMPANY.legalName}
         </p>
 
         <a
           href={COMPANY.phoneHref}
-          className="mt-8 inline-block font-heading text-3xl font-bold text-sq-ink hover:text-sq-purple"
+          className="mt-4 inline-block font-heading text-3xl font-bold text-sq-ink hover:text-sq-purple"
         >
           {COMPANY.phoneDisplay}
         </a>

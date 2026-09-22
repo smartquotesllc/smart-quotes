@@ -3,12 +3,19 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { ServiceOption } from "@/lib/types";
 
-const SERVICE_IMAGES: Record<string, string> = {
-  // IMAGE REPLACE: prefer /public/images/services/* high-res assets
-  "merchant-services": "/images/services/merchant-pos-card.png",
-  // Modem-forward residential category image (not streaming-only collage)
-  "xfinity-residential": "/images/quote/xfinity-modem.png",
-  "comcast-business": "/images/services/comcast-office.png",
+const SERVICE_IMAGES: Record<string, { src: string; alt: string }> = {
+  "merchant-services": {
+    src: "/images/services/merchant-services-pos.jpg",
+    alt: "Point-of-sale and payment terminal equipment",
+  },
+  "xfinity-residential": {
+    src: "/images/services/xfinity-residential-entertainment.jpg",
+    alt: "Home internet gateway, mobile phone and streaming equipment",
+  },
+  "comcast-business": {
+    src: "/images/services/comcast-business-solutions.jpg",
+    alt: "Business connectivity, phone and cybersecurity equipment",
+  },
 };
 
 type ServiceCardProps = {
@@ -28,7 +35,7 @@ export function ServiceCard({
   featured = false,
   className,
   href = `/services/${service.slug}`,
-  ctaLabel = "Learn More →",
+  ctaLabel = "Get a Smart Quote →",
   withImage = true,
   compact = false,
 }: ServiceCardProps) {
@@ -46,12 +53,12 @@ export function ServiceCard({
       {withImage && image ? (
         <div className="relative aspect-[16/11] overflow-hidden bg-sq-gray-light">
           <Image
-            src={image}
-            alt={`${service.label} visual`}
+            src={image.src}
+            alt={image.alt}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             quality={92}
-            className="object-cover transition duration-500 group-hover:scale-[1.04]"
+            className="object-cover object-center transition duration-500 group-hover:scale-[1.04]"
           />
         </div>
       ) : null}

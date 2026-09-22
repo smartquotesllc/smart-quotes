@@ -167,7 +167,7 @@ export function ServiceQuoteForm({
         disabled={submitting}
         className="inline-flex h-12 min-w-[200px] items-center justify-center rounded-md bg-sq-purple px-8 font-heading text-sm font-bold uppercase tracking-[0.1em] text-white transition hover:bg-sq-purple-hover disabled:opacity-60"
       >
-        {submitting ? "Submitting…" : "Submit Request"}
+        {submitting ? "Submitting…" : "Get My Smart Quote"}
       </button>
       <p className="mt-3 text-center text-xs text-sq-gray sm:text-right">
         By submitting, you agree to be contacted by Smart Quotes LLC.
@@ -273,7 +273,7 @@ export function ServiceQuoteForm({
             disabled={submitting}
             className="inline-flex h-12 min-w-[200px] items-center justify-center rounded-md bg-sq-purple px-8 font-heading text-sm font-bold uppercase tracking-[0.1em] text-white transition hover:bg-sq-purple-hover disabled:opacity-60"
           >
-            {submitting ? "Submitting…" : "Submit Request"}
+            {submitting ? "Submitting…" : "Get My Smart Quote"}
           </button>
         </div>
         <p className="mt-4 text-center text-xs text-sq-gray">

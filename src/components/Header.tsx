@@ -17,6 +17,11 @@ const NAV: NavItem[] = [
   { href: "/contact", label: "Contact", match: "exact" },
 ];
 
+const MOBILE_NAV: NavItem[] = [
+  ...NAV,
+  { href: "/become-an-agent", label: "Become an Agent", match: "exact" },
+];
+
 function isActive(pathname: string, item: NavItem) {
   if (item.match === "exact") return pathname === item.href;
   if (item.href === "/services") {
@@ -137,6 +142,13 @@ export function Header() {
             <PhoneIcon className="h-5 w-5" />
           </a>
 
+          <Link
+            href="/become-an-agent"
+            className="hidden h-11 items-center justify-center rounded-md border border-sq-royal/40 bg-white px-4 font-heading text-[11px] font-extrabold uppercase tracking-[0.08em] text-sq-royal transition hover:border-sq-royal hover:bg-sq-soft xl:inline-flex"
+          >
+            Become an Agent
+          </Link>
+
           <SmartQuoteCta className="hidden sm:inline-flex" />
 
           <button
@@ -180,7 +192,7 @@ export function Header() {
           className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4"
           aria-label="Mobile"
         >
-          {NAV.map((item) => {
+          {MOBILE_NAV.map((item) => {
             const active = isActive(pathname, item);
             return (
               <Link
