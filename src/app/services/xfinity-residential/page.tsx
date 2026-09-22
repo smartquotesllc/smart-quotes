@@ -31,7 +31,9 @@ const PLANS = [
     title: "Internet + TV",
     price: "65",
     details: ["Up to 600 Mbps", "125+ Channels"],
-    quoteHref: "/quote/streaming",
+    quoteHref:
+      "/quote/xfinity-residential?interest=" +
+      encodeURIComponent("Internet + TV Bundle"),
   },
   {
     title: "Xfinity Mobile",
