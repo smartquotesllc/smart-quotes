@@ -19,7 +19,7 @@ export default function ContactPage() {
         </h1>
         <p className="mt-5 text-lg text-sq-gray">
           The fastest way to get started is a free quote request. Prefer to talk
-          first? Call or email {COMPANY.shortName} during business hours.
+          first? Call or email us — we&apos;re here to help.
         </p>
 
         <a

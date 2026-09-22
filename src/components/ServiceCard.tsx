@@ -6,7 +6,8 @@ import type { ServiceOption } from "@/lib/types";
 const SERVICE_IMAGES: Record<string, string> = {
   // IMAGE REPLACE: prefer /public/images/services/* high-res assets
   "merchant-services": "/images/services/merchant-pos-card.png",
-  "xfinity-residential": "/images/services/xfinity-entertainment.png",
+  // Modem-forward residential category image (not streaming-only collage)
+  "xfinity-residential": "/images/quote/xfinity-modem.png",
   "comcast-business": "/images/services/comcast-office.png",
 };
 

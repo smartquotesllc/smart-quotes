@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 };
 
 const HERO_CHECKS = [
-  "High-Speed Internet",
-  "Business Voice",
-  "Cybersecurity Solutions",
+  "Internet",
+  "Voice",
+  "Cybersecurity",
   "24/7 Business Support",
 ];
 
@@ -128,7 +128,7 @@ export default function ComcastBusinessPage() {
               Comcast Business
             </h1>
             <p className="mt-4 text-base text-white/90 sm:text-lg">
-              Reliable. Secure. Scalable Solutions for Your Business.
+              Power your business with smart solutions.
             </p>
             <CheckList
               items={HERO_CHECKS}

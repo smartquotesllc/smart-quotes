@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
-import { Button } from "@/components/Button";
+import { COMPANY } from "@/lib/company";
 import { cn } from "@/lib/utils";
 
 type NavItem = { href: string; label: string; match?: "exact" | "prefix" };
@@ -23,6 +23,49 @@ function isActive(pathname: string, item: NavItem) {
     return pathname === "/services" || pathname.startsWith("/services/");
   }
   return pathname === item.href || pathname.startsWith(`${item.href}/`);
+}
+
+function PhoneIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M8.5 4.8c.4-1 1.2-1.3 2-.8l1.4.9c.7.4.9 1.2.5 1.9l-.7 1.2a1.4 1.4 0 0 0 .2 1.7l2.4 2.4c.5.5 1.2.6 1.7.2l1.2-.7c.7-.4 1.5-.2 1.9.5l.9 1.4c.5.8.2 1.6-.8 2-.9.4-2 .7-3.1.4-2.5-.6-4.8-2.3-6.7-4.2-1.9-1.9-3.6-4.2-4.2-6.7-.3-1.1 0-2.2.4-3.1Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function SmartQuoteCta({
+  className,
+  onClick,
+}: {
+  className?: string;
+  onClick?: () => void;
+}) {
+  return (
+    <Link
+      href="/quote"
+      onClick={onClick}
+      className={cn(
+        "inline-flex h-11 items-center justify-center rounded-md px-5 font-heading text-[11px] font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple sm:h-12 sm:px-6 sm:text-xs",
+        className,
+      )}
+      style={{
+        background: "linear-gradient(135deg, #12081f 0%, #2a1458 42%, #5a2cff 100%)",
+        boxShadow: "0 12px 28px -14px rgba(90,44,255,0.7)",
+      }}
+    >
+      Get a Smart Quote
+    </Link>
+  );
 }
 
 export function Header() {
@@ -47,17 +90,15 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-all duration-300",
+        "sticky top-0 z-50 border-b bg-white transition-all duration-300",
         scrolled
-          ? "border-sq-border/70 bg-white/90 shadow-[0_10px_30px_-20px_rgba(8,11,34,0.35)] backdrop-blur-md"
-          : "border-sq-border/80 bg-white",
+          ? "border-sq-border/70 shadow-[0_10px_30px_-20px_rgba(8,11,34,0.35)] backdrop-blur-md"
+          : "border-sq-border/80",
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2 sm:gap-4 sm:px-6 lg:px-8">
-        {/* Left: logo */}
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5 sm:gap-4 sm:px-6 lg:px-8">
         <Logo size="sm" priority />
 
-        {/* Center: primary tabs evenly distributed across remaining space */}
         <nav
           className="hidden min-w-0 flex-1 items-center justify-evenly lg:flex"
           aria-label="Primary"
@@ -86,21 +127,21 @@ export function Header() {
           })}
         </nav>
 
-        {/* Far right: CTA */}
-        <div className="hidden shrink-0 lg:block">
-          <Button href="/quote" size="sm">
-            Get a Free Quote
-          </Button>
-        </div>
+        <div className="ml-auto flex items-center gap-2 sm:gap-3 lg:ml-0">
+          <a
+            href={COMPANY.phoneHref}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-sq-ink transition hover:bg-sq-soft hover:text-sq-purple sm:h-11 sm:w-11"
+            aria-label={`Call Smart Quotes at ${COMPANY.phoneDisplay}`}
+            title={COMPANY.phoneDisplay}
+          >
+            <PhoneIcon className="h-5 w-5" />
+          </a>
 
-        {/* Mobile: Quote + hamburger stay accessible */}
-        <div className="ml-auto flex items-center gap-2 lg:hidden">
-          <Button href="/quote" size="sm" className="!h-9 !px-3 !text-[10px]">
-            Quote
-          </Button>
+          <SmartQuoteCta className="hidden sm:inline-flex" />
+
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-sq-border"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-sq-border lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -115,10 +156,7 @@ export function Header() {
                 )}
               />
               <span
-                className={cn(
-                  "h-0.5 w-full bg-sq-ink transition",
-                  open && "opacity-0",
-                )}
+                className={cn("h-0.5 w-full bg-sq-ink transition", open && "opacity-0")}
               />
               <span
                 className={cn(
@@ -161,11 +199,17 @@ export function Header() {
               </Link>
             );
           })}
-          <div className="mt-2" onClick={() => setOpen(false)}>
-            <Button href="/quote" className="w-full">
-              Get a Free Quote
-            </Button>
+          <div className="mt-3 space-y-2 sm:hidden" onClick={() => setOpen(false)}>
+            <SmartQuoteCta className="w-full" />
           </div>
+          <a
+            href={COMPANY.phoneHref}
+            className="mt-2 inline-flex items-center justify-center gap-2 rounded-md px-3 py-3 text-sm font-semibold text-sq-ink hover:bg-sq-soft hover:text-sq-purple"
+            onClick={() => setOpen(false)}
+          >
+            <PhoneIcon className="h-4 w-4" />
+            {COMPANY.phoneDisplay}
+          </a>
         </nav>
       </div>
     </header>

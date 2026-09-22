@@ -119,7 +119,7 @@ export default function MerchantServicesPage() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl">
               <Image
                 src="/images/services/merchant-pos-hero.png"
-                alt="POS terminal and handheld card reader"
+                alt="Smart Quotes Merchant Services booth with POS presentation"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}

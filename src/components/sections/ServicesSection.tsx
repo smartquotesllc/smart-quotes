@@ -3,7 +3,7 @@ import { SERVICES } from "@/lib/services";
 
 const HOME_COPY: Record<string, string> = {
   "merchant-services": "0% Processing Options\nLower Rates. Better Service.",
-  "xfinity-residential": "Fast Internet. Great TV.\nWhole Solutions.",
+  "xfinity-residential": "Internet. Mobile. Streaming.\nWhole-home solutions.",
   "comcast-business": "Internet. Voice. Security.\nBuilt for Business.",
 };
 

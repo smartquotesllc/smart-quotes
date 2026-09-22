@@ -29,11 +29,11 @@ const CARDS = [
   {
     slug: "xfinity-residential",
     title: "Xfinity Residential",
-    tagline: "Fast, reliable internet. Entertainment your way.",
-    checks: ["Internet", "TV & Streaming", "Mobile"],
-    // IMAGE REPLACE: /public/images/services/xfinity-entertainment.png
-    image: "/images/services/xfinity-entertainment.png",
-    imageAlt: "TV, streaming box, and entertainment setup",
+    tagline: "Internet. Mobile. Streaming. Connected solutions for your home.",
+    checks: ["Internet", "Mobile", "Streaming"],
+    // Modem-forward residential category image (Internet + Mobile + Streaming)
+    image: "/images/quote/xfinity-modem.png",
+    imageAlt: "Xfinity residential Internet gateway",
     href: "/quote/xfinity-residential",
     detailsHref: "/services/xfinity-residential",
   },

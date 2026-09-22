@@ -1,31 +1,62 @@
 import type { Metadata } from "next";
-import { Logo } from "@/components/Logo";
+import Image from "next/image";
 import { Button } from "@/components/Button";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Smart Quotes LLC — one trusted starting point for multiple solutions.",
+  description:
+    "Smart Quotes LLC — one trusted starting point for Merchant Services, Xfinity Residential, and Comcast Business.",
 };
 
 export default function AboutPage() {
   return (
-    <section className="py-16 sm:py-24">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
-        <div className="flex min-h-[320px] items-center justify-center rounded-2xl border border-sq-border bg-white p-10 shadow-[0_12px_32px_-24px_rgba(15,23,42,0.35)]">
-          <Logo size="lg" href={null} />
+    <div className="bg-white">
+      <section className="px-4 pb-6 pt-10 sm:px-6 sm:pb-8 sm:pt-14 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          {/* Prefer dedicated team/neighborhood asset when supplied.
+              Using approved residential lifestyle image until that file is added. */}
+          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-sq-border/70 bg-sq-gray-light shadow-[0_18px_48px_-28px_rgba(15,23,42,0.45)] sm:aspect-[21/9] lg:aspect-[2.4/1]">
+            <Image
+              src="/images/home/hero-home.jpg"
+              alt="Smart Quotes community and neighborhood connections"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 1152px"
+              quality={92}
+              className="object-cover object-center"
+            />
+          </div>
         </div>
-        <div>
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-sq-purple">About Smart Quotes</p>
-          <h1 className="text-4xl font-bold tracking-tight text-sq-ink sm:text-5xl">One trusted starting point for multiple solutions.</h1>
+      </section>
+
+      <section className="pb-16 pt-4 sm:pb-24 sm:pt-6">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-sq-purple">
+            About Smart Quotes
+          </p>
+          <h1 className="text-4xl font-bold tracking-tight text-sq-ink sm:text-5xl">
+            One trusted starting point for multiple solutions.
+          </h1>
           <p className="mt-6 text-lg leading-relaxed text-sq-gray">
-            Smart Quotes is built around a simple idea: make it easier for customers and businesses to discover solutions, request information, and connect with the right people.
+            Smart Quotes is built around a simple idea: make it easier for
+            customers and businesses to discover solutions, request information,
+            and connect with the right people.
           </p>
           <p className="mt-4 text-base leading-relaxed text-sq-gray">
-            Whether you need Merchant Services, Xfinity Residential, or Comcast Business, we help you take the first step with a clear quote request and a professional follow-up path.
+            Whether you need Merchant Services, Xfinity Residential, or Comcast
+            Business, we help you take the first step with a clear quote request
+            and a professional follow-up path.
           </p>
-          <div className="mt-8"><Button href="/quote" size="lg">Get a Free Quote</Button></div>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button href="/quote" size="lg">
+              Get a Free Quote
+            </Button>
+            <Button href="/services" variant="outline" size="lg">
+              Explore Services
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
