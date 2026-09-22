@@ -13,12 +13,13 @@ export default function AboutPage() {
     <div className="bg-white">
       <section className="px-4 pb-6 pt-10 sm:px-6 sm:pb-8 sm:pt-14 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          {/* Prefer dedicated team/neighborhood asset when supplied.
-              Using approved residential lifestyle image until that file is added. */}
+          {/* ASSET NEEDED: dedicated Smart Quotes team/neighborhood photo from
+              the user's About reference screenshot is not in the repository yet.
+              Using approved city hero photography as interim photographic stand-in. */}
           <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-sq-border/70 bg-sq-gray-light shadow-[0_18px_48px_-28px_rgba(15,23,42,0.45)] sm:aspect-[21/9] lg:aspect-[2.4/1]">
             <Image
-              src="/images/home/hero-home.jpg"
-              alt="Smart Quotes community and neighborhood connections"
+              src="/images/home/hero-city-highway.jpg"
+              alt="Smart Quotes — connecting communities with better solutions"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 1152px"

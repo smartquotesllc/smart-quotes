@@ -27,7 +27,7 @@ const SELECTOR_CARDS = [
     description: "Explore residential Internet options available at your address.",
     cta: "Get an Internet Quote",
     href: "/quote/internet",
-    image: "/images/quote/xfinity-modem.png",
+    image: "/images/home/xfinity-residential.jpg",
     imageAlt: "Xfinity residential Internet gateway",
     notice: null as string | null,
   },
@@ -83,13 +83,13 @@ export default function XfinityResidentialPage() {
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#1a1d28] sm:rounded-2xl">
               <Image
-                src="/images/quote/xfinity-modem.png"
+                src="/images/home/xfinity-residential.jpg"
                 alt="Xfinity Internet gateway representing residential connectivity"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}
                 priority
-                className="object-contain object-center p-6 sm:p-8"
+                className="object-cover object-center"
               />
             </div>
             <p className="mt-3 text-center font-heading text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55 sm:text-xs">
