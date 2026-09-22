@@ -24,10 +24,17 @@ import { cn } from "@/lib/utils";
 
 type FormState = Record<string, string>;
 
+function initFormState(defaults?: FormState): FormState {
+  if (!defaults) return {};
+  return Object.fromEntries(
+    Object.entries(defaults).map(([key, value]) => [key, value ?? ""]),
+  );
+}
+
 type ServiceQuoteFormProps = {
   serviceSlug: ServiceSlug;
   /** Optional defaults from URL search params (e.g. BYOD → Mobile). */
-  defaultValues?: Partial<FormState>;
+  defaultValues?: FormState;
 };
 
 function SelectOne({
@@ -71,9 +78,9 @@ export function ServiceQuoteForm({
 }: ServiceQuoteFormProps) {
   const router = useRouter();
   const service = getServiceBySlug(serviceSlug);
-  const [values, setValues] = useState<FormState>(() => ({
-    ...(defaultValues ?? {}),
-  }));
+  const [values, setValues] = useState<FormState>(() =>
+    initFormState(defaultValues),
+  );
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
