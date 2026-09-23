@@ -7,9 +7,26 @@ export const metadata: Metadata = {
 };
 
 const RESOURCES = [
-  { title: "How the quote process works", href: "/#how-it-works", copy: "See the four steps from service selection to specialist follow-up." },
-  { title: "Vacation Redemption Terms & Conditions", href: "/vacation-terms", copy: "Review activation deadlines, fees, occupancy rules, and RedeemVacations.com redemption requirements." },
-  { title: "Privacy & data handling", href: "/privacy", copy: "Learn how Smart Quotes intends to handle lead information." },
+  {
+    title: "How the quote process works",
+    href: "/#how-it-works",
+    copy: "See the four steps from service selection to specialist follow-up.",
+  },
+  {
+    title: "Privacy & Data Handling",
+    href: "/privacy",
+    copy: "Learn how Smart Quotes intends to handle lead information.",
+  },
+  {
+    title: "Terms & Conditions",
+    href: "/terms",
+    copy: "Review the general website terms for quote requests, third-party services, and related features.",
+  },
+  {
+    title: "Vacation Redemption Terms",
+    href: "/vacation-terms",
+    copy: "Review activation deadlines, fees, occupancy rules, and RedeemVacations.com redemption requirements.",
+  },
 ];
 
 export default function ResourcesPage() {
@@ -18,12 +35,18 @@ export default function ResourcesPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-sq-ink sm:text-5xl">Resources</h1>
         <p className="mt-4 max-w-2xl text-sq-gray">Helpful starting points while official partner content and program details are finalized.</p>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {RESOURCES.map((item) => (
-            <Link key={item.href} href={item.href} className="rounded-xl border border-sq-border bg-white p-6 transition hover:border-sq-purple/40 hover:shadow-lg">
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-xl border border-sq-border bg-white p-6 transition hover:border-sq-purple/40 hover:shadow-lg"
+            >
               <h2 className="text-xl font-bold text-sq-ink">{item.title}</h2>
               <p className="mt-3 text-sm text-sq-gray">{item.copy}</p>
-              <p className="mt-5 text-sm font-bold uppercase tracking-wide text-sq-purple">Open →</p>
+              <p className="mt-5 text-sm font-bold uppercase tracking-wide text-sq-purple">
+                Open →
+              </p>
             </Link>
           ))}
         </div>

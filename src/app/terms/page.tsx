@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
+import { TermsAndConditions } from "@/components/terms/TermsAndConditions";
+import { COMPANY } from "@/lib/company";
 
-export const metadata: Metadata = { title: "Terms & Conditions", description: "Terms & Conditions for Smart Quotes LLC." };
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description:
+    "Review the terms governing use of the Smart Quotes LLC website, quote requests, third-party services, merchant solutions, and related website features.",
+  alternates: {
+    canonical: `${COMPANY.website}/terms`,
+  },
+  openGraph: {
+    title: "Terms & Conditions | Smart Quotes LLC",
+    description:
+      "Review the terms governing use of the Smart Quotes LLC website, quote requests, third-party services, merchant solutions, and related website features.",
+    url: `${COMPANY.website}/terms`,
+  },
+};
 
 export default function TermsPage() {
-  return (
-    <section className="py-16 sm:py-20">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <h1 className="text-4xl font-bold text-sq-ink">Terms &amp; Conditions</h1>
-        <div className="mt-8 space-y-4 text-sq-gray">
-          <p>This page is a placeholder for Smart Quotes LLC Terms &amp; Conditions. Replace with counsel-approved language before launch.</p>
-          <p>Website content is informational and does not constitute an offer, guarantee of service availability, pricing, or partner program terms unless expressly stated in an official agreement.</p>
-          <p>Partner brands such as Xfinity and Comcast Business are referenced for service categorization only. Official claims, promotions, and coverage details are provided through authorized quote processes.</p>
-        </div>
-      </div>
-    </section>
-  );
+  return <TermsAndConditions />;
 }

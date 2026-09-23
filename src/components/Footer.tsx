@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 
 const LEGAL = [
-  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/privacy", label: "Privacy & Data Handling" },
   { href: "/terms", label: "Terms & Conditions" },
   { href: "/vacation-terms", label: "Vacation Redemption Terms" },
 ];
