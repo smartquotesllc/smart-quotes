@@ -242,8 +242,8 @@ export function MerchantLandingForm() {
       </fieldset>
 
       <aside className="flex flex-col gap-4">
-        <div className="rounded-xl bg-[#2563eb] px-5 py-5 text-white shadow-[0_16px_32px_-18px_rgba(37,99,235,0.55)]">
-          <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/15">
+        <div className="rounded-xl border border-[#bfdbfe] bg-[#eff6ff] px-5 py-5 text-[#0f172a] shadow-sm">
+          <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#2563eb] text-white">
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
               <path
                 d="M12 7v13M8 10h8M7 7h10l1 3H6l1-3ZM9 7c0-1.5.8-3 3-3s3 1.5 3 3"
@@ -259,7 +259,7 @@ export function MerchantLandingForm() {
             quote.{" "}
             <Link
               href="/vacation-terms"
-              className="font-semibold underline underline-offset-2 hover:text-white"
+              className="font-semibold text-[#2563eb] underline underline-offset-2 hover:text-[#1d4ed8]"
             >
               Vacation Redemption Terms
             </Link>
@@ -278,9 +278,10 @@ export function MerchantLandingForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex h-14 w-full items-center justify-center rounded-md bg-[#0055FF] px-6 font-heading text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110 disabled:opacity-60"
+          className="inline-flex h-14 w-full items-center justify-center rounded-md px-6 font-heading text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110 disabled:opacity-60"
           style={{
-            boxShadow: "0 14px 28px -14px rgba(0,85,255,0.65)",
+            background: "linear-gradient(90deg, #0055FF 0%, #2563eb 50%, #7c3aed 100%)",
+            boxShadow: "0 14px 28px -14px rgba(0,85,255,0.55)",
           }}
         >
           {submitting ? "Submitting…" : "Get My Smart Quote →"}

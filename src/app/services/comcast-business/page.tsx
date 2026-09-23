@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 
 const SLUG = "comcast-business";
 
@@ -125,10 +126,10 @@ export default function ComcastBusinessPage() {
           <div className="w-full">
             <div className="rounded-2xl bg-[#1a1d28] p-3 sm:p-4">
               <Image
-                src="/images/services/comcast-business-solutions.jpg"
-                alt="Business connectivity, phone and cybersecurity equipment"
-                width={1580}
-                height={840}
+                src={SERVICE_IMAGES.comcast.src}
+                alt={SERVICE_IMAGES.comcast.alt}
+                width={SERVICE_IMAGES.comcast.width}
+                height={SERVICE_IMAGES.comcast.height}
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}

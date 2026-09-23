@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { COMPANY } from "@/lib/company";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 import type { ServiceSlug } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ const CARDS: Array<{
   label: string;
   description: string;
   href: string;
-  image: string;
+  src: string;
   alt: string;
   width: number;
   height: number;
@@ -26,31 +27,21 @@ const CARDS: Array<{
     label: "Merchant Services",
     description: "Modern payment solutions for businesses of every size.",
     href: "/quote/merchant-services",
-    image: "/images/services/merchant-pos-collage.jpg",
-    alt: "Full Merchant Services POS hardware group",
-    width: 1672,
-    height: 678,
+    ...SERVICE_IMAGES.merchantCard,
   },
   {
     slug: "xfinity-residential",
     label: "Xfinity Residential",
     description: "Internet. Mobile. Streaming. All in one place.",
-    // Route to residential selector — do not skip to Internet-only form
     href: "/services/xfinity-residential",
-    image: "/images/services/xfinity-residential-entertainment.jpg",
-    alt: "Home internet gateway, mobile phone and streaming equipment",
-    width: 1110,
-    height: 840,
+    ...SERVICE_IMAGES.xfinityPrimary,
   },
   {
     slug: "comcast-business",
     label: "Comcast Business",
     description: "Reliable solutions to keep your business moving forward.",
     href: "/quote/comcast-business",
-    image: "/images/services/comcast-business-solutions.jpg",
-    alt: "Business connectivity, phone and cybersecurity equipment",
-    width: 1580,
-    height: 840,
+    ...SERVICE_IMAGES.comcast,
   },
 ];
 
@@ -91,14 +82,14 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
             >
               <div className="flex w-full items-center justify-center rounded-t-2xl bg-sq-gray-light p-3 sm:p-4">
                 <Image
-                  src={card.image}
+                  src={card.src}
                   alt={card.alt}
                   width={card.width}
                   height={card.height}
                   className="h-auto w-full object-contain"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   priority={card.slug === "merchant-services"}
-                  quality={92}
+                  quality={95}
                 />
               </div>
               <div className="flex flex-1 flex-col px-6 pb-7 pt-5 text-center">

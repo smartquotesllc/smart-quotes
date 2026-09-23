@@ -2,29 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { ServiceOption } from "@/lib/types";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 
-const SERVICE_IMAGES: Record<
+const SERVICE_IMAGES_BY_SLUG: Record<
   string,
   { src: string; alt: string; width: number; height: number }
 > = {
-  "merchant-services": {
-    src: "/images/services/merchant-pos-collage.jpg",
-    alt: "Full Merchant Services POS hardware group",
-    width: 1672,
-    height: 678,
-  },
-  "xfinity-residential": {
-    src: "/images/services/xfinity-residential-entertainment.jpg",
-    alt: "Home internet gateway, mobile phone and streaming equipment",
-    width: 1110,
-    height: 840,
-  },
-  "comcast-business": {
-    src: "/images/services/comcast-business-solutions.jpg",
-    alt: "Business connectivity, phone and cybersecurity equipment",
-    width: 1580,
-    height: 840,
-  },
+  "merchant-services": SERVICE_IMAGES.merchantCard,
+  "xfinity-residential": SERVICE_IMAGES.xfinityPrimary,
+  "comcast-business": SERVICE_IMAGES.comcast,
 };
 
 type ServiceCardProps = {
@@ -48,7 +34,7 @@ export function ServiceCard({
   withImage = true,
   compact = false,
 }: ServiceCardProps) {
-  const image = SERVICE_IMAGES[service.slug];
+  const image = SERVICE_IMAGES_BY_SLUG[service.slug];
   const body = description ?? service.description;
 
   return (
@@ -60,14 +46,14 @@ export function ServiceCard({
       )}
     >
       {withImage && image ? (
-        <div className="flex items-center justify-center rounded-t-xl bg-[#f3f6fb] p-3 sm:p-4">
+        <div className="flex w-full items-center justify-center rounded-t-xl bg-[#f3f6fb] p-3 sm:p-4">
           <Image
             src={image.src}
             alt={image.alt}
             width={image.width}
             height={image.height}
             sizes="(max-width: 768px) 100vw, 33vw"
-            quality={92}
+            quality={95}
             className="h-auto w-full object-contain"
           />
         </div>

@@ -5,6 +5,8 @@ import { Button } from "@/components/Button";
 import { HowItWorksFaq } from "@/components/how-it-works/HowItWorksFaq";
 import { HowItWorksHeroCollage } from "@/components/how-it-works/HowItWorksHeroCollage";
 
+import { SERVICE_IMAGES } from "@/lib/service-images";
+
 export const metadata: Metadata = {
   title: "How the Process Works",
   description:
@@ -50,30 +52,21 @@ const SERVICE_CARDS = [
     description: "Internet. Mobile. Streaming. Connected solutions for your home.",
     href: "/services/xfinity-residential",
     cta: "Start Residential Quote →",
-    image: "/images/services/xfinity-residential-entertainment.jpg",
-    alt: "Home internet gateway, mobile phone and streaming equipment",
-    width: 1110,
-    height: 840,
+    ...SERVICE_IMAGES.xfinityPrimary,
   },
   {
     title: "Comcast Business",
     description: "Reliable solutions to keep your business moving forward.",
     href: "/quote/comcast-business",
     cta: "Start Business Quote →",
-    image: "/images/services/comcast-business-solutions.jpg",
-    alt: "Business connectivity, phone and cybersecurity equipment",
-    width: 1580,
-    height: 840,
+    ...SERVICE_IMAGES.comcast,
   },
   {
     title: "Merchant Services",
     description: "Modern payment solutions for businesses of every size.",
     href: "/services/merchant-services",
     cta: "Start Merchant Quote →",
-    image: "/images/services/merchant-pos-collage.jpg",
-    alt: "Full Merchant Services POS hardware group",
-    width: 1672,
-    height: 678,
+    ...SERVICE_IMAGES.merchantCard,
   },
 ] as const;
 
@@ -239,7 +232,7 @@ export default function HowItWorksPage() {
               >
                 <div className="flex items-center justify-center rounded-t-2xl bg-[#f3f6fb] p-4">
                   <Image
-                    src={card.image}
+                    src={card.src}
                     alt={card.alt}
                     width={card.width}
                     height={card.height}

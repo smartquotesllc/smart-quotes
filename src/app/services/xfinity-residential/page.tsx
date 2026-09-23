@@ -5,6 +5,7 @@ import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
 import { ByodPromoCard } from "@/components/xfinity/ByodPromoCard";
 import { XfinityMobileSection } from "@/components/xfinity/XfinityMobileSection";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 
 const SLUG = "xfinity-residential";
 
@@ -27,11 +28,9 @@ const SELECTOR_CARDS = [
     description: "Explore residential Internet options available at your address.",
     cta: "Get an Internet Quote",
     href: "/quote/internet",
-    image: "/images/services/xfinity-residential-connectivity.jpg",
-    imageAlt: "Home internet gateway representing Xfinity Internet",
+    ...SERVICE_IMAGES.xfinitySecondary,
+    imageAlt: SERVICE_IMAGES.xfinitySecondary.alt,
     notice: null as string | null,
-    width: 1110,
-    height: 840,
   },
   {
     title: "Xfinity Mobile",
@@ -39,11 +38,12 @@ const SELECTOR_CARDS = [
       "Explore mobile service options for eligible Xfinity Internet customers.",
     cta: "Get a Mobile Quote",
     href: "/quote/mobile",
-    image: "/images/xfinity/byod-phone.png",
+    src: "/images/xfinity/byod-phone.png",
+    alt: "Smartphone representing Xfinity Mobile options",
     imageAlt: "Smartphone representing Xfinity Mobile options",
-    notice: "Xfinity Internet service is required.",
     width: 720,
     height: 980,
+    notice: "Xfinity Internet service is required.",
   },
   {
     title: "Xfinity Streaming",
@@ -51,11 +51,9 @@ const SELECTOR_CARDS = [
       "Explore entertainment and streaming options available with Xfinity Internet.",
     cta: "Get a Streaming Quote",
     href: "/quote/streaming",
-    image: "/images/services/xfinity-residential-entertainment.jpg",
-    imageAlt: "Streaming box, remote and entertainment equipment",
+    ...SERVICE_IMAGES.xfinityPrimary,
+    imageAlt: SERVICE_IMAGES.xfinityPrimary.alt,
     notice: "Xfinity Internet service is required.",
-    width: 1110,
-    height: 840,
   },
 ] as const;
 
@@ -87,10 +85,10 @@ export default function XfinityResidentialPage() {
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div className="rounded-xl bg-[#1a1d28] p-3 sm:rounded-2xl sm:p-4">
               <Image
-                src="/images/services/xfinity-residential-entertainment.jpg"
-                alt="Home internet gateway, mobile phone and streaming equipment"
-                width={1110}
-                height={840}
+                src={SERVICE_IMAGES.xfinityPrimary.src}
+                alt={SERVICE_IMAGES.xfinityPrimary.alt}
+                width={SERVICE_IMAGES.xfinityPrimary.width}
+                height={SERVICE_IMAGES.xfinityPrimary.height}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}
                 priority
@@ -129,13 +127,13 @@ export default function XfinityResidentialPage() {
               >
                 <div className="flex items-center justify-center rounded-t-2xl bg-sq-gray-light p-4 sm:p-6">
                   <Image
-                    src={card.image}
+                    src={card.src}
                     alt={card.imageAlt}
                     width={card.width}
                     height={card.height}
                     sizes="(max-width: 640px) 100vw, 50vw"
-                    quality={92}
-                    className="h-auto max-h-[280px] w-full object-contain"
+                    quality={95}
+                    className="h-auto w-full object-contain"
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-6 py-7 text-center sm:px-8 sm:py-8">

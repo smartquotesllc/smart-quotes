@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -20,10 +21,8 @@ const CARDS = [
       "Next Day Funding",
       "No Long-Term Contracts",
     ],
-    image: "/images/services/merchant-pos-collage.jpg",
-    imageAlt: "Full Merchant Services POS hardware group",
-    width: 1672,
-    height: 678,
+    ...SERVICE_IMAGES.merchantCard,
+    imageAlt: SERVICE_IMAGES.merchantCard.alt,
     href: "/quote/merchant-services",
     detailsHref: "/services/merchant-services",
   },
@@ -32,10 +31,8 @@ const CARDS = [
     title: "Xfinity Residential",
     tagline: "Internet. Mobile. Streaming. All in one place.",
     checks: ["Internet", "Mobile", "Streaming"],
-    image: "/images/services/xfinity-residential-entertainment.jpg",
-    imageAlt: "Home internet gateway, mobile phone and streaming equipment",
-    width: 1110,
-    height: 840,
+    ...SERVICE_IMAGES.xfinityPrimary,
+    imageAlt: SERVICE_IMAGES.xfinityPrimary.alt,
     href: "/services/xfinity-residential",
     detailsHref: "/services/xfinity-residential",
   },
@@ -44,10 +41,8 @@ const CARDS = [
     title: "Comcast Business",
     tagline: "Reliable solutions to keep your business moving forward.",
     checks: ["Internet", "Voice", "Cybersecurity"],
-    image: "/images/services/comcast-business-solutions.jpg",
-    imageAlt: "Business connectivity, phone and cybersecurity equipment",
-    width: 1580,
-    height: 840,
+    ...SERVICE_IMAGES.comcast,
+    imageAlt: SERVICE_IMAGES.comcast.alt,
     href: "/quote/comcast-business",
     detailsHref: "/services/comcast-business",
   },
@@ -83,7 +78,7 @@ export default function ServicesPage() {
                   className="flex items-center justify-center bg-sq-gray-light p-4 sm:p-6"
                 >
                   <Image
-                    src={card.image}
+                    src={card.src}
                     alt={card.imageAlt}
                     width={card.width}
                     height={card.height}
