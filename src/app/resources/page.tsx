@@ -13,14 +13,19 @@ const RESOURCES = [
     copy: "See the four steps from service selection through follow-up and vacation incentive eligibility.",
   },
   {
+    title: "Privacy & Data Handling",
+    href: "/privacy",
+    copy: "Learn how Smart Quotes handles quote-form and customer contact information.",
+  },
+  {
+    title: "Terms & Conditions",
+    href: "/terms",
+    copy: "Review the general terms governing use of the Smart Quotes website and quote-request features.",
+  },
+  {
     title: "Vacation Redemption Terms & Conditions",
     href: "/vacation-terms",
     copy: "Review activation deadlines, fees, occupancy rules, and RedeemVacations.com redemption requirements.",
-  },
-  {
-    title: "Privacy & data handling",
-    href: "/privacy",
-    copy: "Learn how Smart Quotes handles quote-form and customer contact information.",
   },
   {
     title: "Become an Agent",
@@ -39,7 +44,7 @@ export default function ResourcesPage() {
         <p className="mt-4 max-w-2xl text-sq-gray">
           Helpful starting points for customers and contractors.
         </p>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {RESOURCES.map((item) => (
             <Link
               key={item.href}
