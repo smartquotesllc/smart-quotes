@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { COMPANY } from "@/lib/company";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 import type { ServiceSlug } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Get a Free Quote",
+  title: "Get a Smart Quote",
   description:
     "Choose Merchant Services, Xfinity Residential, or Comcast Business and submit your Smart Quotes request.",
 };
@@ -13,37 +15,39 @@ export const metadata: Metadata = {
 const CARDS: Array<{
   slug: ServiceSlug;
   label: string;
+  description: string;
   href: string;
-  /** IMAGE REPLACE: swap under /public/images/quote/ */
-  image: string;
+  src: string;
   alt: string;
+  width: number;
+  height: number;
 }> = [
   {
     slug: "merchant-services",
     label: "Merchant Services",
+    description: "Modern payment solutions for businesses of every size.",
     href: "/quote/merchant-services",
-    image: "/images/quote/merchant-pos.png",
-    alt: "Handheld point-of-sale payment terminal",
+    ...SERVICE_IMAGES.merchantCard,
   },
   {
     slug: "xfinity-residential",
     label: "Xfinity Residential",
-    href: "/quote/xfinity-residential",
-    image: "/images/quote/xfinity-modem.png",
-    alt: "Home internet gateway modem",
+    description: "Internet. Mobile. Streaming. All in one place.",
+    href: "/services/xfinity-residential",
+    ...SERVICE_IMAGES.xfinityPrimary,
   },
   {
     slug: "comcast-business",
     label: "Comcast Business",
+    description: "Reliable solutions to keep your business moving forward.",
     href: "/quote/comcast-business",
-    image: "/images/quote/comcast-card.png",
-    alt: "Modern glass office building",
+    ...SERVICE_IMAGES.comcast,
   },
 ];
 
 const LEGACY: Record<string, string> = {
   "merchant-services": "/quote/merchant-services",
-  "xfinity-residential": "/quote/xfinity-residential",
+  "xfinity-residential": "/services/xfinity-residential",
   "comcast-business": "/quote/comcast-business",
 };
 
@@ -59,6 +63,9 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
     <div className="bg-sq-gray-light">
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <header className="mb-10 text-center sm:mb-12">
+          <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.18em] text-sq-purple sm:text-sm">
+            Same Great Services. A Smarter Way to Connect.
+          </p>
           <h1 className="font-heading text-3xl font-extrabold uppercase tracking-[0.02em] text-sq-ink sm:text-4xl lg:text-[2.75rem]">
             Let&apos;s Get Started
           </h1>
@@ -71,33 +78,37 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
           {CARDS.map((card) => (
             <article
               key={card.slug}
-              className="flex flex-col overflow-hidden rounded-2xl border border-[#e2e5eb] bg-white shadow-[0_12px_32px_-20px_rgba(15,23,42,0.25)]"
+              className="flex flex-col rounded-2xl border border-[#e2e5eb] bg-white shadow-[0_12px_32px_-20px_rgba(15,23,42,0.25)]"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-white">
-                {/* IMAGE REPLACE: {card.image} */}
+              <div className="flex w-full items-center justify-center rounded-t-2xl bg-sq-gray-light p-3 sm:p-4">
                 <Image
-                  src={card.image}
+                  src={card.src}
                   alt={card.alt}
-                  fill
-                  className={
-                    card.slug === "comcast-business"
-                      ? "object-cover"
-                      : "object-contain p-4"
-                  }
+                  width={card.width}
+                  height={card.height}
+                  className="h-auto w-full object-contain"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   priority={card.slug === "merchant-services"}
-                  quality={92}
+                  quality={95}
                 />
               </div>
-              <div className="flex flex-1 flex-col px-6 pb-7 pt-1 text-center">
+              <div className="flex flex-1 flex-col px-6 pb-7 pt-5 text-center">
                 <h2 className="font-heading text-lg font-extrabold uppercase tracking-[0.04em] text-sq-ink">
                   {card.label}
                 </h2>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-sq-gray">
+                  {card.description}
+                </p>
                 <Link
                   href={card.href}
-                  className="mt-3 inline-flex justify-center font-heading text-sm font-bold text-sq-purple transition hover:text-sq-purple-hover"
+                  className="mt-5 inline-flex h-11 items-center justify-center rounded-md px-5 font-heading text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #12081f 0%, #2a1458 42%, #5a2cff 100%)",
+                    boxShadow: "0 12px 28px -14px rgba(90,44,255,0.7)",
+                  }}
                 >
-                  Get a Quote
+                  Get a Smart Quote
                 </Link>
               </div>
             </article>
@@ -109,9 +120,9 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
             Complimentary Vacation Incentive
           </h2>
           <p className="mt-2 max-w-3xl text-sm text-white/95 sm:text-base">
-            When you submit a quote request through Smart Quotes, you may receive
-            a complimentary hotel accommodation incentive. Choose a service above
-            to get started.
+            When you submit a qualifying quote request through Smart Quotes, you
+            may receive a complimentary hotel accommodation incentive at
+            participating properties. Choose a service above to get started.
           </p>
           <p className="mt-3 text-xs text-white/75">
             Offer subject to{" "}
@@ -121,7 +132,7 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
             >
               Vacation Redemption Terms
             </Link>
-            .
+            . Airfare is not included.
           </p>
         </aside>
 
@@ -140,8 +151,8 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
           </span>
           <p className="text-center text-base text-sq-ink sm:text-left sm:text-lg">
             Not sure which service is right for you? Call or text us and we&apos;ll help!{" "}
-            <a href="tel:+18881234567" className="font-bold text-sq-ink hover:text-sq-purple">
-              (888) 123-4567
+            <a href={COMPANY.phoneHref} className="font-bold text-sq-ink hover:text-sq-purple">
+              {COMPANY.phoneDisplay}
             </a>
           </p>
         </aside>

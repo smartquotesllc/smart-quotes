@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/Button";
+import { COMPANY } from "@/lib/company";
 
 export function Hero() {
   return (
@@ -40,9 +41,9 @@ export function Hero() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button href="/quote" size="lg">
-              Get a Free Quote
+              Get a Smart Quote
             </Button>
-            <Button href="tel:+18881234567" variant="secondary" size="lg">
+            <Button href={COMPANY.phoneHref} variant="secondary" size="lg">
               Call Us Now
             </Button>
           </div>

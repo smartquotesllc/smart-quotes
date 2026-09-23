@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
+import { COMPANY } from "@/lib/company";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://smartquotesllc.com";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || COMPANY.website;
 
 export default function robots(): MetadataRoute.Robots {
   return {

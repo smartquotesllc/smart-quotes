@@ -40,7 +40,8 @@ export function VacationOffer() {
             </h2>
             <p className="mt-3 text-base text-white/95 sm:text-lg">
               When you request a quote through Smart Quotes, you may receive a
-              complimentary hotel accommodation incentive.
+              complimentary hotel accommodation incentive. Airfare is not
+              included.
             </p>
             <p className="mt-3 text-xs text-white/75 sm:text-sm">
               Offer subject to{" "}
@@ -58,7 +59,7 @@ export function VacationOffer() {
               href="/quote"
               className="inline-flex h-12 items-center justify-center rounded-md border border-white px-8 font-heading text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white/10"
             >
-              Get a Free Quote
+              Get a Smart Quote
             </Link>
           </div>
         </div>

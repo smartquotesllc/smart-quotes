@@ -2,19 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 
 const SLUG = "comcast-business";
 
 export const metadata: Metadata = {
-  title: "Comcast Business",
+  title: "Comcast Business Solutions",
   description:
-    "Reliable, secure, scalable business connectivity solutions. Request a free quote with Smart Quotes LLC.",
+    "Reliable, secure, scalable business connectivity solutions. Request a Smart Quote with Smart Quotes LLC.",
 };
 
 const HERO_CHECKS = [
-  "High-Speed Internet",
-  "Business Voice",
-  "Cybersecurity Solutions",
+  "Internet",
+  "Voice",
+  "Cybersecurity",
   "24/7 Business Support",
 ];
 
@@ -101,34 +102,15 @@ const SOLUTIONS = [
 export default function ComcastBusinessPage() {
   return (
     <div className="bg-white">
-      {/* Hero with office building background */}
-      <section className="relative min-h-[480px] overflow-hidden text-white sm:min-h-[560px]">
-        {/* IMAGE REPLACE: /public/images/services/comcast-office.png */}
-        <Image
-          src="/images/services/comcast-office.png"
-          alt="Modern glass office building at dusk"
-          fill
-          priority
-          sizes="100vw"
-          quality={95}
-          className="object-cover object-center"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(8,10,18,0.88) 0%, rgba(8,10,18,0.72) 42%, rgba(8,10,18,0.35) 70%, rgba(8,10,18,0.15) 100%)",
-          }}
-          aria-hidden="true"
-        />
-
-        <div className="relative mx-auto flex min-h-[480px] max-w-7xl items-center px-4 py-16 sm:min-h-[560px] sm:px-6 lg:px-8">
+      {/* Hero with full business connectivity equipment — not cropped */}
+      <section className="bg-[#12141c] text-white">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
           <div className="max-w-xl animate-fade-up">
             <h1 className="font-heading text-4xl font-extrabold uppercase tracking-[0.04em] sm:text-5xl lg:text-[3.25rem]">
               Comcast Business
             </h1>
             <p className="mt-4 text-base text-white/90 sm:text-lg">
-              Reliable. Secure. Scalable Solutions for Your Business.
+              Reliable solutions to keep your business moving forward.
             </p>
             <CheckList
               items={HERO_CHECKS}
@@ -137,8 +119,22 @@ export default function ComcastBusinessPage() {
             />
             <div className="mt-9">
               <Button href={`/quote/${SLUG}`} size="lg">
-                Get a Quote
+                Get a Smart Quote
               </Button>
+            </div>
+          </div>
+          <div className="w-full">
+            <div className="rounded-2xl bg-[#1a1d28] p-3 sm:p-4">
+              <Image
+                src={SERVICE_IMAGES.comcast.src}
+                alt={SERVICE_IMAGES.comcast.alt}
+                width={SERVICE_IMAGES.comcast.width}
+                height={SERVICE_IMAGES.comcast.height}
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={95}
+                className="h-auto w-full object-contain"
+              />
             </div>
           </div>
         </div>

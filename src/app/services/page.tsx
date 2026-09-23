@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -14,37 +15,34 @@ const CARDS = [
   {
     slug: "merchant-services",
     title: "Merchant Services",
-    tagline: "Accept payments. Save money. Grow your business.",
+    tagline: "Modern payment solutions for businesses of every size.",
     checks: [
       "0% Processing Options",
       "Next Day Funding",
       "No Long-Term Contracts",
     ],
-    // IMAGE REPLACE: /public/images/services/merchant-pos-card.png
-    image: "/images/services/merchant-pos-card.png",
-    imageAlt: "Modern point-of-sale payment terminal",
+    ...SERVICE_IMAGES.merchantCard,
+    imageAlt: SERVICE_IMAGES.merchantCard.alt,
     href: "/quote/merchant-services",
     detailsHref: "/services/merchant-services",
   },
   {
     slug: "xfinity-residential",
     title: "Xfinity Residential",
-    tagline: "Fast, reliable internet. Entertainment your way.",
-    checks: ["Internet", "TV & Streaming", "Mobile"],
-    // IMAGE REPLACE: /public/images/services/xfinity-entertainment.png
-    image: "/images/services/xfinity-entertainment.png",
-    imageAlt: "TV, streaming box, and entertainment setup",
-    href: "/quote/xfinity-residential",
+    tagline: "Internet. Mobile. Streaming. All in one place.",
+    checks: ["Internet", "Mobile", "Streaming"],
+    ...SERVICE_IMAGES.xfinityPrimary,
+    imageAlt: SERVICE_IMAGES.xfinityPrimary.alt,
+    href: "/services/xfinity-residential",
     detailsHref: "/services/xfinity-residential",
   },
   {
     slug: "comcast-business",
     title: "Comcast Business",
-    tagline: "Power your business with smart solutions.",
+    tagline: "Reliable solutions to keep your business moving forward.",
     checks: ["Internet", "Voice", "Cybersecurity"],
-    // IMAGE REPLACE: /public/images/services/comcast-office.png
-    image: "/images/services/comcast-office.png",
-    imageAlt: "Modern glass office building",
+    ...SERVICE_IMAGES.comcast,
+    imageAlt: SERVICE_IMAGES.comcast.alt,
     href: "/quote/comcast-business",
     detailsHref: "/services/comcast-business",
   },
@@ -55,11 +53,14 @@ export default function ServicesPage() {
     <div className="bg-white">
       <section className="px-4 pb-4 pt-14 sm:px-6 sm:pt-16 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
+          <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.18em] text-sq-purple sm:text-sm">
+            Same Great Services. A Smarter Way to Connect.
+          </p>
           <h1 className="font-heading text-3xl font-extrabold uppercase tracking-[0.08em] text-sq-ink sm:text-4xl">
-            Our Services
+            Let&apos;s Get Started
           </h1>
           <p className="mx-auto mt-3 max-w-2xl text-base text-sq-gray sm:text-lg">
-            Solutions designed to fit your life and your business.
+            Choose the service you&apos;re interested in.
           </p>
         </div>
       </section>
@@ -69,20 +70,21 @@ export default function ServicesPage() {
           {CARDS.map((card) => (
             <article
               key={card.slug}
-              className="overflow-hidden rounded-2xl border border-sq-border bg-white shadow-[0_8px_30px_-18px_rgba(10,10,18,0.28)]"
+              className="rounded-2xl border border-sq-border bg-white shadow-[0_8px_30px_-18px_rgba(10,10,18,0.28)]"
             >
               <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)]">
                 <Link
                   href={card.detailsHref}
-                  className="relative min-h-[220px] bg-sq-gray-light sm:min-h-[260px] lg:min-h-full"
+                  className="flex items-center justify-center bg-sq-gray-light p-4 sm:p-6"
                 >
                   <Image
-                    src={card.image}
+                    src={card.src}
                     alt={card.imageAlt}
-                    fill
+                    width={card.width}
+                    height={card.height}
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     quality={95}
-                    className="object-cover"
+                    className="h-auto w-full object-contain"
                     priority={card.slug === "merchant-services"}
                   />
                 </Link>
@@ -98,7 +100,7 @@ export default function ServicesPage() {
                   </p>
                   <CheckList items={[...card.checks]} className="mt-6" />
                   <div className="mt-8 flex justify-start sm:justify-end">
-                    <Button href={card.href}>Get a Quote</Button>
+                    <Button href={card.href}>Get a Smart Quote</Button>
                   </div>
                 </div>
               </div>

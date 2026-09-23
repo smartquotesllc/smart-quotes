@@ -1,47 +1,66 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
 import { ByodPromoCard } from "@/components/xfinity/ByodPromoCard";
 import { XfinityMobileSection } from "@/components/xfinity/XfinityMobileSection";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 
 const SLUG = "xfinity-residential";
 
 export const metadata: Metadata = {
-  title: "Xfinity Residential",
+  title: "Xfinity Residential Quotes",
   description:
-    "Fast internet, TV & streaming, and mobile options. Request a free quote with Smart Quotes LLC.",
+    "Explore Xfinity Internet, Mobile, and Streaming options. Request a Smart Quote with Smart Quotes LLC.",
 };
 
 const HERO_CHECKS = [
   "Fast & Reliable Internet",
-  "Top-Rated TV & Streaming",
-  "Xfinity Mobile + BYOD Options",
+  "Mobile options for eligible households",
+  "Entertainment & streaming with Xfinity",
   "No Annual Contracts",
 ];
 
-const PLANS = [
+const SELECTOR_CARDS = [
   {
-    title: "Internet",
-    price: "35",
-    details: ["Up to 300 Mbps"],
-  },
-  {
-    title: "Internet + TV",
-    price: "65",
-    details: ["Up to 600 Mbps", "125+ Channels"],
+    title: "Xfinity Internet",
+    description: "Explore residential Internet options available at your address.",
+    cta: "Get an Internet Quote",
+    href: "/quote/internet",
+    ...SERVICE_IMAGES.xfinitySecondary,
+    imageAlt: SERVICE_IMAGES.xfinitySecondary.alt,
+    notice: null as string | null,
   },
   {
     title: "Xfinity Mobile",
-    price: "30",
-    details: ["5G Nationwide", "Save with Internet"],
+    description:
+      "Explore mobile service options for eligible Xfinity Internet customers.",
+    cta: "Get a Mobile Quote",
+    href: "/quote/mobile",
+    src: "/images/xfinity/byod-phone.png",
+    alt: "Smartphone representing Xfinity Mobile options",
+    imageAlt: "Smartphone representing Xfinity Mobile options",
+    width: 720,
+    height: 980,
+    notice: "Xfinity Internet service is required.",
   },
-];
+  {
+    title: "Xfinity Streaming",
+    description:
+      "Explore entertainment and streaming options available with Xfinity Internet.",
+    cta: "Get a Streaming Quote",
+    href: "/quote/streaming",
+    ...SERVICE_IMAGES.xfinityPrimary,
+    imageAlt: SERVICE_IMAGES.xfinityPrimary.alt,
+    notice: "Xfinity Internet service is required.",
+  },
+] as const;
 
 export default function XfinityResidentialPage() {
   return (
     <div className="bg-white">
-      {/* Hero — dark charcoal with entertainment collage */}
+      {/* Hero — Internet + Mobile + Streaming category (modem-forward, not streaming-only) */}
       <section className="relative overflow-hidden bg-[#12141c] text-white">
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
           <div className="animate-fade-up">
@@ -49,7 +68,7 @@ export default function XfinityResidentialPage() {
               Xfinity Residential
             </h1>
             <p className="mt-4 max-w-lg text-base text-white/90 sm:text-lg">
-              Fast internet. Amazing TV. Mobile that keeps you connected.
+              Internet. Mobile. Streaming. Connected solutions for your home.
             </p>
             <CheckList
               items={HERO_CHECKS}
@@ -57,77 +76,111 @@ export default function XfinityResidentialPage() {
               className="mt-8 max-w-md"
             />
             <div className="mt-9">
-              <Button href={`/quote/${SLUG}`} size="lg">
-                Get a Quote
+              <Button href="#quote-selector" size="lg">
+                Choose a Service
               </Button>
             </div>
           </div>
 
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
-            {/* IMAGE REPLACE: /public/images/services/xfinity-entertainment.png */}
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl">
+            <div className="rounded-xl bg-[#1a1d28] p-3 sm:rounded-2xl sm:p-4">
               <Image
-                src="/images/services/xfinity-entertainment.png"
-                alt="TV, tablet, and streaming box entertainment setup"
-                fill
+                src={SERVICE_IMAGES.xfinityPrimary.src}
+                alt={SERVICE_IMAGES.xfinityPrimary.alt}
+                width={SERVICE_IMAGES.xfinityPrimary.width}
+                height={SERVICE_IMAGES.xfinityPrimary.height}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}
                 priority
-                className="object-cover object-center"
+                className="h-auto w-full object-contain"
               />
             </div>
-            {/* Subtle product strip under TV visual — secondary to entertainment image */}
             <p className="mt-3 text-center font-heading text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55 sm:text-xs">
-              Internet • TV • Mobile
+              Internet • Mobile • Streaming
             </p>
           </div>
         </div>
       </section>
 
-      {/* BYOD promo — immediately after TV/streaming image */}
-      <ByodPromoCard />
-
-      {/* Xfinity Mobile mini section */}
-      <XfinityMobileSection />
-
-      {/* Popular Plans */}
-      <section className="bg-sq-gray-light py-14 sm:py-20">
+      {/* Three-card quote selector */}
+      <section
+        id="quote-selector"
+        className="bg-sq-gray-light py-14 sm:py-20"
+        aria-labelledby="xfinity-selector-heading"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center font-heading text-2xl font-extrabold uppercase tracking-[0.08em] text-sq-ink sm:text-3xl">
-            Popular Plans
+          <h2
+            id="xfinity-selector-heading"
+            className="text-center font-heading text-2xl font-extrabold uppercase tracking-[0.08em] text-sq-ink sm:text-3xl"
+          >
+            Choose Your Xfinity Service
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-xs text-sq-gray sm:text-sm">
-            Rates shown are illustrative and subject to quote, location, and
-            availability.
+          <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-sq-gray sm:text-base">
+            Select Internet, Mobile, or Streaming to start a Smart Quote request.
           </p>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3 md:gap-7">
-            {PLANS.map((plan) => (
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+            {SELECTOR_CARDS.map((card) => (
               <article
-                key={plan.title}
-                className="flex h-full flex-col rounded-2xl border border-sq-border/80 bg-white px-7 py-8 text-center shadow-[0_12px_32px_-20px_rgba(10,10,18,0.35)]"
+                key={card.title}
+                className="flex h-full flex-col rounded-2xl border border-sq-border/80 bg-white shadow-[0_14px_40px_-24px_rgba(10,10,18,0.4)]"
               >
-                <h3 className="font-heading text-lg font-extrabold uppercase tracking-[0.06em] text-sq-purple">
-                  {plan.title}
-                </h3>
-                <p className="mt-5 text-sm text-sq-gray">Starting at</p>
-                <p className="mt-1 font-heading text-4xl font-extrabold tracking-tight text-sq-ink">
-                  ${plan.price}
-                  <span className="text-lg font-bold text-sq-gray">/mo</span>
-                </p>
-                <ul className="mt-5 flex-1 space-y-1.5 text-sm text-sq-ink/80">
-                  {plan.details.map((line) => (
-                    <li key={line}>{line}</li>
-                  ))}
-                </ul>
-                <Button href={`/quote/${SLUG}`} className="mt-8 w-full">
-                  Get a Quote
-                </Button>
+                <div className="flex items-center justify-center rounded-t-2xl bg-sq-gray-light p-4 sm:p-6">
+                  <Image
+                    src={card.src}
+                    alt={card.imageAlt}
+                    width={card.width}
+                    height={card.height}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    quality={95}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col px-6 py-7 text-center sm:px-8 sm:py-8">
+                  <h3 className="font-heading text-xl font-extrabold uppercase tracking-[0.06em] text-sq-ink sm:text-2xl">
+                    {card.title}
+                  </h3>
+                  <p className="mx-auto mt-4 max-w-md flex-1 text-sm leading-relaxed text-sq-gray sm:text-base">
+                    {card.description}
+                  </p>
+                  {card.notice ? (
+                    <p className="mt-4 font-heading text-xs font-bold uppercase tracking-[0.08em] text-sq-purple sm:text-sm">
+                      {card.notice}
+                    </p>
+                  ) : (
+                    <span className="mt-4 block h-5" aria-hidden="true" />
+                  )}
+                  <Link
+                    href={card.href}
+                    className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-md px-6 font-heading text-xs font-extrabold uppercase tracking-[0.12em] text-white transition hover:brightness-110 sm:h-14 sm:text-sm"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #3d1abc 0%, #5a2cff 50%, #6b3aff 100%)",
+                      boxShadow: "0 14px 30px -16px rgba(90,44,255,0.75)",
+                    }}
+                  >
+                    {card.cta}
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
+
+          <p className="mx-auto mt-8 max-w-2xl text-center text-xs text-sq-gray">
+            Prefer a general residential quote?{" "}
+            <Link
+              href={`/quote/${SLUG}`}
+              className="font-semibold text-sq-purple underline underline-offset-2 hover:text-sq-purple-hover"
+            >
+              Start here
+            </Link>
+            .
+          </p>
         </div>
       </section>
+
+      <ByodPromoCard />
+      <XfinityMobileSection />
     </div>
   );
 }

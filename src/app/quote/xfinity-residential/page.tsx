@@ -17,11 +17,25 @@ function resolveResidentialDefaults(params: {
   byod?: string;
 }): Record<string, string> | undefined {
   const interest = params.interest?.trim();
+  const normalized = interest?.toLowerCase();
+
+  const aliasMap: Record<string, (typeof RESIDENTIAL_SERVICES)[number]> = {
+    internet: "Internet",
+    mobile: "Mobile",
+    streaming: "TV / Entertainment",
+    tv: "TV / Entertainment",
+    "tv / entertainment": "TV / Entertainment",
+    "home phone": "Home Phone",
+    "internet + tv bundle": "Internet + TV Bundle",
+    "full home bundle": "Full Home Bundle",
+  };
+
   const matched =
-    interest &&
-    RESIDENTIAL_SERVICES.find(
-      (opt) => opt.toLowerCase() === interest.toLowerCase(),
-    );
+    (normalized && aliasMap[normalized]) ||
+    (interest &&
+      RESIDENTIAL_SERVICES.find(
+        (opt) => opt.toLowerCase() === interest.toLowerCase(),
+      ));
 
   if (!matched && params.byod !== "1") return undefined;
 

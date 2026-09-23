@@ -1,21 +1,6 @@
-import type { Metadata } from "next";
-import { QuoteFormShell } from "@/components/quote/QuoteFormShell";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Merchant Services Quote",
-  description:
-    "Request a Merchant Services quote from Smart Quotes LLC. Tell us about your business and payment needs.",
-};
-
-export default function MerchantQuotePage() {
-  return (
-    <QuoteFormShell
-      title="Merchant Services Quote"
-      subtitle="Tell us about your business."
-      serviceSlug="merchant-services"
-      imageSrc="/images/quote/merchant-pos.png"
-      imageAlt="Black handheld POS payment terminal"
-      imagePriority
-    />
-  );
+/** Preserve quote route; send users to the approved Merchant Services page form. */
+export default function MerchantQuoteRedirect() {
+  redirect("/services/merchant-services#request-quote");
 }
