@@ -138,7 +138,14 @@ export function HowItWorksSection() {
         </div>
 
         <p className="mt-10 text-center text-xs text-sq-gray sm:text-sm">
-          Offer details are governed by the{" "}
+          Prefer the full walkthrough?{" "}
+          <Link
+            href="/how-it-works"
+            className="font-semibold text-sq-purple underline underline-offset-2 hover:text-sq-purple-hover"
+          >
+            How the Process Works
+          </Link>
+          . Offer details are governed by the{" "}
           <Link
             href="/vacation-terms"
             className="font-semibold text-sq-purple underline underline-offset-2 hover:text-sq-purple-hover"

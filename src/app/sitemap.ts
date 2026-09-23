@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/contact",
     "/resources",
+    "/how-it-works",
     "/become-an-agent",
     "/privacy",
     "/terms",

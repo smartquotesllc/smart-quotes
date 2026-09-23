@@ -3,105 +3,173 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { CheckList } from "@/components/CheckList";
-
-const SLUG = "merchant-services";
+import { MerchantLandingForm } from "@/components/merchant/MerchantLandingForm";
 
 export const metadata: Metadata = {
   title: "Merchant Services",
   description:
-    "0% processing options, next-day funding, and payment solutions for your business. Request a Smart Quote with Smart Quotes LLC.",
+    "Find the right POS system for your business. Request a personalized Smart Quote on payment solutions with Smart Quotes LLC.",
 };
 
 const HERO_CHECKS = [
-  "0% Credit Card Processing Options",
-  "Next Day Funding Available",
-  "No Long-Term Contracts",
-  "24/7 U.S. Based Support",
+  "Competitive Rates",
+  "Latest Equipment Options",
+  "Fast, No-Obligation Quotes",
 ];
 
 const SOLUTIONS = [
-  { title: "Full POS System", copy: "Complete countertop checkout hardware" },
-  { title: "Tablet POS", copy: "Flexible tablet-based payment setups" },
-  { title: "Smart Terminal", copy: "Modern all-in-one smart readers" },
-  { title: "Countertop Terminal", copy: "Reliable in-store card terminals" },
-  { title: "Mobile Payments", copy: "Handheld and on-the-go acceptance" },
-  { title: "Self-Service Kiosk", copy: "Unattended checkout options" },
-];
+  {
+    title: "Full POS System",
+    copy: "Complete solution with register, cash drawer, receipt printer and more.",
+  },
+  {
+    title: "Tablet POS",
+    copy: "A flexible, modern solution for restaurants, retail and more.",
+  },
+  {
+    title: "Smart Terminal",
+    copy: "Wireless, all-in-one payments anywhere in your business.",
+  },
+  {
+    title: "Countertop Terminal",
+    copy: "Reliable and secure for high-volume transactions.",
+  },
+  {
+    title: "Mobile Payments",
+    copy: "Turn your smartphone into a payment solution on the go.",
+  },
+  {
+    title: "Self-Service Kiosk",
+    copy: "Customer-led ordering and checkout for restaurants, retail, and service locations.",
+  },
+] as const;
+
+function SolutionIcon({ title }: { title: string }) {
+  const common = "h-10 w-10 text-sq-purple";
+  switch (title) {
+    case "Full POS System":
+      return (
+        <svg viewBox="0 0 48 48" className={common} fill="none" aria-hidden="true">
+          <rect x="10" y="10" width="22" height="16" rx="2" stroke="currentColor" strokeWidth="2.2" />
+          <rect x="12" y="28" width="18" height="8" rx="1.5" stroke="currentColor" strokeWidth="2.2" />
+          <rect x="34" y="18" width="8" height="14" rx="1.5" stroke="currentColor" strokeWidth="2.2" />
+        </svg>
+      );
+    case "Tablet POS":
+      return (
+        <svg viewBox="0 0 48 48" className={common} fill="none" aria-hidden="true">
+          <rect x="14" y="8" width="20" height="28" rx="2.5" stroke="currentColor" strokeWidth="2.2" />
+          <path d="M20 32h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case "Smart Terminal":
+      return (
+        <svg viewBox="0 0 48 48" className={common} fill="none" aria-hidden="true">
+          <rect x="16" y="8" width="16" height="28" rx="3" stroke="currentColor" strokeWidth="2.2" />
+          <path d="M20 14h8M20 20h8M20 26h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "Countertop Terminal":
+      return (
+        <svg viewBox="0 0 48 48" className={common} fill="none" aria-hidden="true">
+          <rect x="12" y="12" width="24" height="16" rx="2" stroke="currentColor" strokeWidth="2.2" />
+          <path d="M16 32h16M20 36h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case "Mobile Payments":
+      return (
+        <svg viewBox="0 0 48 48" className={common} fill="none" aria-hidden="true">
+          <rect x="16" y="8" width="14" height="26" rx="3" stroke="currentColor" strokeWidth="2.2" />
+          <path d="M34 18c2 2 2 8 0 10M37 15c4 3.5 4 12.5 0 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 48 48" className={common} fill="none" aria-hidden="true">
+          <rect x="15" y="6" width="18" height="30" rx="2.5" stroke="currentColor" strokeWidth="2.2" />
+          <path d="M19 34h10M21 12h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+  }
+}
 
 export default function MerchantServicesPage() {
   return (
     <div className="bg-white">
-      {/* Dark purple gradient hero */}
-      <section className="relative overflow-hidden text-white">
+      {/* Photo 3 hero — light/white with POS collage */}
+      <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0"
+          className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(165deg, #5a2cff 0%, #4a20e0 35%, #2a1458 72%, #12081f 100%)",
+              "radial-gradient(ellipse at 75% 35%, rgba(37,99,235,0.12), transparent 45%), linear-gradient(180deg, #f8fbff 0%, #ffffff 55%, #ffffff 100%)",
           }}
           aria-hidden="true"
         />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
           <div className="animate-fade-up">
-            <h1 className="font-heading text-4xl font-extrabold uppercase tracking-[0.04em] sm:text-5xl lg:text-[3.25rem]">
+            <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.18em] text-[#2563eb]">
               Merchant Services
+            </p>
+            <h1 className="font-heading text-3xl font-extrabold tracking-tight text-sq-ink sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+              Find the Right POS System for Your Business
             </h1>
-            <p className="mt-5 text-lg text-white/95 sm:text-xl">
-              0% Processing Options
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-sq-gray sm:text-lg">
+              Get a personalized quote on payment solutions built for your
+              business. Simple, secure, and ready to help you grow.
             </p>
-            <p className="mt-1 text-xl font-semibold text-white sm:text-2xl">
-              Lower Rates. Better Service.
-            </p>
-            <CheckList
-              items={HERO_CHECKS}
-              variant="white"
-              className="mt-8 max-w-md"
-            />
+            <CheckList items={HERO_CHECKS} className="mt-8 max-w-md" />
             <div className="mt-9">
-              <Button href={`/quote/${SLUG}`} size="lg" className="shadow-[0_12px_28px_-10px_rgba(0,0,0,0.45)]">
-                Get a Smart Quote
+              <Button href="#request-quote" size="lg">
+                Get a Smart Quote →
               </Button>
             </div>
           </div>
 
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-[#eef4ff] shadow-[0_24px_48px_-28px_rgba(37,99,235,0.35)]">
               <Image
-                src="/images/services/merchant-services-pos.jpg"
-                alt="Point-of-sale and payment terminal equipment"
+                src="/images/services/merchant-pos-collage.jpg"
+                alt="Point-of-sale terminals, tablet POS, mobile payments and self-service kiosk"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}
                 priority
-                className="object-cover object-center"
+                className="object-contain object-center p-2 sm:p-4"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-14 sm:py-20">
+      {/* Solutions grid */}
+      <section className="border-t border-sq-border/60 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-3 text-center font-heading text-2xl font-extrabold uppercase tracking-[0.08em] text-sq-ink sm:text-3xl">
+          <h2 className="text-center font-heading text-2xl font-extrabold text-sq-ink sm:text-3xl">
             Solutions for Every Way You Accept Payments
           </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-center text-sm text-sq-gray sm:mb-12 sm:text-base">
-            From full POS systems to mobile readers and kiosks — find the setup
-            that fits your business.
+          <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-sq-gray sm:text-base">
+            From full countertop systems to mobile readers, we have the right
+            solution for your business.
           </p>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {SOLUTIONS.map((item) => (
               <article
                 key={item.title}
-                className="flex flex-col items-center rounded-2xl border border-sq-border/80 bg-white px-5 py-8 text-center shadow-[0_12px_32px_-20px_rgba(10,10,18,0.28)]"
+                className="flex flex-col rounded-2xl border border-sq-border/80 bg-white px-5 py-7 shadow-[0_12px_32px_-22px_rgba(10,10,18,0.28)]"
               >
-                <h3 className="font-heading text-base font-extrabold uppercase tracking-[0.06em] text-sq-ink">
+                <div className="mb-4">
+                  <SolutionIcon title={item.title} />
+                </div>
+                <h3 className="font-heading text-base font-extrabold text-sq-ink">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm text-sq-gray">{item.copy}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-sq-gray">
+                  {item.copy}
+                </p>
                 <Link
-                  href={`/quote/${SLUG}`}
-                  className="mt-4 font-heading text-xs font-bold uppercase tracking-[0.08em] text-sq-purple hover:text-sq-purple-hover"
+                  href="#request-quote"
+                  className="mt-4 font-heading text-xs font-bold uppercase tracking-[0.08em] text-[#2563eb] hover:text-sq-purple"
                 >
                   Learn More →
                 </Link>
@@ -111,53 +179,27 @@ export default function MerchantServicesPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden" aria-labelledby="merchant-vacation-heading">
-        <div className="relative min-h-[240px] sm:min-h-[280px] lg:min-h-[300px]">
-          <Image
-            src="/images/services/vacation-beach.png"
-            alt="Tropical beach vacation destination"
-            fill
-            sizes="100vw"
-            quality={92}
-            className="object-cover object-[72%_center]"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, #3d1abc 0%, #4a20e0 30%, #5a2cff 48%, rgba(90,44,255,0.55) 68%, rgba(90,44,255,0.15) 88%, transparent 100%)",
-            }}
-            aria-hidden="true"
-          />
-          <div className="relative mx-auto flex min-h-[240px] max-w-7xl flex-col justify-center px-4 py-12 sm:min-h-[280px] sm:px-6 lg:min-h-[300px] lg:px-8">
-            <div className="max-w-lg">
+      {/* Quote form — Photo 3 */}
+      <section
+        id="request-quote"
+        className="scroll-mt-28 bg-sq-gray-light py-14 sm:py-20"
+        aria-labelledby="merchant-quote-heading"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl border border-sq-border bg-white p-6 shadow-[0_16px_40px_-24px_rgba(10,10,18,0.35)] sm:p-8 lg:p-10">
+            <header className="mb-8 max-w-3xl">
               <h2
-                id="merchant-vacation-heading"
-                className="font-heading text-3xl font-extrabold uppercase tracking-tight text-white sm:text-4xl"
+                id="merchant-quote-heading"
+                className="font-heading text-2xl font-extrabold text-sq-ink sm:text-3xl"
               >
-                Complimentary Vacation Incentive
+                Request Your Personalized Merchant Services Quote
               </h2>
-              <p className="mt-3 text-base text-white/95 sm:text-lg">
-                Request a qualifying quote through Smart Quotes and you may
-                receive a complimentary hotel accommodation incentive at
-                participating properties.
+              <p className="mt-3 text-sm text-sq-gray sm:text-base">
+                Tell us about your business and we&apos;ll recommend the best
+                solution for your needs.
               </p>
-              <div className="mt-7">
-                <Link
-                  href={`/quote/${SLUG}`}
-                  className="inline-flex h-12 items-center justify-center rounded-md bg-white px-8 font-heading text-xs font-bold uppercase tracking-[0.12em] text-sq-purple transition hover:bg-white/90"
-                >
-                  Get a Smart Quote
-                </Link>
-              </div>
-              <p className="mt-4 text-xs text-white/70">
-                Offer subject to{" "}
-                <Link href="/vacation-terms" className="underline hover:text-white">
-                  Vacation Redemption Terms
-                </Link>
-                . Airfare is not included.
-              </p>
-            </div>
+            </header>
+            <MerchantLandingForm />
           </div>
         </div>
       </section>

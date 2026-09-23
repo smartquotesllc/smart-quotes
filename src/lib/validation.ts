@@ -138,7 +138,6 @@ export function validateQuotePayload(body: unknown): ValidationResult {
   // Service-specific required fields (soft — UI enforces; API keeps CRM flexible)
   if (serviceSlug === "merchant-services") {
     if (!businessName) errors.businessName = "Business name is required.";
-    if (!extras.businessType) errors.businessType = "Please select a business type.";
     if (!extras.monthlyCardVolume) {
       errors.monthlyCardVolume = "Please select monthly card volume.";
     }

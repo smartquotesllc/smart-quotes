@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const RESOURCES = [
   {
     title: "How the quote process works",
-    href: "/#how-it-works",
+    href: "/how-it-works",
     copy: "See the four steps from service selection through follow-up and vacation incentive eligibility.",
   },
   {
