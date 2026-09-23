@@ -109,8 +109,12 @@ export function MerchantLandingForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)_minmax(220px,0.7fr)]">
-      <div className="space-y-4">
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)_minmax(240px,0.75fr)]"
+    >
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-x-5">
         <QuoteField id="fullName" label="Full Name" required error={errors.fullName || errors.firstName}>
           <input
             id="fullName"
@@ -154,7 +158,7 @@ export function MerchantLandingForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="(434) 226-5327"
+            placeholder="(555) 123-4567"
             className={quoteControlClass}
             value={get("phone")}
             onChange={(e) => set("phone", e.target.value)}
@@ -179,7 +183,7 @@ export function MerchantLandingForm() {
             ))}
           </select>
         </QuoteField>
-        <QuoteField id="hearAboutUs" label="How did you hear about us?">
+        <QuoteField id="hearAboutUs" label="How did you hear about us?" required>
           <select
             id="hearAboutUs"
             name="hearAboutUs"
@@ -187,6 +191,7 @@ export function MerchantLandingForm() {
             style={selectChevronStyle}
             value={get("hearAboutUs")}
             onChange={(e) => set("hearAboutUs", e.target.value)}
+            required
           >
             <option value="">Select One</option>
             {HEAR_ABOUT_OPTIONS.map((opt) => (
@@ -196,21 +201,23 @@ export function MerchantLandingForm() {
             ))}
           </select>
         </QuoteField>
-        <QuoteField id="message" label="Message" optional>
-          <textarea
-            id="message"
-            name="message"
-            rows={4}
-            placeholder="Tell us more about your business..."
-            className={cn(quoteControlClass, "resize-y")}
-            value={get("message")}
-            onChange={(e) => set("message", e.target.value)}
-          />
-        </QuoteField>
+        <div className="sm:col-span-2">
+          <QuoteField id="message" label="Message" optional>
+            <textarea
+              id="message"
+              name="message"
+              rows={4}
+              placeholder="Tell us more about your business..."
+              className={cn(quoteControlClass, "resize-y")}
+              value={get("message")}
+              onChange={(e) => set("message", e.target.value)}
+            />
+          </QuoteField>
+        </div>
       </div>
 
       <fieldset>
-        <legend className="mb-4 font-heading text-sm font-bold text-sq-ink">
+        <legend className="mb-4 font-heading text-sm font-bold text-[#000033]">
           Interested In{" "}
           <span className="font-medium text-sq-gray">(Select all that apply)</span>
         </legend>
@@ -222,7 +229,7 @@ export function MerchantLandingForm() {
                 <label className="flex cursor-pointer items-start gap-3 text-sm text-sq-ink">
                   <input
                     type="checkbox"
-                    className="mt-0.5 h-4 w-4 rounded border-sq-border text-sq-purple focus:ring-sq-purple/30"
+                    className="mt-0.5 h-4 w-4 rounded border-sq-border text-[#2563eb] focus:ring-[#2563eb]/30"
                     checked={checked}
                     onChange={() => toggleInterest(option)}
                   />
@@ -235,7 +242,18 @@ export function MerchantLandingForm() {
       </fieldset>
 
       <aside className="flex flex-col gap-4">
-        <div className="rounded-xl bg-gradient-to-br from-[#3d1abc] to-[#5a2cff] px-5 py-5 text-white shadow-[0_16px_32px_-18px_rgba(90,44,255,0.7)]">
+        <div className="rounded-xl bg-[#2563eb] px-5 py-5 text-white shadow-[0_16px_32px_-18px_rgba(37,99,235,0.55)]">
+          <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/15">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+              <path
+                d="M12 7v13M8 10h8M7 7h10l1 3H6l1-3ZM9 7c0-1.5.8-3 3-3s3 1.5 3 3"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
           <p className="text-sm leading-relaxed">
             Receive a complimentary vacation-stay incentive with a qualifying
             quote.{" "}
@@ -260,26 +278,31 @@ export function MerchantLandingForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex h-14 w-full items-center justify-center rounded-md bg-[#2563eb] px-6 font-heading text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110 disabled:opacity-60"
+          className="inline-flex h-14 w-full items-center justify-center rounded-md bg-[#0055FF] px-6 font-heading text-sm font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110 disabled:opacity-60"
           style={{
-            background: "linear-gradient(135deg, #1d4ed8 0%, #2563eb 45%, #5a2cff 100%)",
-            boxShadow: "0 14px 28px -14px rgba(37,99,235,0.7)",
+            boxShadow: "0 14px 28px -14px rgba(0,85,255,0.65)",
           }}
         >
           {submitting ? "Submitting…" : "Get My Smart Quote →"}
         </button>
 
         <p className="flex items-center justify-center gap-2 text-center text-xs text-sq-gray">
-          <svg viewBox="0 0 24 24" className="h-4 w-4 text-sq-purple" fill="none" aria-hidden="true">
+          <svg viewBox="0 0 24 24" className="h-4 w-4 text-[#2563eb]" fill="none" aria-hidden="true">
             <path
               d="M12 3 5 6.5V11c0 4.5 2.9 7.8 7 9 4.1-1.2 7-4.5 7-9V6.5L12 3Z"
               stroke="currentColor"
               strokeWidth="1.7"
               strokeLinejoin="round"
             />
+            <path
+              d="M9.5 11.5 11 13l3.5-3.5"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
-          Your information is handled carefully under our Privacy &amp; Data
-          Handling policy.
+          Your information is secure and never shared.
         </p>
       </aside>
     </form>

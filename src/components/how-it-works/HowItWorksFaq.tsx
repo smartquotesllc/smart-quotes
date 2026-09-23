@@ -4,24 +4,24 @@ import { useState } from "react";
 
 const FAQS = [
   {
-    q: "When will someone contact me after I submit a Smart Quote?",
+    q: "When will someone contact me?",
     a: "A Smart Quotes specialist typically reviews your request and follows up soon after submission during business hours. Timing can vary based on volume and the service you selected.",
   },
   {
-    q: "Do I have to purchase anything to request a quote?",
-    a: "No. Requesting a Smart Quote does not obligate you to purchase service. You can review available options and decide what works best for you.",
+    q: "Am I required to purchase?",
+    a: "No. Requesting a Smart Quote does not obligate you to purchase service. You remain in control — review available options and decide what works best for you.",
   },
   {
-    q: "How does the vacation-stay incentive work?",
+    q: "Does Smart Quotes determine my final price?",
+    a: "Smart Quotes helps you request and review available options. Final pricing, equipment, and eligibility are confirmed with the applicable provider or specialist based on your request.",
+  },
+  {
+    q: "Why do you need my information?",
+    a: "We use your details to understand what you need, connect you with a specialist, and present relevant options. Information is handled according to our Privacy & Data Handling policy.",
+  },
+  {
+    q: "How does the vacation incentive work?",
     a: "Qualifying quote requests may receive complimentary vacation-stay incentive instructions. Eligibility, activation deadlines, fees, and redemption rules are governed by the Vacation Redemption Terms. Airfare is not included.",
-  },
-  {
-    q: "What services can I request through Smart Quotes?",
-    a: "You can request quotes for Xfinity Residential (Internet, Mobile, and Streaming), Comcast Business, and Merchant Services payment solutions.",
-  },
-  {
-    q: "How is my information protected?",
-    a: "Quote details are processed securely through our website intake and handled according to our Privacy & Data Handling policy. Authorized partners may receive information needed to fulfill your request.",
   },
 ] as const;
 

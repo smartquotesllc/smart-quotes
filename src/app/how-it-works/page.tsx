@@ -82,16 +82,46 @@ const WHY = [
   {
     title: "No Obligation to Purchase",
     detail: "Explore options with a clear, pressure-free quote process.",
+    icon: "check" as const,
   },
   {
     title: "Real Specialist Support",
     detail: "Talk with people who understand the services you requested.",
+    icon: "people" as const,
   },
   {
     title: "Your Information Is Protected",
     detail: "We handle quote details carefully under our Privacy & Data Handling policy.",
+    icon: "lock" as const,
   },
 ] as const;
+
+function WhyIcon({ icon }: { icon: "check" | "people" | "lock" }) {
+  const common = "h-7 w-7 text-sq-purple";
+  if (icon === "check") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+        <path d="m8 12 2.8 2.8L16.5 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  if (icon === "people") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <circle cx="9" cy="8" r="3" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="17" cy="9" r="2.5" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M3.5 18.5c.8-2.8 2.9-4.2 5.5-4.2s4.7 1.4 5.5 4.2M14 14.5c1.7 0 3.2.7 4 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+      <rect x="6" y="10" width="12" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M8.5 10V7.5a3.5 3.5 0 0 1 7 0V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 const INCENTIVE_STEPS = [
   { title: "Qualify", detail: "Submit a qualifying Smart Quote request." },
@@ -273,6 +303,9 @@ export default function HowItWorksPage() {
                 key={item.title}
                 className="rounded-xl border border-sq-border/80 bg-white px-6 py-7 text-center"
               >
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-sq-soft">
+                  <WhyIcon icon={item.icon} />
+                </div>
                 <h3 className="font-heading text-base font-extrabold text-sq-ink">
                   {item.title}
                 </h3>
