@@ -21,37 +21,49 @@ const SOLUTIONS = [
     title: "Full POS System",
     copy: "Complete solution with register, cash drawer, receipt printer and more.",
     image: "/images/services/merchant-solution-full-pos.jpg",
-    alt: "Full POS register with cash drawer and receipt printer",
+    alt: "Full POS register with cash drawer, customer display and receipt printer",
+    width: 800,
+    height: 600,
   },
   {
     title: "Tablet POS",
     copy: "A flexible, modern solution for restaurants, retail and more.",
     image: "/images/services/merchant-solution-tablet.jpg",
-    alt: "Tablet point-of-sale stand",
+    alt: "Tablet point-of-sale terminal on stand",
+    width: 800,
+    height: 600,
   },
   {
     title: "Smart Terminal",
     copy: "Wireless, all-in-one payments anywhere in your business.",
     image: "/images/services/merchant-solution-smart-terminal.jpg",
     alt: "Handheld smart payment terminal",
+    width: 800,
+    height: 600,
   },
   {
     title: "Countertop Terminal",
     copy: "Reliable and secure for high-volume transactions.",
     image: "/images/services/merchant-solution-countertop.jpg",
     alt: "Countertop payment terminal",
+    width: 800,
+    height: 600,
   },
   {
     title: "Mobile Payments",
     copy: "Turn your smartphone into a payment solution on the go.",
     image: "/images/services/merchant-solution-mobile.jpg",
     alt: "Smartphone with mobile card reader",
+    width: 800,
+    height: 600,
   },
   {
     title: "Self-Service Kiosk",
     copy: "Customer-led ordering and checkout for restaurants, retail, and service locations.",
     image: "/images/services/merchant-solution-kiosk.jpg",
-    alt: "Self-service ordering kiosk",
+    alt: "Self-service ordering kiosk with payment hardware",
+    width: 800,
+    height: 600,
   },
 ] as const;
 
@@ -77,8 +89,8 @@ function BlueCheckIcon() {
 export default function MerchantServicesPage() {
   return (
     <div className="bg-white">
-      {/* Photo 3 hero — light/white with POS collage */}
-      <section className="relative overflow-hidden">
+      {/* Hero — full POS equipment group, never cropped */}
+      <section className="relative">
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -117,23 +129,24 @@ export default function MerchantServicesPage() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
-            <div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-[#eef4ff] shadow-[0_24px_48px_-28px_rgba(37,99,235,0.35)]">
+          <div className="w-full">
+            <div className="rounded-2xl bg-[#eef4ff] p-3 shadow-[0_24px_48px_-28px_rgba(37,99,235,0.35)] sm:p-5">
               <Image
                 src="/images/services/merchant-pos-collage.jpg"
-                alt="Point-of-sale terminals, tablet POS, mobile payments and self-service kiosk"
-                fill
+                alt="Full POS hardware group: register, tablet POS, smart terminal, mobile payments and self-service kiosk"
+                width={1672}
+                height={678}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}
                 priority
-                className="object-contain object-center p-2 sm:p-4"
+                className="h-auto w-full object-contain"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Solutions grid */}
+      {/* Solutions — 6 cards in one row on wide screens; images contained */}
       <section className="border-t border-sq-border/60 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center font-heading text-2xl font-extrabold text-[#000033] sm:text-3xl">
@@ -143,31 +156,32 @@ export default function MerchantServicesPage() {
             From full countertop systems to mobile readers, we have the right
             solution for your business.
           </p>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-3">
             {SOLUTIONS.map((item) => (
               <article
                 key={item.title}
-                className="flex flex-col overflow-hidden rounded-2xl border border-sq-border/80 bg-white shadow-[0_12px_32px_-22px_rgba(10,10,18,0.28)]"
+                className="flex h-full flex-col rounded-2xl border border-sq-border/80 bg-white shadow-[0_12px_32px_-22px_rgba(10,10,18,0.28)]"
               >
-                <div className="relative aspect-[16/10] bg-[#f5f9ff]">
+                <div className="flex flex-1 items-center justify-center rounded-t-2xl bg-[#f5f9ff] p-3">
                   <Image
                     src={item.image}
                     alt={item.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-center"
+                    width={item.width}
+                    height={item.height}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 33vw, 16vw"
+                    className="h-auto w-full object-contain"
                   />
                 </div>
-                <div className="flex flex-1 flex-col px-5 py-5">
-                  <h3 className="font-heading text-base font-extrabold text-[#000033]">
+                <div className="flex flex-col px-3 pb-5 pt-3 sm:px-4">
+                  <h3 className="font-heading text-sm font-extrabold text-[#000033] sm:text-base">
                     {item.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-sq-gray">
+                  <p className="mt-2 flex-1 text-xs leading-relaxed text-sq-gray sm:text-sm">
                     {item.copy}
                   </p>
                   <Link
                     href="#request-quote"
-                    className="mt-4 font-heading text-xs font-bold uppercase tracking-[0.08em] text-[#2563eb] hover:text-[#1d4ed8]"
+                    className="mt-3 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-[#2563eb] hover:text-[#1d4ed8]"
                   >
                     Learn More →
                   </Link>
@@ -178,14 +192,14 @@ export default function MerchantServicesPage() {
         </div>
       </section>
 
-      {/* Quote form — Photo 3 */}
+      {/* Quote form */}
       <section
         id="request-quote"
         className="scroll-mt-28 bg-[#f4f6f8] py-14 sm:py-20"
         aria-labelledby="merchant-quote-heading"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-2xl border border-sq-border bg-white p-6 shadow-[0_16px_40px_-24px_rgba(10,10,18,0.35)] sm:p-8 lg:p-10">
+          <div className="rounded-2xl border border-sq-border bg-white p-6 shadow-[0_16px_40px_-24px_rgba(10,10,18,0.35)] sm:p-8 lg:p-10">
             <header className="mb-8 max-w-3xl">
               <h2
                 id="merchant-quote-heading"

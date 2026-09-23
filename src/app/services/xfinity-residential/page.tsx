@@ -30,7 +30,8 @@ const SELECTOR_CARDS = [
     image: "/images/services/xfinity-residential-connectivity.jpg",
     imageAlt: "Home internet gateway representing Xfinity Internet",
     notice: null as string | null,
-    objectFit: "cover" as const,
+    width: 1110,
+    height: 840,
   },
   {
     title: "Xfinity Mobile",
@@ -41,7 +42,8 @@ const SELECTOR_CARDS = [
     image: "/images/xfinity/byod-phone.png",
     imageAlt: "Smartphone representing Xfinity Mobile options",
     notice: "Xfinity Internet service is required.",
-    objectFit: "contain" as const,
+    width: 720,
+    height: 980,
   },
   {
     title: "Xfinity Streaming",
@@ -52,7 +54,8 @@ const SELECTOR_CARDS = [
     image: "/images/services/xfinity-residential-entertainment.jpg",
     imageAlt: "Streaming box, remote and entertainment equipment",
     notice: "Xfinity Internet service is required.",
-    objectFit: "cover" as const,
+    width: 1110,
+    height: 840,
   },
 ] as const;
 
@@ -82,15 +85,16 @@ export default function XfinityResidentialPage() {
           </div>
 
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#1a1d28] sm:rounded-2xl">
+            <div className="rounded-xl bg-[#1a1d28] p-3 sm:rounded-2xl sm:p-4">
               <Image
                 src="/images/services/xfinity-residential-entertainment.jpg"
                 alt="Home internet gateway, mobile phone and streaming equipment"
-                fill
+                width={1110}
+                height={840}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={95}
                 priority
-                className="object-cover object-center"
+                className="h-auto w-full object-contain"
               />
             </div>
             <p className="mt-3 text-center font-heading text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55 sm:text-xs">
@@ -121,20 +125,17 @@ export default function XfinityResidentialPage() {
             {SELECTOR_CARDS.map((card) => (
               <article
                 key={card.title}
-                className="flex h-full flex-col overflow-hidden rounded-2xl border border-sq-border/80 bg-white shadow-[0_14px_40px_-24px_rgba(10,10,18,0.4)]"
+                className="flex h-full flex-col rounded-2xl border border-sq-border/80 bg-white shadow-[0_14px_40px_-24px_rgba(10,10,18,0.4)]"
               >
-                <div className="relative aspect-[16/11] bg-sq-gray-light">
+                <div className="flex items-center justify-center rounded-t-2xl bg-sq-gray-light p-4 sm:p-6">
                   <Image
                     src={card.image}
                     alt={card.imageAlt}
-                    fill
+                    width={card.width}
+                    height={card.height}
                     sizes="(max-width: 640px) 100vw, 50vw"
                     quality={92}
-                    className={
-                      card.objectFit === "contain"
-                        ? "object-contain object-center p-6 sm:p-8"
-                        : "object-cover object-center"
-                    }
+                    className="h-auto max-h-[280px] w-full object-contain"
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-6 py-7 text-center sm:px-8 sm:py-8">

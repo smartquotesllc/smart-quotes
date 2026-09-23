@@ -18,14 +18,18 @@ const CARDS: Array<{
   href: string;
   image: string;
   alt: string;
+  width: number;
+  height: number;
 }> = [
   {
     slug: "merchant-services",
     label: "Merchant Services",
     description: "Modern payment solutions for businesses of every size.",
     href: "/quote/merchant-services",
-    image: "/images/services/merchant-services-pos.jpg",
-    alt: "Point-of-sale and payment terminal equipment",
+    image: "/images/services/merchant-pos-collage.jpg",
+    alt: "Full Merchant Services POS hardware group",
+    width: 1672,
+    height: 678,
   },
   {
     slug: "xfinity-residential",
@@ -35,6 +39,8 @@ const CARDS: Array<{
     href: "/services/xfinity-residential",
     image: "/images/services/xfinity-residential-entertainment.jpg",
     alt: "Home internet gateway, mobile phone and streaming equipment",
+    width: 1110,
+    height: 840,
   },
   {
     slug: "comcast-business",
@@ -43,6 +49,8 @@ const CARDS: Array<{
     href: "/quote/comcast-business",
     image: "/images/services/comcast-business-solutions.jpg",
     alt: "Business connectivity, phone and cybersecurity equipment",
+    width: 1580,
+    height: 840,
   },
 ];
 
@@ -79,14 +87,15 @@ export default async function QuoteChoosePage({ searchParams }: QuotePageProps) 
           {CARDS.map((card) => (
             <article
               key={card.slug}
-              className="flex flex-col overflow-hidden rounded-2xl border border-[#e2e5eb] bg-white shadow-[0_12px_32px_-20px_rgba(15,23,42,0.25)]"
+              className="flex flex-col rounded-2xl border border-[#e2e5eb] bg-white shadow-[0_12px_32px_-20px_rgba(15,23,42,0.25)]"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-sq-gray-light">
+              <div className="flex w-full items-center justify-center rounded-t-2xl bg-sq-gray-light p-3 sm:p-4">
                 <Image
                   src={card.image}
                   alt={card.alt}
-                  fill
-                  className="object-cover object-center"
+                  width={card.width}
+                  height={card.height}
+                  className="h-auto w-full object-contain"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   priority={card.slug === "merchant-services"}
                   quality={92}

@@ -20,8 +20,10 @@ const CARDS = [
       "Next Day Funding",
       "No Long-Term Contracts",
     ],
-    image: "/images/services/merchant-services-pos.jpg",
-    imageAlt: "Point-of-sale and payment terminal equipment",
+    image: "/images/services/merchant-pos-collage.jpg",
+    imageAlt: "Full Merchant Services POS hardware group",
+    width: 1672,
+    height: 678,
     href: "/quote/merchant-services",
     detailsHref: "/services/merchant-services",
   },
@@ -32,6 +34,8 @@ const CARDS = [
     checks: ["Internet", "Mobile", "Streaming"],
     image: "/images/services/xfinity-residential-entertainment.jpg",
     imageAlt: "Home internet gateway, mobile phone and streaming equipment",
+    width: 1110,
+    height: 840,
     href: "/services/xfinity-residential",
     detailsHref: "/services/xfinity-residential",
   },
@@ -42,6 +46,8 @@ const CARDS = [
     checks: ["Internet", "Voice", "Cybersecurity"],
     image: "/images/services/comcast-business-solutions.jpg",
     imageAlt: "Business connectivity, phone and cybersecurity equipment",
+    width: 1580,
+    height: 840,
     href: "/quote/comcast-business",
     detailsHref: "/services/comcast-business",
   },
@@ -69,20 +75,21 @@ export default function ServicesPage() {
           {CARDS.map((card) => (
             <article
               key={card.slug}
-              className="overflow-hidden rounded-2xl border border-sq-border bg-white shadow-[0_8px_30px_-18px_rgba(10,10,18,0.28)]"
+              className="rounded-2xl border border-sq-border bg-white shadow-[0_8px_30px_-18px_rgba(10,10,18,0.28)]"
             >
               <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)]">
                 <Link
                   href={card.detailsHref}
-                  className="relative min-h-[220px] bg-sq-gray-light sm:min-h-[260px] lg:min-h-full"
+                  className="flex items-center justify-center bg-sq-gray-light p-4 sm:p-6"
                 >
                   <Image
                     src={card.image}
                     alt={card.imageAlt}
-                    fill
+                    width={card.width}
+                    height={card.height}
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     quality={95}
-                    className="object-cover object-center"
+                    className="h-auto w-full object-contain"
                     priority={card.slug === "merchant-services"}
                   />
                 </Link>

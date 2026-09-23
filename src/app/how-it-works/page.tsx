@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { HowItWorksFaq } from "@/components/how-it-works/HowItWorksFaq";
+import { HowItWorksHeroCollage } from "@/components/how-it-works/HowItWorksHeroCollage";
 
 export const metadata: Metadata = {
   title: "How the Process Works",
@@ -51,6 +52,8 @@ const SERVICE_CARDS = [
     cta: "Start Residential Quote →",
     image: "/images/services/xfinity-residential-entertainment.jpg",
     alt: "Home internet gateway, mobile phone and streaming equipment",
+    width: 1110,
+    height: 840,
   },
   {
     title: "Comcast Business",
@@ -59,14 +62,18 @@ const SERVICE_CARDS = [
     cta: "Start Business Quote →",
     image: "/images/services/comcast-business-solutions.jpg",
     alt: "Business connectivity, phone and cybersecurity equipment",
+    width: 1580,
+    height: 840,
   },
   {
     title: "Merchant Services",
     description: "Modern payment solutions for businesses of every size.",
     href: "/services/merchant-services",
     cta: "Start Merchant Quote →",
-    image: "/images/services/merchant-services-pos.jpg",
-    alt: "Point-of-sale and payment terminal equipment",
+    image: "/images/services/merchant-pos-collage.jpg",
+    alt: "Full Merchant Services POS hardware group",
+    width: 1672,
+    height: 678,
   },
 ] as const;
 
@@ -96,13 +103,25 @@ const WHY = [
   },
 ] as const;
 
+const INCENTIVE_STEPS = [
+  { title: "Qualify", detail: "Submit a qualifying Smart Quote request." },
+  { title: "Receive", detail: "Eligible customers get incentive instructions." },
+  { title: "Activate", detail: "Follow program terms to redeem your stay." },
+] as const;
+
 function WhyIcon({ icon }: { icon: "check" | "people" | "lock" }) {
   const common = "h-7 w-7 text-sq-purple";
   if (icon === "check") {
     return (
       <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
         <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-        <path d="m8 12 2.8 2.8L16.5 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="m8 12 2.8 2.8L16.5 9"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
@@ -111,29 +130,33 @@ function WhyIcon({ icon }: { icon: "check" | "people" | "lock" }) {
       <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
         <circle cx="9" cy="8" r="3" stroke="currentColor" strokeWidth="1.8" />
         <circle cx="17" cy="9" r="2.5" stroke="currentColor" strokeWidth="1.8" />
-        <path d="M3.5 18.5c.8-2.8 2.9-4.2 5.5-4.2s4.7 1.4 5.5 4.2M14 14.5c1.7 0 3.2.7 4 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path
+          d="M3.5 18.5c.8-2.8 2.9-4.2 5.5-4.2s4.7 1.4 5.5 4.2M14 14.5c1.7 0 3.2.7 4 2.5"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
   return (
     <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
       <rect x="6" y="10" width="12" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M8.5 10V7.5a3.5 3.5 0 0 1 7 0V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path
+        d="M8.5 10V7.5a3.5 3.5 0 0 1 7 0V10"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
-
-const INCENTIVE_STEPS = [
-  { title: "Qualify", detail: "Submit a qualifying Smart Quote request." },
-  { title: "Receive", detail: "Eligible customers get incentive instructions." },
-  { title: "Activate", detail: "Follow program terms to redeem your stay." },
-] as const;
 
 export default function HowItWorksPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-sq-border bg-gradient-to-br from-[#f7f8fc] via-white to-[#eef2ff]">
+      <section className="border-b border-sq-border bg-gradient-to-br from-[#f7f8fc] via-white to-[#eef2ff]">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
           <div>
             <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.18em] text-sq-purple">
@@ -153,32 +176,12 @@ export default function HowItWorksPage() {
                 Get a Smart Quote →
               </Button>
             </div>
+            <p className="mt-4 text-sm text-sq-gray">
+              Requesting a quote does not obligate you to purchase service.
+            </p>
           </div>
 
-          <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
-            <div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-sq-gray-light shadow-[0_24px_48px_-28px_rgba(26,16,72,0.45)]">
-              <Image
-                src="/images/services/xfinity-residential-entertainment.jpg"
-                alt="Internet, mobile and streaming equipment representing Smart Quotes services"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center"
-              />
-            </div>
-            <div className="mt-4 flex flex-wrap justify-center gap-2 sm:gap-3">
-              {["Internet", "Mobile", "Streaming", "Business", "Merchant"].map(
-                (label) => (
-                  <span
-                    key={label}
-                    className="inline-flex items-center rounded-full border border-sq-border bg-white px-3 py-1.5 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-sq-ink shadow-sm"
-                  >
-                    {label}
-                  </span>
-                ),
-              )}
-            </div>
-          </div>
+          <HowItWorksHeroCollage />
         </div>
       </section>
 
@@ -222,7 +225,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      {/* Service cards */}
+      {/* Service cards — full approved images, contain */}
       <section className="bg-sq-gray-light py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center font-heading text-2xl font-extrabold text-sq-ink sm:text-3xl">
@@ -232,24 +235,23 @@ export default function HowItWorksPage() {
             {SERVICE_CARDS.map((card) => (
               <article
                 key={card.title}
-                className="flex h-full flex-col overflow-hidden rounded-2xl border border-sq-border/80 bg-white shadow-[0_14px_36px_-24px_rgba(10,10,18,0.4)]"
+                className="flex h-full flex-col rounded-2xl border border-sq-border/80 bg-white shadow-[0_14px_36px_-24px_rgba(10,10,18,0.4)]"
               >
-                <div className="relative aspect-[16/11]">
+                <div className="flex items-center justify-center rounded-t-2xl bg-[#f3f6fb] p-4">
                   <Image
                     src={card.image}
                     alt={card.alt}
-                    fill
+                    width={card.width}
+                    height={card.height}
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-center"
+                    className="h-auto w-full object-contain"
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6 text-center">
                   <h3 className="font-heading text-lg font-extrabold uppercase tracking-[0.04em] text-sq-ink">
                     {card.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-sm text-sq-gray">
-                    {card.description}
-                  </p>
+                  <p className="mt-3 flex-1 text-sm text-sq-gray">{card.description}</p>
                   <Link
                     href={card.href}
                     className="mt-5 inline-flex h-11 items-center justify-center rounded-md px-5 font-heading text-xs font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110"
@@ -282,9 +284,7 @@ export default function HowItWorksPage() {
                 <span className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#3d1abc] to-[#5a2cff] font-heading text-xs font-bold text-white">
                   {index + 1}
                 </span>
-                <p className="font-heading text-sm font-bold text-sq-ink">
-                  {title}
-                </p>
+                <p className="font-heading text-sm font-bold text-sq-ink">{title}</p>
               </li>
             ))}
           </ol>
@@ -309,62 +309,56 @@ export default function HowItWorksPage() {
                 <h3 className="font-heading text-base font-extrabold text-sq-ink">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-sq-gray">
-                  {item.detail}
-                </p>
+                <p className="mt-3 text-sm leading-relaxed text-sq-gray">{item.detail}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Vacation incentive */}
-      <section className="relative overflow-hidden" aria-labelledby="process-vacation-heading">
-        <div className="relative min-h-[320px] sm:min-h-[360px]">
-          <Image
-            src="/images/services/vacation-beach.png"
-            alt="Tropical resort vacation destination"
-            fill
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(18,8,31,0.88) 0%, rgba(42,20,88,0.72) 45%, rgba(90,44,255,0.35) 100%)",
-            }}
-            aria-hidden="true"
-          />
-          <div className="relative mx-auto flex min-h-[320px] max-w-7xl items-center px-4 py-12 sm:min-h-[360px] sm:px-6 lg:px-8">
-            <div className="max-w-xl rounded-2xl bg-white/95 p-6 shadow-xl sm:p-8">
-              <h2
-                id="process-vacation-heading"
-                className="font-heading text-2xl font-extrabold text-sq-ink sm:text-3xl"
-              >
-                Smart Quote Vacation-Stay Incentive
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-sq-gray sm:text-base">
-                Qualifying quote requests may receive a complimentary
-                vacation-stay incentive at participating hotels and resorts.
-                Airfare is not included.
-              </p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                {INCENTIVE_STEPS.map((step) => (
-                  <div key={step.title} className="rounded-lg bg-sq-soft px-3 py-3">
-                    <p className="font-heading text-xs font-extrabold uppercase tracking-[0.08em] text-sq-purple">
-                      {step.title}
-                    </p>
-                    <p className="mt-1 text-xs text-sq-gray">{step.detail}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Button href="/quote">Get a Smart Quote →</Button>
-                <Button href="/vacation-terms" variant="outline">
-                  Vacation Redemption Terms →
-                </Button>
-              </div>
+      {/* Vacation incentive — resort image fully visible */}
+      <section aria-labelledby="process-vacation-heading">
+        <div className="mx-auto grid max-w-7xl items-stretch gap-0 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:px-8">
+          <div className="rounded-2xl bg-[#0b1a2a] p-2 sm:rounded-l-2xl sm:rounded-r-none lg:rounded-l-2xl lg:rounded-r-none">
+            <Image
+              src="/images/services/vacation-beach.png"
+              alt="Tropical resort pool and palm trees at dusk"
+              width={1536}
+              height={1024}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="h-auto w-full rounded-xl object-contain"
+            />
+          </div>
+          <div className="flex flex-col justify-center rounded-2xl border border-sq-border bg-white p-6 shadow-sm sm:p-8 lg:rounded-l-none lg:rounded-r-2xl">
+            <p className="mb-2 font-heading text-xs font-bold uppercase tracking-[0.18em] text-sq-purple">
+              Smart Quote Incentive
+            </p>
+            <h2
+              id="process-vacation-heading"
+              className="font-heading text-2xl font-extrabold text-sq-ink sm:text-3xl"
+            >
+              Your Quote May Come With a Vacation-Stay Incentive
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-sq-gray sm:text-base">
+              Qualifying quote requests may receive a complimentary vacation-stay
+              incentive at participating hotels and resorts. Airfare is not
+              included.
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              {INCENTIVE_STEPS.map((step) => (
+                <div key={step.title} className="rounded-lg bg-sq-soft px-3 py-3">
+                  <p className="font-heading text-xs font-extrabold uppercase tracking-[0.08em] text-sq-purple">
+                    {step.title}
+                  </p>
+                  <p className="mt-1 text-xs text-sq-gray">{step.detail}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Button href="/quote">Get a Smart Quote →</Button>
+              <Button href="/vacation-terms" variant="outline">
+                Vacation Redemption Terms →
+              </Button>
             </div>
           </div>
         </div>
@@ -378,8 +372,8 @@ export default function HowItWorksPage() {
               Frequently Asked Questions
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-sq-gray sm:text-base">
-              Quick answers about the Smart Quote process, follow-up, and
-              vacation incentives.
+              Quick answers about the Smart Quote process, follow-up, and vacation
+              incentives.
             </p>
           </div>
           <HowItWorksFaq />
@@ -387,7 +381,7 @@ export default function HowItWorksPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden py-16 sm:py-20">
+      <section className="relative py-16 sm:py-20">
         <div
           className="absolute inset-0"
           style={{
