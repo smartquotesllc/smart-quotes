@@ -226,51 +226,6 @@ export function TermsAndConditions() {
             </nav>
           </aside>
 
-          {/* Mobile collapsible navigator */}
-          <div className="lg:hidden">
-            <details className="rounded-xl border border-sq-border bg-sq-gray-light/50 open:bg-white">
-              <summary className="cursor-pointer list-none px-4 py-3 font-heading text-sm font-bold text-sq-ink marker:content-none [&::-webkit-details-marker]:hidden">
-                <span className="flex items-center justify-between gap-3">
-                  <span>
-                    <span className="block text-xs font-bold uppercase tracking-[0.14em] text-sq-purple">
-                      On this page
-                    </span>
-                    <span className="mt-0.5 block text-sq-gray">
-                      Jump to a Terms section
-                    </span>
-                  </span>
-                  <span
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-sq-border text-sq-purple"
-                    aria-hidden="true"
-                  >
-                    <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none">
-                      <path
-                        d="M5 7.5 10 12.5 15 7.5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </span>
-              </summary>
-              <nav
-                aria-label="Terms sections (mobile)"
-                className="space-y-1 border-t border-sq-border px-2 py-3"
-              >
-                {SECTIONS.map((section) => (
-                  <SectionNavLink
-                    key={`m-${section.id}`}
-                    href={`#${section.id}`}
-                    number={section.number}
-                    title={section.title}
-                  />
-                ))}
-              </nav>
-            </details>
-          </div>
-
           <div className="min-w-0 space-y-12 text-sq-gray leading-relaxed">
             {/* 01 Acceptance */}
             <div id="acceptance" className="scroll-mt-28">
