@@ -193,8 +193,8 @@ export default function BecomeAnAgentPage() {
               <Image
                 src="/images/careers/sq-team.jpg"
                 alt="Smart Quotes independent sales agents in branded polos holding tablets outdoors"
-                width={894}
-                height={740}
+                width={990}
+                height={770}
                 priority
                 quality={95}
                 sizes="(max-width: 1024px) 100vw, 50vw"
