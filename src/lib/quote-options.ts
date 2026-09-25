@@ -27,13 +27,11 @@ export const HEAR_ABOUT_OPTIONS = [
   "Other",
 ] as const;
 
+/** Primary residential interests shown on the Xfinity quote form */
 export const RESIDENTIAL_SERVICES = [
   "Internet",
-  "TV / Entertainment",
   "Mobile",
-  "Home Phone",
-  "Internet + TV Bundle",
-  "Full Home Bundle",
+  "Streaming",
 ] as const;
 
 export const BUSINESS_SERVICES = [
