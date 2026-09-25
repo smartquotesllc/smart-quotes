@@ -23,7 +23,7 @@ const FEATURES = [
   },
   {
     title: "5G Nationwide",
-    copy: "Reliable coverage on America’s most reliable 5G network.",
+    copy: "Reliable coverage on America's most reliable 5G network.",
     icon: (
       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
         <path
