@@ -36,8 +36,8 @@ export function ByodPromoCard() {
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-sq-gray">
                 Bring your own phone and keep your number with Xfinity Mobile.
-                Get reliable nationwide coverage on America's most reliable 5G
-                network.
+                Get reliable nationwide coverage on America&apos;s most reliable
+                5G network.
               </p>
               <ul className="mt-6 space-y-2.5">
                 {BENEFITS.map((item) => (
