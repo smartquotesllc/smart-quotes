@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ServiceQuoteForm } from "@/components/quote/ServiceQuoteForm";
 import { RESIDENTIAL_SERVICES } from "@/lib/quote-options";
+import styles from "./xfinity-quote.module.css";
 
 export const metadata: Metadata = {
   title: "Xfinity Residential Quote",
@@ -14,15 +15,33 @@ type PageProps = {
   searchParams: Promise<{ interest?: string; byod?: string }>;
 };
 
-const SERVICE_TILES = [
+const SERVICE_PANELS = [
   {
     title: "Xfinity Internet",
     caption: "Fast. Reliable. Connected.",
-    src: "/images/quote/xfinity-modem.png",
-    alt: "White Xfinity internet gateway on a desk next to a laptop",
-    width: 1536,
-    height: 1024,
-    icon: (
+    src: "/images/xfinity/service-internet-ref.jpg",
+    alt: "Slim white Xfinity internet gateway in a warm living-room setting",
+    icon: "wifi" as const,
+  },
+  {
+    title: "Xfinity Mobile",
+    caption: "Stay Connected Everywhere.",
+    src: "/images/xfinity/service-mobile.jpg",
+    alt: "Smartphone with Xfinity branding next to an Xfinity coffee mug",
+    icon: "phone" as const,
+  },
+  {
+    title: "Streaming",
+    caption: "All Your Favorites. All in One Place.",
+    src: "/images/xfinity/service-streaming.jpg",
+    alt: "Television with streaming apps, streaming box, and remote fully visible",
+    icon: "tv" as const,
+  },
+] as const;
+
+function PanelIcon({ kind }: { kind: "wifi" | "phone" | "tv" }) {
+  if (kind === "wifi") {
+    return (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
         <path
           d="M5 10.5c3.8-3.8 10.2-3.8 14 0M7.8 13.5a6.2 6.2 0 0 1 8.4 0M10.5 16.4a2.2 2.2 0 0 1 3 0"
@@ -32,53 +51,29 @@ const SERVICE_TILES = [
         />
         <circle cx="12" cy="19" r="1.1" fill="currentColor" />
       </svg>
-    ),
-  },
-  {
-    title: "Xfinity Mobile",
-    caption: "Stay Connected Everywhere.",
-    src: "/images/xfinity/byod-phone.png",
-    alt: "Smartphone displaying Xfinity Mobile branding next to an Xfinity mug",
-    width: 720,
-    height: 980,
-    icon: (
+    );
+  }
+  if (kind === "phone") {
+    return (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
-        <rect
-          x="7.5"
-          y="3.5"
-          width="9"
-          height="17"
-          rx="2"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        />
+        <rect x="7.5" y="3.5" width="9" height="17" rx="2" stroke="currentColor" strokeWidth="1.8" />
         <path d="M11 17.5h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
-    ),
-  },
-  {
-    title: "Streaming",
-    caption: "All Your Favorites. All in One Place.",
-    src: "/images/quote/xfinity-tv.png",
-    alt: "Television with streaming apps, set-top box, remote, and popcorn",
-    width: 1536,
-    height: 1024,
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
-        <rect
-          x="3.5"
-          y="5.5"
-          width="17"
-          height="11"
-          rx="1.5"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        />
-        <path d="M8 19.5h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-] as const;
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+      <rect x="3.5" y="5.5" width="17" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M11 9.2v4.6l3.6-2.3L11 9.2Z"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 function resolveResidentialDefaults(params: {
   interest?: string;
@@ -140,41 +135,42 @@ export default async function XfinityQuotePage({ searchParams }: PageProps) {
           </p>
         </header>
 
-        {/* Service tiles */}
-        <div className="mb-10 grid gap-5 sm:grid-cols-3 sm:gap-6">
-          {SERVICE_TILES.map((tile) => (
+        {/* Compact three-panel lifestyle images — matches approved Photo 2 */}
+        <div className="mb-8 grid grid-cols-1 gap-3 sm:mb-10 sm:grid-cols-3 sm:gap-4">
+          {SERVICE_PANELS.map((panel) => (
             <article
-              key={tile.title}
-              className="overflow-hidden rounded-2xl border border-sq-border/70 bg-white shadow-[0_10px_28px_-20px_rgba(10,10,18,0.3)]"
+              key={panel.title}
+              className="overflow-hidden rounded-2xl border border-[#e6e8ee] bg-white"
             >
-              <div className="flex items-center justify-center bg-sq-gray-light p-3 sm:p-4">
+              <div className={styles.serviceImage}>
                 <Image
-                  src={tile.src}
-                  alt={tile.alt}
-                  width={tile.width}
-                  height={tile.height}
-                  sizes="(max-width: 640px) 100vw, 33vw"
+                  src={panel.src}
+                  alt={panel.alt}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
                   quality={95}
-                  className="h-auto w-full object-contain"
-                  priority={tile.title === "Xfinity Internet"}
+                  priority={panel.title === "Xfinity Internet"}
+                  className={styles.serviceImageElement}
                 />
               </div>
-              <div className="flex items-start gap-3 px-4 py-4 sm:px-5">
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sq-purple text-white">
-                  {tile.icon}
+              <div className="flex items-center gap-3 px-3.5 py-3 sm:px-4 sm:py-3.5">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sq-purple text-white sm:h-10 sm:w-10">
+                  <PanelIcon kind={panel.icon} />
                 </span>
                 <div className="min-w-0">
-                  <h2 className="font-heading text-sm font-extrabold uppercase tracking-[0.06em] text-sq-ink">
-                    {tile.title}
+                  <h2 className="font-heading text-[13px] font-extrabold uppercase tracking-[0.06em] text-sq-ink sm:text-sm">
+                    {panel.title}
                   </h2>
-                  <p className="mt-1 text-sm text-sq-gray">{tile.caption}</p>
+                  <p className="mt-0.5 text-[13px] leading-snug text-sq-ink/80 sm:text-sm">
+                    {panel.caption}
+                  </p>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        {/* Form */}
+        {/* Form — unchanged */}
         <div className="rounded-2xl border border-[#d0d4dc] bg-white p-5 shadow-[0_1px_0_rgba(15,23,42,0.04)] sm:p-8 lg:p-10">
           <ServiceQuoteForm
             serviceSlug="xfinity-residential"

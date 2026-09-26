@@ -1,0 +1,15 @@
+/* Page-scoped styles for /quote/xfinity-residential service panels.
+   Do not import from other pages. */
+
+.serviceImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.serviceImageElement {
+  object-fit: contain !important;
+  object-position: center center !important;
+}
