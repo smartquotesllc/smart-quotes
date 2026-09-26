@@ -36,8 +36,8 @@ const SELECTOR_CARDS = [
     href: "/quote/internet",
     src: "/images/xfinity/service-internet-ref.jpg",
     alt: "Slim white Xfinity internet gateway on a living-room table next to a laptop",
-    width: 732,
-    height: 560,
+    width: 824,
+    height: 760,
     icon: "wifi" as const,
   },
   {
@@ -54,8 +54,8 @@ const SELECTOR_CARDS = [
     href: "/quote/mobile",
     src: "/images/xfinity/service-mobile.jpg",
     alt: "Smartphone with Xfinity branding next to an Xfinity coffee mug",
-    width: 720,
-    height: 560,
+    width: 800,
+    height: 760,
     icon: "phone" as const,
   },
   {
@@ -72,8 +72,8 @@ const SELECTOR_CARDS = [
     href: "/quote/streaming",
     src: "/images/xfinity/service-streaming.jpg",
     alt: "Television with streaming apps, streaming box, remote, and popcorn",
-    width: 728,
-    height: 560,
+    width: 840,
+    height: 788,
     icon: "tv" as const,
   },
 ] as const;
@@ -184,10 +184,15 @@ function CardIcon({ kind }: { kind: "wifi" | "phone" | "tv" | "signal" | "people
 }
 
 const primaryCtaClass =
-  "inline-flex h-12 items-center justify-center rounded-md bg-sq-purple px-7 font-heading text-xs font-extrabold uppercase tracking-[0.12em] text-white transition hover:bg-sq-purple-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple sm:h-14 sm:text-sm";
+  "inline-flex h-11 items-center justify-center rounded-md px-5 font-heading text-[11px] font-extrabold uppercase tracking-[0.1em] text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple sm:h-12 sm:px-6 sm:text-xs";
+
+const primaryCtaStyle = {
+  background: "linear-gradient(135deg, #12081f 0%, #2a1458 42%, #5a2cff 100%)",
+  boxShadow: "0 12px 28px -14px rgba(90,44,255,0.7)",
+} as const;
 
 const outlineCtaClass =
-  "inline-flex h-12 items-center justify-center rounded-md border border-sq-purple bg-white px-7 font-heading text-xs font-extrabold uppercase tracking-[0.12em] text-sq-purple transition hover:bg-sq-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple sm:h-14 sm:text-sm";
+  "inline-flex h-11 items-center justify-center rounded-md border border-sq-purple bg-white px-5 font-heading text-[11px] font-extrabold uppercase tracking-[0.1em] text-sq-purple transition hover:bg-sq-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sq-purple sm:h-12 sm:px-6 sm:text-xs";
 
 export default function XfinityResidentialPage() {
   return (
@@ -228,7 +233,7 @@ export default function XfinityResidentialPage() {
                 ))}
               </ul>
               <div className="mt-8">
-                <a href="#quote-selector" className={primaryCtaClass}>
+                <a href="#quote-selector" className={primaryCtaClass} style={primaryCtaStyle}>
                   Choose a Service →
                 </a>
               </div>
@@ -282,9 +287,10 @@ export default function XfinityResidentialPage() {
             {SELECTOR_CARDS.map((card) => (
               <article
                 key={card.title}
-                className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e6e8ee] bg-white shadow-[0_10px_28px_-20px_rgba(10,10,18,0.35)]"
+                className="flex h-full flex-col rounded-2xl border border-[#e6e8ee] bg-white shadow-[0_10px_28px_-20px_rgba(10,10,18,0.35)]"
               >
-                <div className="flex min-h-[180px] items-center justify-center bg-[#f6f7f9] px-3 pt-3 sm:min-h-[200px] sm:px-4 sm:pt-4">
+                {/* Image area: contain only — never crop products (esp. streaming box) */}
+                <div className="flex items-center justify-center overflow-visible rounded-t-2xl bg-[#f6f7f9] px-3 pt-3 sm:px-4 sm:pt-4">
                   <Image
                     src={card.src}
                     alt={card.alt}
@@ -292,7 +298,7 @@ export default function XfinityResidentialPage() {
                     height={card.height}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     quality={95}
-                    className="h-auto max-h-[220px] w-full object-contain object-center"
+                    className="h-auto w-full object-contain object-center"
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-5 pb-6 pt-5 sm:px-6 sm:pb-7">
@@ -323,6 +329,7 @@ export default function XfinityResidentialPage() {
                   <Link
                     href={card.href}
                     className={`${primaryCtaClass} mt-5 w-full`}
+                    style={primaryCtaStyle}
                   >
                     {card.cta} →
                   </Link>
@@ -363,7 +370,7 @@ export default function XfinityResidentialPage() {
                   ))}
                 </ul>
                 <div className="mt-7 hidden flex-wrap gap-3 md:flex">
-                  <Link href="/quote/mobile" className={primaryCtaClass}>
+                  <Link href="/quote/mobile" className={primaryCtaClass} style={primaryCtaStyle}>
                     Check BYOD Options →
                   </Link>
                   <Link href="/quote/mobile" className={outlineCtaClass}>
@@ -385,7 +392,7 @@ export default function XfinityResidentialPage() {
               </div>
 
               <div className="order-3 flex flex-col gap-3 md:hidden">
-                <Link href="/quote/mobile" className={`${primaryCtaClass} w-full`}>
+                <Link href="/quote/mobile" className={`${primaryCtaClass} w-full`} style={primaryCtaStyle}>
                   Check BYOD Options →
                 </Link>
                 <Link href="/quote/mobile" className={`${outlineCtaClass} w-full`}>
@@ -441,7 +448,7 @@ export default function XfinityResidentialPage() {
           </div>
 
           <div className="mt-9 flex justify-center">
-            <Link href="/quote/mobile" className={primaryCtaClass}>
+            <Link href="/quote/mobile" className={primaryCtaClass} style={primaryCtaStyle}>
               Explore Mobile Options →
             </Link>
           </div>
