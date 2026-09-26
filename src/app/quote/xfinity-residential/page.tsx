@@ -170,8 +170,8 @@ export default async function XfinityQuotePage({ searchParams }: PageProps) {
           ))}
         </div>
 
-        {/* Form — unchanged */}
-        <div className="rounded-2xl border border-[#d0d4dc] bg-white p-5 shadow-[0_1px_0_rgba(15,23,42,0.04)] sm:p-8 lg:p-10">
+        {/* Form — height auto so textarea/button/consent stay inside the card */}
+        <div className="box-border h-auto overflow-visible rounded-2xl border border-[#d0d4dc] bg-white p-5 pb-8 shadow-[0_1px_0_rgba(15,23,42,0.04)] sm:p-8 sm:pb-8 lg:p-10 lg:pb-10">
           <ServiceQuoteForm
             serviceSlug="xfinity-residential"
             defaultValues={formDefaults}

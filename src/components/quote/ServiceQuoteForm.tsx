@@ -255,8 +255,18 @@ export function ServiceQuoteForm({
             <QuoteField id="bestTimeToContact" label="Best Time to Contact" required error={errors.bestTimeToContact}>
               <SelectOne id="bestTimeToContact" name="bestTimeToContact" value={get("bestTimeToContact")} onChange={(v) => set("bestTimeToContact", v)} options={BEST_TIMES} required />
             </QuoteField>
-            <QuoteField id="message" label="Message" optional className="flex h-full flex-col">
-              <textarea id="message" name="message" rows={6} className={cn(quoteControlClass, "min-h-[140px] flex-1 resize-y")} value={get("message")} onChange={(e) => set("message", e.target.value)} />
+            <QuoteField id="message" label="Message" optional>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                className={cn(
+                  quoteControlClass,
+                  "box-border h-[160px] min-h-[150px] max-h-[180px] resize-y",
+                )}
+                value={get("message")}
+                onChange={(e) => set("message", e.target.value)}
+              />
             </QuoteField>
           </div>
         </div>
