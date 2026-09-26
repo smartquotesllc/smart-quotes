@@ -36,8 +36,8 @@ const SELECTOR_CARDS = [
     href: "/quote/internet",
     src: "/images/xfinity/service-internet-ref.jpg",
     alt: "Slim white Xfinity internet gateway on a living-room table next to a laptop",
-    width: 600,
-    height: 730,
+    width: 696,
+    height: 826,
     icon: "wifi" as const,
   },
   {
@@ -54,8 +54,8 @@ const SELECTOR_CARDS = [
     href: "/quote/mobile",
     src: "/images/xfinity/service-mobile.jpg",
     alt: "Smartphone with Xfinity branding next to an Xfinity coffee mug",
-    width: 800,
-    height: 760,
+    width: 896,
+    height: 856,
     icon: "phone" as const,
   },
   {
@@ -289,8 +289,8 @@ export default function XfinityResidentialPage() {
                 key={card.title}
                 className="flex h-full flex-col rounded-2xl border border-[#e6e8ee] bg-white shadow-[0_10px_28px_-20px_rgba(10,10,18,0.35)]"
               >
-                {/* Image area: contain only — never crop products (esp. streaming box) */}
-                <div className="flex items-center justify-center overflow-visible rounded-t-2xl bg-[#f6f7f9] px-3 pt-3 sm:px-4 sm:pt-4">
+                {/* Equal-height image wells: contain only — never crop products */}
+                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-t-2xl bg-[#f6f7f9] p-3 sm:p-4">
                   <Image
                     src={card.src}
                     alt={card.alt}
@@ -298,7 +298,7 @@ export default function XfinityResidentialPage() {
                     height={card.height}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     quality={95}
-                    className="h-auto w-full object-contain object-center"
+                    className="h-full max-h-full w-full object-contain object-center"
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-5 pb-6 pt-5 sm:px-6 sm:pb-7">
