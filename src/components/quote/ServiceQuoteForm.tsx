@@ -221,46 +221,54 @@ export function ServiceQuoteForm({
   if (serviceSlug === "xfinity-residential") {
     return (
       <form onSubmit={onSubmit} noValidate>
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-x-6">
-          <QuoteField id="fullName" label="Full Name" required error={errors.fullName || errors.firstName}>
-            <input id="fullName" name="fullName" autoComplete="name" className={quoteControlClass} value={get("fullName")} onChange={(e) => set("fullName", e.target.value)} required />
-          </QuoteField>
-          <QuoteField id="email" label="Email" required error={errors.email}>
-            <input id="email" name="email" type="email" autoComplete="email" className={quoteControlClass} value={get("email")} onChange={(e) => set("email", e.target.value)} required />
-          </QuoteField>
-
-          <QuoteField id="streetAddress" label="Street Address" required error={errors.streetAddress}>
-            <input id="streetAddress" name="streetAddress" autoComplete="street-address" className={quoteControlClass} value={get("streetAddress")} onChange={(e) => set("streetAddress", e.target.value)} required />
-          </QuoteField>
-          <QuoteField id="phone" label="Phone Number" required error={errors.phone}>
-            <input id="phone" name="phone" type="tel" autoComplete="tel" className={quoteControlClass} value={get("phone")} onChange={(e) => set("phone", e.target.value)} required />
-          </QuoteField>
-
-          <QuoteField id="aptSuite" label="Apt / Suite">
-            <input id="aptSuite" name="aptSuite" autoComplete="address-line2" className={quoteControlClass} value={get("aptSuite")} onChange={(e) => set("aptSuite", e.target.value)} />
-          </QuoteField>
-          <QuoteField id="serviceInterestedIn" label="Service Interested In" required error={errors.serviceInterestedIn}>
-            <SelectOne id="serviceInterestedIn" name="serviceInterestedIn" value={get("serviceInterestedIn")} onChange={(v) => set("serviceInterestedIn", v)} options={RESIDENTIAL_SERVICES} required />
-          </QuoteField>
-
-          <QuoteField id="city" label="City" required error={errors.city}>
-            <input id="city" name="city" autoComplete="address-level2" className={quoteControlClass} value={get("city")} onChange={(e) => set("city", e.target.value)} required />
-          </QuoteField>
-          <QuoteField id="bestTimeToContact" label="Best Time to Contact" required error={errors.bestTimeToContact}>
-            <SelectOne id="bestTimeToContact" name="bestTimeToContact" value={get("bestTimeToContact")} onChange={(v) => set("bestTimeToContact", v)} options={BEST_TIMES} required />
-          </QuoteField>
-
-          <QuoteField id="state" label="State" required error={errors.state}>
-            <SelectOne id="state" name="state" value={get("state")} onChange={(v) => set("state", v)} options={US_STATES} required />
-          </QuoteField>
-          <QuoteField id="message" label="Message" optional>
-            <textarea id="message" name="message" rows={2} className={cn(quoteControlClass, "resize-y")} value={get("message")} onChange={(e) => set("message", e.target.value)} />
-          </QuoteField>
-
-          <QuoteField id="zipCode" label="Zip Code" required error={errors.zipCode}>
-            <input id="zipCode" name="zipCode" autoComplete="postal-code" className={quoteControlClass} value={get("zipCode")} onChange={(e) => set("zipCode", e.target.value)} required />
-          </QuoteField>
-          <div className="hidden sm:block" aria-hidden="true" />
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-5">
+          <div className="space-y-4">
+            <QuoteField id="fullName" label="Full Name" required error={errors.fullName || errors.firstName}>
+              <input id="fullName" name="fullName" autoComplete="name" className={quoteControlClass} value={get("fullName")} onChange={(e) => set("fullName", e.target.value)} required />
+            </QuoteField>
+            <QuoteField id="streetAddress" label="Street Address" required error={errors.streetAddress}>
+              <input id="streetAddress" name="streetAddress" autoComplete="street-address" className={quoteControlClass} value={get("streetAddress")} onChange={(e) => set("streetAddress", e.target.value)} required />
+            </QuoteField>
+            <QuoteField id="aptSuite" label="Apt / Suite">
+              <input id="aptSuite" name="aptSuite" autoComplete="address-line2" className={quoteControlClass} value={get("aptSuite")} onChange={(e) => set("aptSuite", e.target.value)} />
+            </QuoteField>
+            <QuoteField id="city" label="City" required error={errors.city}>
+              <input id="city" name="city" autoComplete="address-level2" className={quoteControlClass} value={get("city")} onChange={(e) => set("city", e.target.value)} required />
+            </QuoteField>
+            <QuoteField id="state" label="State" required error={errors.state}>
+              <SelectOne id="state" name="state" value={get("state")} onChange={(v) => set("state", v)} options={US_STATES} required />
+            </QuoteField>
+            <QuoteField id="zipCode" label="Zip Code" required error={errors.zipCode}>
+              <input id="zipCode" name="zipCode" autoComplete="postal-code" className={quoteControlClass} value={get("zipCode")} onChange={(e) => set("zipCode", e.target.value)} required />
+            </QuoteField>
+          </div>
+          <div className="space-y-4">
+            <QuoteField id="email" label="Email" required error={errors.email}>
+              <input id="email" name="email" type="email" autoComplete="email" className={quoteControlClass} value={get("email")} onChange={(e) => set("email", e.target.value)} required />
+            </QuoteField>
+            <QuoteField id="phone" label="Phone Number" required error={errors.phone}>
+              <input id="phone" name="phone" type="tel" autoComplete="tel" className={quoteControlClass} value={get("phone")} onChange={(e) => set("phone", e.target.value)} required />
+            </QuoteField>
+            <QuoteField id="serviceInterestedIn" label="Service Interested In" required error={errors.serviceInterestedIn}>
+              <SelectOne id="serviceInterestedIn" name="serviceInterestedIn" value={get("serviceInterestedIn")} onChange={(v) => set("serviceInterestedIn", v)} options={RESIDENTIAL_SERVICES} required />
+            </QuoteField>
+            <QuoteField id="bestTimeToContact" label="Best Time to Contact" required error={errors.bestTimeToContact}>
+              <SelectOne id="bestTimeToContact" name="bestTimeToContact" value={get("bestTimeToContact")} onChange={(v) => set("bestTimeToContact", v)} options={BEST_TIMES} required />
+            </QuoteField>
+            <QuoteField id="message" label="Message" optional>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                className={cn(
+                  quoteControlClass,
+                  "box-border h-[160px] min-h-[150px] max-h-[180px] resize-y",
+                )}
+                value={get("message")}
+                onChange={(e) => set("message", e.target.value)}
+              />
+            </QuoteField>
+          </div>
         </div>
         <div className="mt-6 flex flex-col items-stretch sm:items-end">
           {formError ? (

@@ -1,0 +1,35 @@
+/* Page-scoped styles for /quote/xfinity-residential service panels.
+   Do not import from other pages. */
+
+.residentialQuoteServiceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.residentialQuoteServicePanel {
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.residentialQuoteServiceImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.88 / 1;
+  overflow: hidden;
+}
+
+.residentialQuoteServiceImageElement {
+  object-fit: cover;
+  object-position: center;
+}
+
+.residentialQuoteServiceLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.96);
+}

@@ -1,0 +1,15 @@
+/* Page-scoped styles for /services/xfinity-residential service cards.
+   Do not import from other pages. */
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.cardImageElement {
+  object-fit: contain !important;
+  object-position: center center !important;
+}
