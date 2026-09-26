@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./xfinity-residential.module.css";
 
 export const metadata: Metadata = {
   title: "Xfinity Residential",
@@ -36,8 +37,8 @@ const SELECTOR_CARDS = [
     href: "/quote/internet",
     src: "/images/xfinity/service-internet-ref.jpg",
     alt: "Slim white Xfinity internet gateway on a living-room table next to a laptop",
-    width: 696,
-    height: 826,
+    width: 732,
+    height: 600,
     icon: "wifi" as const,
   },
   {
@@ -54,8 +55,8 @@ const SELECTOR_CARDS = [
     href: "/quote/mobile",
     src: "/images/xfinity/service-mobile.jpg",
     alt: "Smartphone with Xfinity branding next to an Xfinity coffee mug",
-    width: 896,
-    height: 856,
+    width: 728,
+    height: 600,
     icon: "phone" as const,
   },
   {
@@ -72,8 +73,8 @@ const SELECTOR_CARDS = [
     href: "/quote/streaming",
     src: "/images/xfinity/service-streaming.jpg",
     alt: "Television with streaming apps, streaming box, and remote fully visible",
-    width: 1536,
-    height: 1024,
+    width: 736,
+    height: 600,
     icon: "tv" as const,
   },
 ] as const;
@@ -287,18 +288,16 @@ export default function XfinityResidentialPage() {
             {SELECTOR_CARDS.map((card) => (
               <article
                 key={card.title}
-                className="flex h-full flex-col rounded-2xl border border-[#e6e8ee] bg-white shadow-[0_10px_28px_-20px_rgba(10,10,18,0.35)]"
+                className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e6e8ee] bg-white shadow-[0_10px_28px_-20px_rgba(10,10,18,0.35)]"
               >
-                {/* Equal-height image wells: contain only — never crop products */}
-                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-t-2xl bg-[#f6f7f9] p-3 sm:p-4">
+                <div className={`${styles.cardImage} rounded-t-2xl`}>
                   <Image
                     src={card.src}
                     alt={card.alt}
-                    width={card.width}
-                    height={card.height}
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
                     quality={95}
-                    className="h-full max-h-full w-full object-contain object-center"
+                    className={styles.cardImageElement}
                   />
                 </div>
                 <div className="flex flex-1 flex-col px-5 pb-6 pt-5 sm:px-6 sm:pb-7">
