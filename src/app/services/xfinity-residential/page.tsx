@@ -36,8 +36,8 @@ const SELECTOR_CARDS = [
     href: "/quote/internet",
     src: "/images/xfinity/service-internet-ref.jpg",
     alt: "Slim white Xfinity internet gateway on a living-room table next to a laptop",
-    width: 824,
-    height: 760,
+    width: 600,
+    height: 730,
     icon: "wifi" as const,
   },
   {
@@ -71,9 +71,9 @@ const SELECTOR_CARDS = [
     cta: "Get a Streaming Quote",
     href: "/quote/streaming",
     src: "/images/xfinity/service-streaming.jpg",
-    alt: "Television with streaming apps, streaming box, remote, and popcorn",
-    width: 840,
-    height: 788,
+    alt: "Television with streaming apps, streaming box, and remote fully visible",
+    width: 1536,
+    height: 1024,
     icon: "tv" as const,
   },
 ] as const;
