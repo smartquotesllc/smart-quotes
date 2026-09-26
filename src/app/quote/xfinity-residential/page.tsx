@@ -136,13 +136,13 @@ export default async function XfinityQuotePage({ searchParams }: PageProps) {
         </header>
 
         {/* Compact three-panel lifestyle images — matches approved Photo 2 */}
-        <div className="mb-8 grid grid-cols-1 gap-3 sm:mb-10 sm:grid-cols-3 sm:gap-4">
+        <div className={`${styles.residentialQuoteServiceGrid} mb-8 sm:mb-10`}>
           {SERVICE_PANELS.map((panel) => (
             <article
               key={panel.title}
-              className="overflow-hidden rounded-2xl border border-[#e6e8ee] bg-white"
+              className={styles.residentialQuoteServicePanel}
             >
-              <div className={styles.serviceImage}>
+              <div className={styles.residentialQuoteServiceImage}>
                 <Image
                   src={panel.src}
                   alt={panel.alt}
@@ -150,11 +150,11 @@ export default async function XfinityQuotePage({ searchParams }: PageProps) {
                   sizes="(min-width: 768px) 33vw, 100vw"
                   quality={95}
                   priority={panel.title === "Xfinity Internet"}
-                  className={styles.serviceImageElement}
+                  className={styles.residentialQuoteServiceImageElement}
                 />
               </div>
-              <div className="flex items-center gap-3 px-3.5 py-3 sm:px-4 sm:py-3.5">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sq-purple text-white sm:h-10 sm:w-10">
+              <div className={styles.residentialQuoteServiceLabel}>
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sq-purple text-white">
                   <PanelIcon kind={panel.icon} />
                 </span>
                 <div className="min-w-0">
