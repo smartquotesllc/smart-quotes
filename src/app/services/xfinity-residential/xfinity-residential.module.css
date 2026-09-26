@@ -4,11 +4,9 @@
 .cardImage {
   position: relative;
   width: 100%;
-  /* Landscape well matching approved reference cards; tall enough for full products */
-  aspect-ratio: 16 / 11;
-  background: #f6f7f9;
-  /* Keep products inside; object-fit:contain prevents cropping */
+  aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: #f3f4f6;
 }
 
 .cardImageElement {
