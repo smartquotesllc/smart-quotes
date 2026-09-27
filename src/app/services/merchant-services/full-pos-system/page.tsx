@@ -132,7 +132,7 @@ export default function FullPosSystemPage() {
   const dashboard = FULL_POS_IMAGES.dashboard;
 
   return (
-    <div className="bg-white text-[#1a1a40]">
+    <div className="overflow-x-hidden bg-white text-[#1a1a40]">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div
@@ -144,7 +144,7 @@ export default function FullPosSystemPage() {
           aria-hidden="true"
         />
         <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-8 lg:px-8 lg:py-14">
-          <div className="animate-fade-up max-w-xl">
+          <div className="animate-fade-up max-w-xl min-w-0">
             <Pill>Merchant Services</Pill>
             <h1 className="mt-4 font-heading text-[2.15rem] font-extrabold leading-[1.12] tracking-tight text-[#1a1a40] sm:text-5xl lg:text-[3.15rem]">
               Full POS
@@ -164,7 +164,7 @@ export default function FullPosSystemPage() {
             </div>
           </div>
 
-          <div className="relative w-full min-w-0">
+          <div className="relative w-full min-w-0 overflow-hidden">
             <div
               className="pointer-events-none absolute left-1/2 top-1/2 h-[78%] w-[92%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#e8f2ff] blur-[2px]"
               aria-hidden="true"
@@ -177,7 +177,8 @@ export default function FullPosSystemPage() {
               priority
               quality={95}
               sizes="(max-width: 1024px) 100vw, 58vw"
-              className="relative z-[1] mx-auto h-auto w-full max-w-full object-contain"
+              className="relative z-[1] mx-auto object-contain"
+              style={{ width: "100%", height: "auto", maxWidth: "100%" }}
             />
           </div>
         </div>
@@ -238,7 +239,7 @@ export default function FullPosSystemPage() {
       {/* Software */}
       <section className="bg-[#f7faff] py-12 sm:py-14">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
-          <div className="rounded-2xl border border-[#e4ecf7] bg-white p-5 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.4)] sm:p-7">
+          <div className="min-w-0 overflow-hidden rounded-2xl border border-[#e4ecf7] bg-white p-5 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.4)] sm:p-7">
             <Image
               src={software.src}
               alt={software.alt}
@@ -246,10 +247,11 @@ export default function FullPosSystemPage() {
               height={software.height}
               quality={92}
               sizes="(max-width: 1024px) 100vw, 46vw"
-              className="h-auto w-full object-contain"
+              className="object-contain"
+              style={{ width: "100%", height: "auto", maxWidth: "100%" }}
             />
           </div>
-          <div className="max-w-lg lg:justify-self-start">
+          <div className="max-w-lg min-w-0 lg:justify-self-start">
             <Pill>Built for Your Business</Pill>
             <h2 className="mt-4 font-heading text-3xl font-extrabold leading-[1.15] tracking-tight text-[#1a1a40] sm:text-[2.35rem]">
               Software Tailored
@@ -272,7 +274,7 @@ export default function FullPosSystemPage() {
       {/* Dashboard */}
       <section className="bg-white py-12 sm:py-14">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
-          <div className="order-2 max-w-lg lg:order-1">
+          <div className="order-2 max-w-lg min-w-0 lg:order-1">
             <Pill>Real Time Insights</Pill>
             <h2 className="mt-4 font-heading text-3xl font-extrabold leading-[1.15] tracking-tight text-[#1a1a40] sm:text-[2.35rem]">
               Unlock Your
@@ -288,7 +290,7 @@ export default function FullPosSystemPage() {
               <QuoteCtaLink />
             </div>
           </div>
-          <div className="order-1 overflow-hidden rounded-2xl lg:order-2">
+          <div className="order-1 min-w-0 overflow-hidden rounded-2xl lg:order-2">
             <Image
               src={dashboard.src}
               alt={dashboard.alt}
@@ -296,7 +298,8 @@ export default function FullPosSystemPage() {
               height={dashboard.height}
               quality={92}
               sizes="(max-width: 1024px) 100vw, 48vw"
-              className="h-auto w-full object-contain"
+              className="object-contain"
+              style={{ width: "100%", height: "auto", maxWidth: "100%" }}
             />
           </div>
         </div>

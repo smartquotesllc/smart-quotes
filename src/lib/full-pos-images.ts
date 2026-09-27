@@ -6,8 +6,8 @@ export const FULL_POS_IMAGES = {
   hero: {
     src: "/images/merchant/full-pos/full-pos-hero.png",
     alt: "Full POS System with 14 inch monitor, 8 inch touchscreen, contactless reader, credit card reader, receipt printer, and cash drawer",
-    width: 780,
-    height: 690,
+    width: 898,
+    height: 740,
   },
   softwareIcons: {
     src: "/images/merchant/full-pos/software-icons.png",
