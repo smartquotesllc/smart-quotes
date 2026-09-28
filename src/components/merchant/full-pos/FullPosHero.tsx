@@ -29,24 +29,24 @@ const CALLOUTS: Callout[] = [
     id: "touchscreen",
     label: '8" Touchscreen',
     // Customer-facing 8" screen on the rear-right assembly (IMAGE 1)
-    pill: { left: "48%", top: "3%" },
-    anchor: { left: "55%", top: "30%" },
+    pill: { left: "52%", top: "2%" },
+    anchor: { left: "57%", top: "40%" },
     align: "center",
   },
   {
     id: "contactless",
     label: "Contactless reader",
     // Top surface of the customer-facing assembly — kept inside the image frame
-    pill: { left: "86%", top: "8%" },
-    anchor: { left: "62%", top: "28%" },
+    pill: { left: "84%", top: "10%" },
+    anchor: { left: "61%", top: "32%" },
     align: "right",
   },
   {
     id: "card-reader",
     label: "Credit card reader\nfor dip & swipe",
     // Side slot on the customer-facing assembly
-    pill: { left: "86%", top: "36%" },
-    anchor: { left: "68%", top: "44%" },
+    pill: { left: "84%", top: "40%" },
+    anchor: { left: "67%", top: "46%" },
     maxWidth: "9.5rem",
     align: "right",
   },
@@ -54,8 +54,8 @@ const CALLOUTS: Callout[] = [
     id: "printer",
     label: "Receipt Printer",
     // Standalone printer unit (IMAGE 1 right foreground)
-    pill: { left: "86%", top: "78%" },
-    anchor: { left: "68%", top: "70%" },
+    pill: { left: "84%", top: "76%" },
+    anchor: { left: "67%", top: "72%" },
     align: "right",
   },
 ];
