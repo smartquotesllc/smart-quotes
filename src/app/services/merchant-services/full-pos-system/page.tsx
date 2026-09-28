@@ -133,8 +133,8 @@ export default function FullPosSystemPage() {
 
   return (
     <div className="overflow-x-hidden bg-white text-[#1a1a40]">
-      {/* Hero — product visual must never clip; overflow kept visible for full hardware */}
-      <section className="relative overflow-x-clip overflow-y-visible">
+      {/* Hero — product visual must never clip hardware or callouts */}
+      <section className="relative overflow-visible">
         <div
           className="pointer-events-none absolute inset-0"
           style={{

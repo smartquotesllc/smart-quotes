@@ -36,8 +36,8 @@ const CALLOUTS: Callout[] = [
   {
     id: "contactless",
     label: "Contactless reader",
-    // Top surface of the customer-facing assembly — pill right-aligned to avoid clipping
-    pill: { left: "96%", top: "10%" },
+    // Top surface of the customer-facing assembly — kept inside the image frame
+    pill: { left: "86%", top: "8%" },
     anchor: { left: "62%", top: "28%" },
     align: "right",
   },
@@ -45,16 +45,16 @@ const CALLOUTS: Callout[] = [
     id: "card-reader",
     label: "Credit card reader\nfor dip & swipe",
     // Side slot on the customer-facing assembly
-    pill: { left: "96%", top: "38%" },
+    pill: { left: "86%", top: "36%" },
     anchor: { left: "68%", top: "44%" },
-    maxWidth: "9.75rem",
+    maxWidth: "9.5rem",
     align: "right",
   },
   {
     id: "printer",
     label: "Receipt Printer",
     // Standalone printer unit (IMAGE 1 right foreground)
-    pill: { left: "96%", top: "78%" },
+    pill: { left: "86%", top: "78%" },
     anchor: { left: "68%", top: "70%" },
     align: "right",
   },
