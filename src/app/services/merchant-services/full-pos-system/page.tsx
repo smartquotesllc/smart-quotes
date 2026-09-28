@@ -133,8 +133,8 @@ export default function FullPosSystemPage() {
 
   return (
     <div className="overflow-x-hidden bg-white text-[#1a1a40]">
-      {/* Hero */}
-      <section className="relative overflow-hidden">
+      {/* Hero — product visual must never clip; overflow kept visible for full hardware */}
+      <section className="relative overflow-x-clip overflow-y-visible">
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -164,7 +164,7 @@ export default function FullPosSystemPage() {
             </div>
           </div>
 
-          <div className="relative w-full min-w-0">
+          <div className="relative w-full min-w-0 overflow-visible">
             <FullPosHero />
           </div>
         </div>
