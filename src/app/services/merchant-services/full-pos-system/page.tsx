@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { FullPosHero } from "@/components/merchant/full-pos/FullPosHero";
 import { QuoteCtaLink } from "@/components/merchant/full-pos/QuoteCtaLink";
 import { PaymentMarks } from "@/components/merchant/full-pos/PaymentMarks";
+import { SoftwareIconGrid } from "@/components/merchant/full-pos/SoftwareIconGrid";
 import {
   GreenCheckBadge,
   IconCamera,
@@ -127,8 +129,6 @@ function Pill({ children }: { children: ReactNode }) {
 }
 
 export default function FullPosSystemPage() {
-  const hero = FULL_POS_IMAGES.hero;
-  const software = FULL_POS_IMAGES.softwareIcons;
   const dashboard = FULL_POS_IMAGES.dashboard;
 
   return (
@@ -164,22 +164,8 @@ export default function FullPosSystemPage() {
             </div>
           </div>
 
-          <div className="relative w-full min-w-0 overflow-hidden">
-            <div
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[78%] w-[92%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#e8f2ff] blur-[2px]"
-              aria-hidden="true"
-            />
-            <Image
-              src={hero.src}
-              alt={hero.alt}
-              width={hero.width}
-              height={hero.height}
-              priority
-              quality={95}
-              sizes="(max-width: 1024px) 100vw, 58vw"
-              className="relative z-[1] mx-auto object-contain"
-              style={{ width: "100%", height: "auto", maxWidth: "100%" }}
-            />
+          <div className="relative w-full min-w-0">
+            <FullPosHero />
           </div>
         </div>
       </section>
@@ -239,17 +225,8 @@ export default function FullPosSystemPage() {
       {/* Software */}
       <section className="bg-[#f7faff] py-12 sm:py-14">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
-          <div className="min-w-0 overflow-hidden rounded-2xl border border-[#e4ecf7] bg-white p-5 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.4)] sm:p-7">
-            <Image
-              src={software.src}
-              alt={software.alt}
-              width={software.width}
-              height={software.height}
-              quality={92}
-              sizes="(max-width: 1024px) 100vw, 46vw"
-              className="object-contain"
-              style={{ width: "100%", height: "auto", maxWidth: "100%" }}
-            />
+          <div className="min-w-0">
+            <SoftwareIconGrid />
           </div>
           <div className="max-w-lg min-w-0 lg:justify-self-start">
             <Pill>Built for Your Business</Pill>
