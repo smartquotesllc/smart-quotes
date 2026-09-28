@@ -8,50 +8,49 @@ type Callout = {
   pill: { left: string; top: string };
   /** Anchor dot on the hardware as % of the hero stage */
   anchor: { left: string; top: string };
-  /** Optional max width for multi-line pills */
   maxWidth?: string;
   align?: "left" | "center" | "right";
 };
 
 /**
- * Callout geometry is tuned to the approved Full POS hardware crop.
- * Percentages are relative to the image stage so they stay locked to the product.
+ * Geometry is relative to the padded clean hardware plate.
+ * Hardware occupies roughly 8.6%–91.4% X and 10%–90% Y of the stage.
  */
 const CALLOUTS: Callout[] = [
   {
     id: "monitor",
     label: '14" Monitor',
-    pill: { left: "10%", top: "3%" },
-    anchor: { left: "22%", top: "18%" },
+    pill: { left: "8%", top: "1.5%" },
+    anchor: { left: "24%", top: "16%" },
     align: "left",
   },
   {
     id: "touchscreen",
     label: '8" Touchscreen',
-    pill: { left: "42%", top: "2.5%" },
-    anchor: { left: "52%", top: "22%" },
+    pill: { left: "48%", top: "1%" },
+    anchor: { left: "55%", top: "20%" },
     align: "center",
   },
   {
     id: "contactless",
     label: "Contactless reader",
-    pill: { left: "68%", top: "14%" },
-    anchor: { left: "64%", top: "28%" },
+    pill: { left: "72%", top: "12%" },
+    anchor: { left: "68%", top: "26%" },
     align: "left",
   },
   {
     id: "card-reader",
     label: "Credit card reader\nfor dip & swipe",
-    pill: { left: "70%", top: "34%" },
-    anchor: { left: "66%", top: "42%" },
-    maxWidth: "9.5rem",
+    pill: { left: "74%", top: "34%" },
+    anchor: { left: "70%", top: "42%" },
+    maxWidth: "9.75rem",
     align: "left",
   },
   {
     id: "printer",
     label: "Receipt Printer",
-    pill: { left: "72%", top: "78%" },
-    anchor: { left: "76%", top: "72%" },
+    pill: { left: "76%", top: "82%" },
+    anchor: { left: "80%", top: "74%" },
     align: "left",
   },
 ];
@@ -66,7 +65,7 @@ function CalloutPill({ callout }: { callout: Callout }) {
 
   return (
     <div
-      className="pointer-events-none absolute z-[2] hidden sm:block"
+      className="pointer-events-none absolute z-[2] hidden md:block"
       style={{
         left: callout.pill.left,
         top: callout.pill.top,
@@ -74,9 +73,7 @@ function CalloutPill({ callout }: { callout: Callout }) {
         maxWidth: callout.maxWidth,
       }}
     >
-      <span
-        className="inline-block whitespace-pre-line rounded-full border border-[#c7dbff] bg-white px-3 py-1.5 text-center font-heading text-[11px] font-bold leading-tight text-[#1e3a8a] shadow-[0_4px_14px_-6px_rgba(37,99,235,0.45)] sm:px-3.5 sm:text-xs md:text-[13px]"
-      >
+      <span className="inline-block whitespace-pre-line rounded-full border border-[#c7dbff] bg-white px-3 py-1.5 text-center font-heading text-[11px] font-bold leading-tight text-[#1e3a8a] shadow-[0_4px_14px_-6px_rgba(37,99,235,0.45)] sm:px-3.5 sm:text-xs lg:text-[13px]">
         {callout.label}
       </span>
     </div>
@@ -86,7 +83,7 @@ function CalloutPill({ callout }: { callout: Callout }) {
 function CalloutConnectors() {
   return (
     <svg
-      className="pointer-events-none absolute inset-0 z-[1] hidden h-full w-full sm:block"
+      className="pointer-events-none absolute inset-0 z-[1] hidden h-full w-full md:block"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden="true"
@@ -96,7 +93,6 @@ function CalloutConnectors() {
         const y1 = Number.parseFloat(c.pill.top) + 3.2;
         const x2 = Number.parseFloat(c.anchor.left);
         const y2 = Number.parseFloat(c.anchor.top);
-        // Nudge line start toward pill center for center-aligned pills
         const startX =
           c.align === "center" ? x1 : c.align === "right" ? x1 - 4 : x1 + 6;
         return (
@@ -110,7 +106,7 @@ function CalloutConnectors() {
               strokeWidth="0.35"
               vectorEffect="non-scaling-stroke"
             />
-            <circle cx={x2} cy={y2} r="0.7" fill="#3b82f6" />
+            <circle cx={x2} cy={y2} r="0.65" fill="#3b82f6" />
           </g>
         );
       })}
@@ -118,10 +114,13 @@ function CalloutConnectors() {
   );
 }
 
-/** Compact, readable label chips for small screens (no tiny overlay text). */
+/** Compact readable chips below the product on small screens. */
 function MobileCalloutList() {
   return (
-    <ul className="mt-4 flex flex-wrap justify-center gap-2 sm:hidden" aria-label="System components">
+    <ul
+      className="mt-4 flex flex-wrap justify-center gap-2 md:hidden"
+      aria-label="System components"
+    >
       {CALLOUTS.map((c) => (
         <li
           key={c.id}
@@ -140,7 +139,7 @@ export function FullPosHero() {
   return (
     <div className="relative w-full min-w-0">
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[78%] w-[92%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#e8f2ff] blur-[2px]"
+        className="pointer-events-none absolute left-1/2 top-[52%] h-[70%] w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#e8f2ff] blur-[2px]"
         aria-hidden="true"
       />
       <div className="relative z-[1] mx-auto w-full max-w-full">
@@ -152,7 +151,7 @@ export function FullPosHero() {
             height={hero.height}
             priority
             quality={92}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 58vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 58vw"
             className="relative mx-auto object-contain"
             style={{ width: "100%", height: "auto", maxWidth: "100%" }}
           />
