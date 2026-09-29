@@ -6,55 +6,43 @@ type Callout = {
   label: string;
   /** Pill position as % of the product visual stage */
   pill: { left: string; top: string };
-  /** Anchor on the ORIGINAL IMAGE 1 hardware as % of the stage */
+  /** Anchor on the approved white POS hardware as % of the stage */
   anchor: { left: string; top: string };
   maxWidth?: string;
   align?: "left" | "center" | "right";
 };
 
 /**
- * Callout geometry is locked to IMAGE 1 (original Full POS hardware).
- * Anchors point at the real components — hardware is never altered for label fit.
+ * Approved hero callouts (4) — no separate black 8" screen, no 8" Touchscreen label.
+ * Hardware: white primary monitor + cash drawer, contactless/card reader, receipt printer.
  */
 const CALLOUTS: Callout[] = [
   {
     id: "monitor",
     label: '14" Monitor',
-    pill: { left: "2%", top: "14%" },
-    // Large merchant-facing display (IMAGE 1 left)
-    anchor: { left: "28%", top: "32%" },
+    pill: { left: "2%", top: "12%" },
+    anchor: { left: "30%", top: "30%" },
     align: "left",
   },
   {
-    id: "touchscreen",
-    label: '8" Touchscreen',
-    // Customer-facing 8" screen on the rear-right assembly (IMAGE 1)
-    pill: { left: "52%", top: "2%" },
-    anchor: { left: "57%", top: "40%" },
-    align: "center",
-  },
-  {
     id: "contactless",
-    label: "Contactless reader",
-    // Top surface of the customer-facing assembly — kept inside the image frame
-    pill: { left: "84%", top: "10%" },
-    anchor: { left: "61%", top: "32%" },
+    label: "Contactless Reader",
+    pill: { left: "86%", top: "8%" },
+    anchor: { left: "60%", top: "30%" },
     align: "right",
   },
   {
     id: "card-reader",
-    label: "Credit card reader\nfor dip & swipe",
-    // Side slot on the customer-facing assembly
-    pill: { left: "84%", top: "40%" },
+    label: "Credit Card Reader\nfor Dip & Swipe",
+    pill: { left: "86%", top: "38%" },
     anchor: { left: "67%", top: "46%" },
-    maxWidth: "9.5rem",
+    maxWidth: "10rem",
     align: "right",
   },
   {
     id: "printer",
     label: "Receipt Printer",
-    // Standalone printer unit (IMAGE 1 right foreground)
-    pill: { left: "84%", top: "76%" },
+    pill: { left: "86%", top: "74%" },
     anchor: { left: "67%", top: "72%" },
     align: "right",
   },
@@ -139,8 +127,9 @@ function MobileCalloutList() {
 }
 
 /**
- * Full POS hero product visual — IMAGE 1 hardware source of truth.
- * Entire system is shown with object-fit: contain (never cover / never cropped).
+ * Full POS hero product visual — approved white POS hardware.
+ * Entire system shown with object-fit: contain (never cover / never cropped).
+ * No separate black 8" customer display.
  */
 export function FullPosHero() {
   const hero = FULL_POS_IMAGES.hero;

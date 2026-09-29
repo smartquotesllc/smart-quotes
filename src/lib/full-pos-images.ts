@@ -1,13 +1,14 @@
 /**
- * Full POS System product page assets — unbranded / vendor-neutral.
- * Hero hardware MUST match IMAGE 1 (original product reference). Never crop equipment.
+ * Full POS System product page assets.
+ * Hero: approved white POS hardware (primary monitor, cash drawer, contactless/card
+ * reader, receipt printer). Never include a separate black 8" customer display.
  * Render with object-fit: contain (never cover). Labels are live HTML (FullPosHero).
  */
 export const FULL_POS_IMAGES = {
   hero: {
-    /** Derived from IMAGE 1 original product photo — hardware uncropped; baked labels removed. */
+    /** Approved white Full POS product photo — hardware uncropped; HTML callouts overlay. */
     src: "/images/merchant/full-pos/full-pos-product.png",
-    alt: "Full POS System with 14 inch merchant monitor, customer-facing 8 inch touchscreen assembly, contactless reader, credit card reader, receipt printer, and cash drawer",
+    alt: "Full POS System with 14 inch merchant monitor, cash drawer, contactless reader, credit card reader, and receipt printer",
     width: 1004,
     height: 627,
   },

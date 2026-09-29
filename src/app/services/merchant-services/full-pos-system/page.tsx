@@ -38,12 +38,12 @@ const FEATURES: {
 }[] = [
   {
     title: "Let Your Customers Drive",
-    copy: "Comes with a smart terminal for your customers. That means they can confirm their orders and complete payment faster.",
+    copy: "Station DUO comes with a smart terminal for your customers. That means they can confirm their orders and complete payment faster.",
     icon: <IconCustomers className="h-9 w-9 text-[#3b82f6]" />,
   },
   {
     title: "Move at the Speed of Light",
-    copy: "Our fastest, most powerful POS system. From inventory and orders to managing your staff and running reports, it’s all at your fingertips.",
+    copy: "Station DUO is our fastest, most powerful POS system. From inventory and orders to managing your staff and running reports, it's all at your fingertips.",
     icon: <IconLightning className="h-9 w-9 text-[#3b82f6]" />,
   },
   {
@@ -70,17 +70,23 @@ const FEATURES: {
 
 const SPECS: {
   title: string;
-  copy: string;
+  copy: ReactNode;
   icon: ReactNode;
 }[] = [
   {
     title: "Dimensions",
-    copy: 'Base plate 11.0" × 7.5". Max height from countertop to display top: 9".',
+    copy: (
+      <>
+        Base plate 10&quot; × 7.5&quot;
+        <br />
+        Max height from countertop to display top: 9&quot;
+      </>
+    ),
     icon: <IconDimensions className="h-6 w-6 text-[#3b82f6]" />,
   },
   {
     title: "Power Source",
-    copy: "One power cable and LAN cable, with everything powered from the system.",
+    copy: "One power cable and LAN cable, with everything powered from the Clover Mini.",
     icon: <IconPower className="h-6 w-6 text-[#3b82f6]" />,
   },
   {
@@ -95,27 +101,42 @@ const SPECS: {
   },
   {
     title: "Security",
-    copy: "Fingerprint logins, NFC employee cards, transaction tokenization and encryption, PCI PTS 5.0 PED w/ P2PE readiness.",
+    copy: "Fingerprint logins, NFC employee cards, transaction tokenization and encryption, PCI PTS 5.0 PED with P2PE readiness.",
     icon: <IconShield className="h-6 w-6 text-[#3b82f6]" />,
   },
   {
     title: "Payments",
-    copy: "Swipe, dip, or tap. Credit or debit. NFC payments including Apple Pay, Google Pay, WeChat Pay, Alipay and more.",
+    copy: "Swipe, dip, or tap. Credit or debit. NFC payments including Apple Pay, Google Pay and other supported wallets.",
     icon: <IconPayments className="h-6 w-6 text-[#3b82f6]" />,
   },
   {
     title: "Options",
-    copy: "Embedded high-resolution camera for barcode or QR code scanning. Proprietary pivot arm swivels smoothly between merchant and customer.",
+    copy: "Embedded high-resolution camera for barcode or QR-code scanning. Proprietary pivot arm swivels smoothly between merchant and customer.",
     icon: <IconCamera className="h-6 w-6 text-[#3b82f6]" />,
   },
   {
     title: "Screen 1",
-    copy: 'Merchant-Facing Display — 14.0" IPS FHD Display.',
+    copy: (
+      <>
+        Merchant-facing display
+        <br />
+        14.0&quot; IPS FHD Display
+      </>
+    ),
     icon: <IconScreen className="h-6 w-6 text-[#3b82f6]" />,
   },
   {
     title: "Screen 2",
-    copy: 'Customer-Facing Display — 7.0" IPS HD Display (Gorilla Glass 3 with Anti-Fingerprint and Anti-Microbial).',
+    copy: (
+      <>
+        Customer-facing display
+        <br />
+        10&quot; IPS HD Display
+        <br />
+        Anti-fingerprint and anti-microbial treatment where supported by the
+        actual product specification.
+      </>
+    ),
     icon: <IconScreen className="h-6 w-6 text-[#3b82f6]" />,
   },
 ];
@@ -133,7 +154,7 @@ export default function FullPosSystemPage() {
 
   return (
     <div className="overflow-x-hidden bg-white text-[#1a1a40]">
-      {/* Hero — product visual must never clip hardware or callouts */}
+      {/* 1–2. Hero — Full POS System */}
       <section className="relative overflow-visible">
         <div
           className="pointer-events-none absolute inset-0"
@@ -152,8 +173,10 @@ export default function FullPosSystemPage() {
               System
             </h1>
             <p className="mt-4 text-[15px] leading-relaxed text-[#4b5568] sm:text-base">
-              A complete solution to help your business run faster, easier, and
-              more efficiently.
+              A complete solution to help your business run{" "}
+              <span className="font-semibold text-[#1a1a40]">faster, easier,</span>{" "}
+              and{" "}
+              <span className="font-semibold text-[#1a1a40]">more efficiently.</span>
             </p>
             <p className="mt-3 text-sm leading-relaxed text-[#6b7280] sm:text-[15px]">
               Everything you need in one system — register, cash drawer, receipt
@@ -170,7 +193,7 @@ export default function FullPosSystemPage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* 3. Six-benefit feature grid */}
       <section className="bg-[#f3f8ff] py-12 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
@@ -197,7 +220,7 @@ export default function FullPosSystemPage() {
         </div>
       </section>
 
-      {/* Payment rainbow */}
+      {/* 4. Payment methods strip */}
       <section className="bg-white py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-[#eef5ff] px-5 py-7 sm:px-8 sm:py-8 lg:px-10">
@@ -213,7 +236,7 @@ export default function FullPosSystemPage() {
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#5b6475] sm:text-[15px]">
                   Let your customers pay how they want to pay. Swipe, dip, or
                   tap. Credit or debit. NFC payments including Apple Pay, Google
-                  Pay, WeChat Pay, Alipay and more.
+                  Pay, WeChat Pay, Alipay and more. Now twice as fast.
                 </p>
               </div>
               <PaymentMarks />
@@ -222,7 +245,7 @@ export default function FullPosSystemPage() {
         </div>
       </section>
 
-      {/* Software */}
+      {/* 5. Software tailored to your needs */}
       <section className="bg-[#f7faff] py-12 sm:py-14">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
           <div className="min-w-0">
@@ -236,10 +259,10 @@ export default function FullPosSystemPage() {
               to Your Needs
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-[#5b6475] sm:text-[15px]">
-              A complete POS system with powerful built-in tools and access to
-              hundreds of applications. Customize your system to fit your
-              business, with everything you need to run operations, manage your
-              team, and drive growth.
+              Clover Flex is the ultimate POS system, but it doesn&apos;t stop at
+              payment processing. With powerful built-in tools and access to
+              100&apos;s of applications available on the Clover Market, Clover
+              Flex is your ultimate business assistant.
             </p>
             <div className="mt-7">
               <QuoteCtaLink />
@@ -248,13 +271,13 @@ export default function FullPosSystemPage() {
         </div>
       </section>
 
-      {/* Dashboard */}
+      {/* 6. Unlock Clover's Dashboard */}
       <section className="bg-white py-12 sm:py-14">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
           <div className="order-2 max-w-lg min-w-0 lg:order-1">
             <Pill>Real Time Insights</Pill>
             <h2 className="mt-4 font-heading text-3xl font-extrabold leading-[1.15] tracking-tight text-[#1a1a40] sm:text-[2.35rem]">
-              Unlock Your
+              Unlock Clover&apos;s
               <br />
               Dashboard
             </h2>
@@ -275,14 +298,14 @@ export default function FullPosSystemPage() {
               height={dashboard.height}
               quality={92}
               sizes="(max-width: 1024px) 100vw, 48vw"
-              className="object-contain"
+              className="object-contain object-center"
               style={{ width: "100%", height: "auto", maxWidth: "100%" }}
             />
           </div>
         </div>
       </section>
 
-      {/* Specs */}
+      {/* 7. System specifications */}
       <section className="bg-[#f3f8ff] py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -307,13 +330,14 @@ export default function FullPosSystemPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* 8. Final full-width CTA */}
       <section className="bg-white py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className="flex flex-col items-start gap-6 rounded-2xl px-6 py-7 sm:flex-row sm:items-center sm:gap-8 sm:px-8 sm:py-8 lg:px-10"
             style={{
-              background: "linear-gradient(90deg, #3730a3 0%, #4f46e5 45%, #3b82f6 100%)",
+              background:
+                "linear-gradient(90deg, #3730a3 0%, #4f46e5 45%, #3b82f6 100%)",
             }}
           >
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white">
@@ -342,7 +366,7 @@ function SpecCard({
   icon,
 }: {
   title: string;
-  copy: string;
+  copy: ReactNode;
   icon: ReactNode;
 }) {
   return (
