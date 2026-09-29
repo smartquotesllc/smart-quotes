@@ -13,37 +13,38 @@ type Callout = {
 };
 
 /**
- * Approved hero callouts (4) — no separate black 8" screen, no 8" Touchscreen label.
- * Hardware: white primary monitor + cash drawer, contactless/card reader, receipt printer.
+ * Approved hero callouts ONLY (4).
+ * Explicitly excluded: "8\" Touchscreen" callout, connector, marker, and any
+ * separate black 8" customer-display asset.
  */
 const CALLOUTS: Callout[] = [
   {
     id: "monitor",
     label: '14" Monitor',
-    pill: { left: "2%", top: "12%" },
-    anchor: { left: "30%", top: "30%" },
+    pill: { left: "1%", top: "10%" },
+    anchor: { left: "32%", top: "28%" },
     align: "left",
   },
   {
     id: "contactless",
     label: "Contactless Reader",
-    pill: { left: "86%", top: "8%" },
-    anchor: { left: "60%", top: "30%" },
+    pill: { left: "92%", top: "6%" },
+    anchor: { left: "68%", top: "28%" },
     align: "right",
   },
   {
     id: "card-reader",
     label: "Credit Card Reader\nfor Dip & Swipe",
-    pill: { left: "86%", top: "38%" },
-    anchor: { left: "67%", top: "46%" },
+    pill: { left: "92%", top: "40%" },
+    anchor: { left: "78%", top: "50%" },
     maxWidth: "10rem",
     align: "right",
   },
   {
     id: "printer",
     label: "Receipt Printer",
-    pill: { left: "86%", top: "74%" },
-    anchor: { left: "67%", top: "72%" },
+    pill: { left: "92%", top: "78%" },
+    anchor: { left: "78%", top: "78%" },
     align: "right",
   },
 ];
@@ -107,17 +108,17 @@ function CalloutConnectors() {
   );
 }
 
-/** On small screens, keep full hardware visible and list labels as chips. */
+/** Mobile: compact chips under a scaled-down product (no absolute desktop callouts). */
 function MobileCalloutList() {
   return (
     <ul
-      className="mt-3 flex flex-wrap justify-center gap-2 md:hidden"
+      className="mt-2 flex flex-wrap justify-center gap-1.5 px-1 md:hidden"
       aria-label="System components"
     >
       {CALLOUTS.map((c) => (
         <li
           key={c.id}
-          className="rounded-full border border-[#c7dbff] bg-white px-3 py-1.5 font-heading text-[11px] font-bold leading-snug text-[#1e3a8a] shadow-[0_4px_12px_-8px_rgba(37,99,235,0.4)]"
+          className="rounded-full border border-[#c7dbff] bg-white px-2.5 py-1 font-heading text-[10px] font-bold leading-snug text-[#1e3a8a] shadow-[0_4px_12px_-8px_rgba(37,99,235,0.4)] sm:px-3 sm:text-[11px]"
         >
           {c.label.replace("\n", " ")}
         </li>
@@ -128,15 +129,15 @@ function MobileCalloutList() {
 
 /**
  * Full POS hero product visual — approved white POS hardware.
- * Entire system shown with object-fit: contain (never cover / never cropped).
- * No separate black 8" customer display.
+ * Mobile: constrained width so the product is part of the hero, not a full-screen image.
+ * Desktop: full column width with HTML callouts. object-fit: contain always.
  */
 export function FullPosHero() {
   const hero = FULL_POS_IMAGES.hero;
 
   return (
-    <div className="relative w-full min-w-0">
-      <div className="product-visual relative z-[1] mx-auto w-full max-w-full overflow-visible">
+    <div className="full-pos-hero-visual relative mx-auto w-full min-w-0 max-w-[300px] sm:max-w-[380px] md:max-w-full lg:max-w-none">
+      <div className="product-visual relative z-[1] mx-auto w-full overflow-visible">
         <Image
           src={hero.src}
           alt={hero.alt}
@@ -144,7 +145,7 @@ export function FullPosHero() {
           height={hero.height}
           priority
           quality={92}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 58vw"
+          sizes="(max-width: 480px) 300px, (max-width: 768px) 380px, (max-width: 1024px) 90vw, 58vw"
           className="relative mx-auto block h-auto w-full max-w-full object-contain object-center"
         />
         <CalloutConnectors />

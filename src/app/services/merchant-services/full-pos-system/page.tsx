@@ -153,8 +153,8 @@ export default function FullPosSystemPage() {
   const dashboard = FULL_POS_IMAGES.dashboard;
 
   return (
-    <div className="overflow-x-hidden bg-white text-[#1a1a40]">
-      {/* 1–2. Hero — Full POS System */}
+    <div className="full-pos-page overflow-x-hidden bg-white text-[#1a1a40]">
+      {/* 1–2. Hero — Full POS System (mobile: text first, compact product second) */}
       <section className="relative overflow-visible">
         <div
           className="pointer-events-none absolute inset-0"
@@ -164,26 +164,26 @@ export default function FullPosSystemPage() {
           }}
           aria-hidden="true"
         />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-8 lg:px-8 lg:py-14">
-          <div className="animate-fade-up max-w-xl min-w-0">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-5 px-4 py-7 max-[480px]:px-3 sm:gap-6 sm:px-6 sm:py-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-8 lg:px-8 lg:py-14">
+          <div className="animate-fade-up relative z-[1] max-w-xl min-w-0">
             <Pill>Merchant Services</Pill>
-            <h1 className="mt-4 font-heading text-[2.15rem] font-extrabold leading-[1.12] tracking-tight text-[#1a1a40] sm:text-5xl lg:text-[3.15rem]">
+            <h1 className="mt-3 font-heading text-[2rem] font-extrabold leading-[1.12] tracking-tight text-[#1a1a40] sm:mt-4 sm:text-5xl lg:text-[3.15rem]">
               Full POS
               <br />
               System
             </h1>
-            <p className="mt-4 text-[15px] leading-relaxed text-[#4b5568] sm:text-base">
+            <p className="mt-3 text-[15px] leading-relaxed text-[#4b5568] sm:mt-4 sm:text-base">
               A complete solution to help your business run{" "}
               <span className="font-semibold text-[#1a1a40]">faster, easier,</span>{" "}
               and{" "}
               <span className="font-semibold text-[#1a1a40]">more efficiently.</span>
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-[#6b7280] sm:text-[15px]">
+            <p className="mt-2.5 text-sm leading-relaxed text-[#6b7280] sm:mt-3 sm:text-[15px]">
               Everything you need in one system — register, cash drawer, receipt
               printer, customer display and powerful built-in payment options.
             </p>
-            <div className="mt-7">
-              <QuoteCtaLink />
+            <div className="mt-5 sm:mt-7">
+              <QuoteCtaLink className="w-full max-w-full sm:w-auto" />
             </div>
           </div>
 
@@ -193,14 +193,14 @@ export default function FullPosSystemPage() {
         </div>
       </section>
 
-      {/* 3. Six-benefit feature grid */}
-      <section className="bg-[#f3f8ff] py-12 sm:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+      {/* 3. Six-benefit feature grid — 1 col below md (768px), 2 col tablet, 3 col desktop */}
+      <section className="bg-[#f3f8ff] py-8 sm:py-12 lg:py-14">
+        <div className="mx-auto max-w-7xl px-4 max-[480px]:px-3 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-4 min-[769px]:grid-cols-2 lg:grid-cols-3 lg:gap-5">
             {FEATURES.map((feature) => (
               <article
                 key={feature.title}
-                className="rounded-2xl border border-[#e4ecf7] bg-white p-5 shadow-[0_10px_28px_-22px_rgba(15,23,42,0.35)] sm:p-6"
+                className="w-full max-w-full rounded-2xl border border-[#e4ecf7] bg-white p-5 shadow-[0_10px_28px_-22px_rgba(15,23,42,0.35)] sm:p-6"
               >
                 <div className="flex items-start justify-between gap-3">
                   <GreenCheckBadge />
