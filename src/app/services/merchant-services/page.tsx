@@ -20,26 +20,32 @@ const SOLUTIONS = [
   {
     title: "Full POS System",
     copy: "Complete solution with register, cash drawer, receipt printer and more.",
+    href: "#request-quote",
   },
   {
     title: "Tablet POS",
     copy: "A flexible, modern solution for restaurants, retail and more.",
+    href: "#request-quote",
   },
   {
     title: "Smart Terminal",
     copy: "Wireless, all-in-one payments anywhere in your business.",
+    href: "/services/merchant-services/smart-terminal",
   },
   {
     title: "Countertop Terminal",
     copy: "Reliable and secure for high-volume transactions.",
+    href: "#request-quote",
   },
   {
     title: "Mobile Payments",
     copy: "Turn your smartphone into a payment solution on the go.",
+    href: "#request-quote",
   },
   {
     title: "Self-Service Kiosk",
     copy: "Customer-led ordering and checkout for restaurants, retail, and service locations.",
+    href: "#request-quote",
   },
 ] as const;
 
@@ -205,7 +211,7 @@ export default function MerchantServicesPage() {
                   {item.copy}
                 </p>
                 <Link
-                  href="#request-quote"
+                  href={item.href}
                   className="mt-4 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-[#2563eb] hover:text-[#1d4ed8]"
                 >
                   Learn More →
