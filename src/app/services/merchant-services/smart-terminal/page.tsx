@@ -157,7 +157,7 @@ export default function SmartFlexPage() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full min-w-0 max-w-[300px] sm:max-w-[340px] lg:max-w-[380px] lg:translate-y-4">
+          <div className="relative mx-auto w-full min-w-0 max-w-[320px] sm:max-w-[360px] lg:max-w-[400px] lg:translate-y-6">
             <Image
               src={hero.src}
               alt={hero.alt}
@@ -165,7 +165,7 @@ export default function SmartFlexPage() {
               height={hero.height}
               priority
               quality={92}
-              sizes="(max-width: 768px) 300px, 380px"
+              sizes="(max-width: 768px) 320px, 400px"
               className="relative mx-auto block h-auto w-full max-w-full object-contain object-center drop-shadow-[0_24px_40px_rgba(17,21,47,0.18)]"
             />
           </div>
@@ -258,14 +258,14 @@ export default function SmartFlexPage() {
                 </div>
               </div>
 
-              <div className="relative mx-auto w-full min-w-0 max-w-[260px] sm:max-w-[280px] lg:max-w-[300px] lg:justify-self-end">
+              <div className="relative mx-auto w-full min-w-0 max-w-[240px] sm:max-w-[270px] lg:max-w-[290px] lg:justify-self-end lg:translate-y-2">
                 <Image
                   src={feature.src}
                   alt={feature.alt}
                   width={feature.width}
                   height={feature.height}
                   quality={92}
-                  sizes="280px"
+                  sizes="290px"
                   className="relative mx-auto block h-auto w-full max-w-full object-contain object-center drop-shadow-[0_20px_36px_rgba(11,16,51,0.28)]"
                 />
               </div>
