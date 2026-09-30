@@ -1,155 +1,153 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { QuoteCtaLink } from "@/components/merchant/smart-terminal/QuoteCtaLink";
-import { PaymentMarks } from "@/components/merchant/smart-terminal/PaymentMarks";
 import {
-  IconBattery,
-  IconCard,
-  IconChart,
-  IconCheckBox,
+  IconBag,
+  IconBriefcase,
+  IconCheckOutline,
+  IconChevron,
   IconContactless,
-  IconDisplay,
   IconEbt,
   IconEmv,
-  IconLightning,
+  IconHandshake,
   IconMagstripe,
   IconPinDebit,
-  IconPortable,
-  IconPrinter,
-  IconShield,
-  IconStorefront,
-  IconTapPay,
-  IconTouchscreen,
-  IconWifi,
+  IconRestaurant,
+  IconSpecialty,
 } from "@/components/merchant/smart-terminal/SmartTerminalIcons";
 import { SMART_TERMINAL_IMAGES } from "@/lib/smart-terminal-images";
 
 export const metadata: Metadata = {
-  title: "Smart Terminal",
+  title: "Smart Flex",
   description:
-    "Smart Terminal — a powerful, all-in-one portable payment solution from Smart Quotes LLC. Request a personalized Smart Quote.",
+    "Smart Flex — a powerful, all-in-one smart terminal from Smart Quotes LLC. Request a personalized Smart Quote.",
 };
 
-const HIGHLIGHTS: { title: string; copy: string; icon: ReactNode }[] = [
-  {
-    title: "Portable & Powerful",
-    copy: "Take payments anywhere in your store, at the table, curbside, or on the go.",
-    icon: <IconTapPay className="h-9 w-9 text-[#2563eb]" />,
-  },
-  {
-    title: "Fast & Easy to Use",
-    copy: "Simple checkout process for you and your customers.",
-    icon: <IconLightning className="h-9 w-9 text-[#2563eb]" />,
-  },
-  {
-    title: "Secure & Reliable",
-    copy: "Advanced security features to keep your business and customer data protected.",
-    icon: <IconShield className="h-9 w-9 text-[#2563eb]" />,
-  },
-  {
-    title: "Real-Time Insights",
-    copy: "Track sales, inventory and more — right from your device or dashboard.",
-    icon: <IconChart className="h-9 w-9 text-[#2563eb]" />,
-  },
-];
+const CHECKLIST_LEFT = [
+  '7" touchscreen with\nAndroid software',
+  "4G and WiFi connectivity\nor ethernet connectivity\n(with dock)",
+] as const;
 
-const CHECKLIST = [
-  '7" Touchscreen with\nAndroid Software',
-  "Customer-Facing Display",
-  "4G and Wi-Fi Connectivity\nor Ethernet (with dock)",
-  "Built-in Receipt Printer\nand Barcode Scanner",
+const CHECKLIST_RIGHT = [
+  "Customer-facing\ndisplay",
+  "Built-in receipt printer\nand barcode scanner",
 ] as const;
 
 const CAPABILITIES: { label: string; icon: ReactNode }[] = [
-  { label: "Contactless", icon: <IconContactless className="h-7 w-7 text-[#2563eb]" /> },
-  { label: "EMV", icon: <IconEmv className="h-7 w-7 text-[#2563eb]" /> },
-  { label: "EBT", icon: <IconEbt className="h-7 w-7 text-[#2563eb]" /> },
-  { label: "PIN Debit", icon: <IconPinDebit className="h-7 w-7 text-[#2563eb]" /> },
-  { label: "Magstripe", icon: <IconMagstripe className="h-7 w-7 text-[#2563eb]" /> },
-];
-
-const KEY_FEATURES: { title: string; copy: string; icon: ReactNode }[] = [
   {
-    title: '7" Touchscreen',
-    copy: '7" touchscreen with Android software',
-    icon: <IconTouchscreen className="h-6 w-6 text-[#2563eb]" />,
+    label: "Contactless",
+    icon: <IconContactless className="h-7 w-7 text-[#2457FF]" />,
+  },
+  { label: "EMV", icon: <IconEmv className="h-7 w-7 text-[#2457FF]" /> },
+  { label: "EBT", icon: <IconEbt className="h-7 w-7 text-[#2457FF]" /> },
+  {
+    label: "PIN Debit",
+    icon: <IconPinDebit className="h-7 w-7 text-[#2457FF]" />,
   },
   {
-    title: "Display",
-    copy: "Customer-facing display",
-    icon: <IconDisplay className="h-6 w-6 text-[#2563eb]" />,
-  },
-  {
-    title: "Connectivity",
-    copy: "4G and Wi-Fi connectivity or Ethernet (with dock)",
-    icon: <IconWifi className="h-6 w-6 text-[#2563eb]" />,
-  },
-  {
-    title: "Printer",
-    copy: "Built-in receipt printer and barcode scanner",
-    icon: <IconPrinter className="h-6 w-6 text-[#2563eb]" />,
-  },
-  {
-    title: "Security",
-    copy: "Advanced encryption, EMV chip support and secure logins",
-    icon: <IconShield className="h-6 w-6 text-[#2563eb]" />,
-  },
-  {
-    title: "Payments",
-    copy: "Swipe, dip, or tap. Credit or debit. NFC payments including Apple Pay, Google Pay, WeChat Pay, Alipay and more.",
-    icon: <IconCard className="h-6 w-6 text-[#2563eb]" />,
-  },
-  {
-    title: "Battery Life",
-    copy: "Long-lasting battery for all-day use",
-    icon: <IconBattery className="h-6 w-6 text-[#2563eb]" />,
-  },
-  {
-    title: "Portable Design",
-    copy: "Lightweight and compact for maximum flexibility",
-    icon: <IconPortable className="h-6 w-6 text-[#2563eb]" />,
+    label: "Magstripe",
+    icon: <IconMagstripe className="h-7 w-7 text-[#2457FF]" />,
   },
 ];
 
-function Pill({ children }: { children: ReactNode }) {
+const BUSINESSES: { label: string; icon: ReactNode }[] = [
+  { label: "Retail", icon: <IconBag className="h-6 w-6 text-white" /> },
+  {
+    label: "Restaurant",
+    icon: <IconRestaurant className="h-6 w-6 text-white" />,
+  },
+  {
+    label: "Specialty",
+    icon: <IconSpecialty className="h-6 w-6 text-white" />,
+  },
+  {
+    label: "Big Business",
+    icon: <IconBriefcase className="h-6 w-6 text-white" />,
+  },
+  {
+    label: "Services",
+    icon: <IconHandshake className="h-6 w-6 text-white" />,
+  },
+];
+
+function GradientFlexText({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex rounded-full bg-[#eee6ff] px-3.5 py-1.5 font-heading text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#3730a3] sm:text-[11px]">
+    <span
+      className="bg-clip-text text-transparent"
+      style={{
+        backgroundImage: "linear-gradient(90deg, #7138FF 0%, #2457FF 100%)",
+      }}
+    >
       {children}
     </span>
   );
 }
 
-export default function SmartTerminalPage() {
+function GradientPanel({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[1.75rem] ${className ?? ""}`}
+      style={{
+        background:
+          "linear-gradient(105deg, #7138FF 0%, #315FFF 42%, #7C3DFF 78%, #965CFF 100%)",
+      }}
+    >
+      <div
+        className="pointer-events-none absolute -left-16 top-[-30%] h-[120%] w-[55%] rounded-full bg-white/10 blur-2xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-10 bottom-[-40%] h-[110%] w-[50%] rounded-full bg-[#EDE8FF]/25 blur-2xl"
+        aria-hidden="true"
+      />
+      <div className="relative z-[1]">{children}</div>
+    </div>
+  );
+}
+
+export default function SmartFlexPage() {
   const hero = SMART_TERMINAL_IMAGES.hero;
   const feature = SMART_TERMINAL_IMAGES.feature;
 
   return (
-    <div className="overflow-x-hidden bg-white text-[#1a1a40]">
+    <div className="overflow-x-hidden bg-white text-[#0B1033]">
       {/* Hero */}
-      <section className="relative">
+      <section className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 48% 62% at 78% 45%, rgba(167,139,250,0.22), transparent 68%), linear-gradient(180deg, #ffffff 0%, #f5f7ff 100%)",
-          }}
           aria-hidden="true"
+          style={{
+            background: `
+              radial-gradient(ellipse 42% 70% at 82% 42%, rgba(150,92,255,0.38), transparent 68%),
+              radial-gradient(ellipse 36% 55% at 70% 55%, rgba(36,87,255,0.18), transparent 70%),
+              radial-gradient(ellipse 28% 45% at 92% 70%, rgba(237,232,255,0.9), transparent 65%),
+              linear-gradient(180deg, #ffffff 0%, #faf9ff 100%)
+            `,
+          }}
         />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-[minmax(0,0.48fr)_minmax(0,0.52fr)] lg:gap-10 lg:px-8 lg:py-14">
-          <div className="max-w-xl min-w-0">
-            <Pill>Merchant Services</Pill>
-            <h1 className="mt-4 font-heading text-[2.4rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-              <span className="text-[#0f172a]">Smart</span>
-              <br />
-              <span className="text-[#2563eb]">Terminal</span>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-6 pt-10 sm:px-6 sm:pb-8 sm:pt-12 lg:grid-cols-[minmax(0,0.52fr)_minmax(0,0.48fr)] lg:gap-8 lg:px-8 lg:pb-4 lg:pt-14">
+          <div className="relative z-[1] max-w-xl min-w-0">
+            <span className="inline-flex rounded-full bg-[#EDE8FF] px-3.5 py-1.5 font-heading text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#0B1033] sm:text-[11px]">
+              Merchant Services
+            </span>
+            <h1 className="mt-4 font-heading text-[2.6rem] font-extrabold leading-[1.02] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+              <span className="text-[#0B1033]">Smart </span>
+              <GradientFlexText>Flex</GradientFlexText>
             </h1>
-            <p className="mt-4 text-base font-bold leading-snug text-[#1a1a40] sm:text-lg">
-              A powerful, all-in-one payment solution
+            <p className="mt-4 text-base font-bold leading-snug text-[#0B1033] sm:text-lg">
+              A powerful, all-in-one smart terminal
               <br className="hidden sm:block" /> designed to keep your business
               moving.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-[#475569] sm:text-[15px]">
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-[#606579] sm:text-[15px]">
               It&apos;s a smart terminal and a POS terminal in one. Get the
               flexibility you need to accept credit card payments anywhere in or
               around your store.
@@ -159,15 +157,7 @@ export default function SmartTerminalPage() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full min-w-0 max-w-[420px] lg:max-w-none">
-            <div
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(196,181,253,0.45) 0%, rgba(219,234,254,0.35) 45%, transparent 70%)",
-              }}
-              aria-hidden="true"
-            />
+          <div className="relative mx-auto w-full min-w-0 max-w-[300px] sm:max-w-[340px] lg:max-w-[380px] lg:translate-y-4">
             <Image
               src={hero.src}
               alt={hero.alt}
@@ -175,140 +165,142 @@ export default function SmartTerminalPage() {
               height={hero.height}
               priority
               quality={92}
-              sizes="(max-width: 768px) 320px, (max-width: 1024px) 420px, 48vw"
-              className="relative mx-auto block h-auto w-full max-w-full object-contain object-center"
+              sizes="(max-width: 768px) 300px, 380px"
+              className="relative mx-auto block h-auto w-full max-w-full object-contain object-center drop-shadow-[0_24px_40px_rgba(17,21,47,0.18)]"
             />
           </div>
         </div>
       </section>
 
-      {/* Four feature cards */}
-      <section className="bg-white py-8 sm:py-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-            {HIGHLIGHTS.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-2xl border border-[#e8eef7] bg-white p-5 shadow-[0_8px_24px_-18px_rgba(15,23,42,0.28)] sm:p-6"
+      {/* Breadcrumbs */}
+      <nav
+        aria-label="Breadcrumb"
+        className="border-t border-[#eef0f8] bg-white"
+      >
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <ol className="flex flex-wrap items-center gap-2 font-heading text-[12px] text-[#9aa3bd] sm:text-[13px]">
+            <li>
+              <Link href="/services" className="transition hover:text-[#7138FF]">
+                Services
+              </Link>
+            </li>
+            <li aria-hidden="true">&gt;</li>
+            <li>
+              <Link
+                href="/services/merchant-services"
+                className="transition hover:text-[#7138FF]"
               >
-                <div className="mb-4">{item.icon}</div>
-                <h2 className="font-heading text-[15px] font-extrabold text-[#0f172a] sm:text-base">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-[#64748b]">
-                  {item.copy}
-                </p>
-              </article>
-            ))}
-          </div>
+                Merchant Services
+              </Link>
+            </li>
+            <li aria-hidden="true">&gt;</li>
+            <li className="font-semibold text-[#7a84a3]">Smart Flex</li>
+          </ol>
+        </div>
+      </nav>
+
+      {/* Payment processing headline */}
+      <section className="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-heading text-[1.65rem] font-extrabold leading-[1.2] tracking-tight text-[#0B1033] sm:text-3xl lg:text-[2.35rem]">
+            Payment processing doesn&apos;t
+            <br />
+            get any more <GradientFlexText>flexible</GradientFlexText> than this.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#606579] sm:text-[15px]">
+            Can&apos;t decide between a handheld smart terminal and a full POS
+            terminal? With the Smart Flex from Smart Quotes LLC, you don&apos;t
+            have to. It&apos;s the hybrid terminal you need to accept payments at
+            the counter, at the table, and on the go. Best of all, it comes
+            preloaded with the Smart Flex app.
+          </p>
         </div>
       </section>
 
-      {/* Payment methods */}
-      <section className="bg-white pb-10 sm:pb-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-[#e8eef7] bg-white px-5 py-6 shadow-[0_8px_24px_-18px_rgba(15,23,42,0.25)] sm:px-8 sm:py-7">
-            <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-10">
-              <div className="flex gap-4">
-                <IconCard className="mt-0.5 h-10 w-10 shrink-0 text-[#2563eb]" />
-                <div>
-                  <h2 className="font-heading text-lg font-extrabold text-[#1e3a8a] sm:text-xl">
-                    All the Ways Your Customers Want to Pay
-                  </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-[#64748b] sm:text-[15px]">
-                    Accept every type of payment. Swipe, dip, or tap. Credit or
-                    debit, NFC payments including Apple Pay, Google Pay, WeChat
-                    Pay, Alipay and more.
-                  </p>
-                </div>
-              </div>
-              <PaymentMarks />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* A Smart Terminal for Every Business */}
-      <section className="bg-white pb-12 sm:pb-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div
-            className="relative overflow-hidden rounded-[1.75rem] px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12"
-            style={{
-              background:
-                "linear-gradient(115deg, #2563eb 0%, #4f46e5 48%, #7c3aed 100%)",
-            }}
-          >
-            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,0.45fr)] lg:gap-6">
-              <div className="relative z-[1] min-w-0 text-white">
-                <h2 className="font-heading text-2xl font-extrabold leading-tight sm:text-3xl lg:text-[2.15rem]">
-                  A Smart Terminal
+      {/* Large Smart Flex feature panel */}
+      <section className="bg-white px-4 pb-12 sm:px-6 sm:pb-14 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <GradientPanel className="px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
+            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,0.42fr)] lg:gap-6">
+              <div className="min-w-0 text-white">
+                <h2 className="font-heading text-2xl font-extrabold leading-tight sm:text-3xl lg:text-[2.2rem]">
+                  A POS flexible enough
                   <br />
-                  for Every Business
+                  to do it all.
                 </h2>
-                <p className="mt-4 max-w-md text-sm leading-relaxed text-white/95 sm:text-[15px]">
-                  Compact yet powerful, the Smart Terminal is built to handle
-                  virtually every checkout scenario. From in-store to mobile
-                  payments, it&apos;s the portable solution that adapts to your
-                  business.
+                <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/95 sm:text-[15px]">
+                  The Smart Flex is the smart credit card terminal for virtually
+                  every checkout scenario. Compact yet powerful and boasting
+                  ports for printers and more, it&apos;s the portable POS
+                  terminal that adapts to any payment situation.
                 </p>
-                <ul className="mt-6 space-y-3">
-                  {CHECKLIST.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <IconCheckBox className="mt-0.5" />
-                      <span className="whitespace-pre-line text-sm font-semibold leading-snug text-white sm:text-[15px]">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8">
-                  <QuoteCtaLink tone="onGradient" />
+                <div className="mt-7 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                  <ul className="space-y-4">
+                    {CHECKLIST_LEFT.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <IconCheckOutline className="mt-0.5" />
+                        <span className="whitespace-pre-line text-sm font-semibold leading-snug text-white sm:text-[15px]">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <ul className="space-y-4">
+                    {CHECKLIST_RIGHT.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <IconCheckOutline className="mt-0.5" />
+                        <span className="whitespace-pre-line text-sm font-semibold leading-snug text-white sm:text-[15px]">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
-              <div className="relative mx-auto w-full min-w-0 max-w-[340px] lg:max-w-none lg:justify-self-end">
-                <div
-                  className="pointer-events-none absolute left-1/2 top-1/2 h-[85%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/20"
-                  aria-hidden="true"
-                />
+              <div className="relative mx-auto w-full min-w-0 max-w-[260px] sm:max-w-[280px] lg:max-w-[300px] lg:justify-self-end">
                 <Image
                   src={feature.src}
                   alt={feature.alt}
                   width={feature.width}
                   height={feature.height}
                   quality={92}
-                  sizes="(max-width: 1024px) 320px, 40vw"
-                  className="relative mx-auto block h-auto w-full max-w-full object-contain object-center"
+                  sizes="280px"
+                  className="relative mx-auto block h-auto w-full max-w-full object-contain object-center drop-shadow-[0_20px_36px_rgba(11,16,51,0.28)]"
                 />
               </div>
             </div>
-          </div>
+          </GradientPanel>
         </div>
       </section>
 
-      {/* Powerful Meets Portable */}
-      <section className="bg-white py-10 sm:py-12">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h2 className="font-heading text-2xl font-extrabold text-[#0f172a] sm:text-3xl">
-            Powerful Meets Portable
+      {/* Powerful meets portable */}
+      <section className="bg-white px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-heading text-2xl font-extrabold text-[#0B1033] sm:text-3xl">
+            Powerful meets portable.
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-[#64748b] sm:text-[15px]">
-            Ideal for any business that wants a smart credit card terminal that
-            delivers maximum flexibility. With an upgraded design, longer battery
-            life, and a more compact form, it&apos;s everything you need to
-            accept all payment types on a single device.
+          <p className="mx-auto mt-4 text-sm leading-relaxed text-[#606579] sm:text-[15px]">
+            The Smart Flex is ideal for any small business that wants a smart
+            credit card terminal that delivers maximum flexibility. Newly
+            upgraded, it offers increased performance and battery life,
+            higher-quality displays, and a more compact design. It also
+            integrates seamlessly with Smart Quotes LLC&apos;s back-office
+            management. Get ready to accept all payment types, including mobile
+            payments, on a single device.
           </p>
         </div>
-        <div className="mx-auto mt-9 flex max-w-4xl flex-wrap items-start justify-center gap-6 px-4 sm:gap-8 sm:px-6 lg:gap-10">
+
+        <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-start justify-center gap-6 sm:gap-8 lg:gap-12">
           {CAPABILITIES.map((cap) => (
             <div
               key={cap.label}
               className="flex w-[4.75rem] flex-col items-center gap-2.5 sm:w-24"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eef2ff] sm:h-16 sm:w-16">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#EDE8FF] sm:h-16 sm:w-16">
                 {cap.icon}
               </div>
-              <span className="text-center font-heading text-[11px] font-bold text-[#1a1a40] sm:text-xs">
+              <span className="text-center font-heading text-[11px] font-bold text-[#0B1033] sm:text-xs">
                 {cap.label}
               </span>
             </div>
@@ -316,60 +308,44 @@ export default function SmartTerminalPage() {
         </div>
       </section>
 
-      {/* Key Features */}
-      <section className="bg-[#f3f6fc] py-12 sm:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-2xl font-extrabold text-[#0f172a] sm:text-3xl">
-              Key Features
-            </h2>
-            <p className="mt-2 text-sm text-[#64748b] sm:text-base">
-              Built for performance, reliability, and security.
-            </p>
-          </div>
-          <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-            {KEY_FEATURES.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-2xl border border-[#e4ecf7] bg-white p-5 shadow-[0_8px_22px_-20px_rgba(15,23,42,0.3)]"
-              >
-                <div className="mb-3">{item.icon}</div>
-                <h3 className="font-heading text-[11px] font-extrabold uppercase tracking-[0.08em] text-[#0f172a]">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-[#64748b] sm:text-[13px]">
-                  {item.copy}
+      {/* Bottom business panel */}
+      <section className="bg-white px-4 pb-12 pt-4 sm:px-6 sm:pb-16 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <GradientPanel className="px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
+            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,0.45fr)] lg:gap-12">
+              <div className="min-w-0 text-white">
+                <h2 className="font-heading text-2xl font-extrabold leading-[1.15] sm:text-3xl lg:text-[2.25rem]">
+                  A smart credit
+                  <br />
+                  card terminal for
+                  <br />
+                  smarter business.
+                </h2>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-white/95 sm:text-[15px]">
+                  Smart Quotes LLC&apos;s Smart Flex terminal comes
+                  pre-programmed for your small business, delivering a
+                  frictionless payment experience. Process payments confidently
+                  with a partner you can trust.
                 </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+              </div>
 
-      {/* Bottom CTA */}
-      <section className="bg-white py-10 sm:py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div
-            className="flex flex-col items-start gap-6 rounded-2xl px-6 py-7 sm:flex-row sm:items-center sm:gap-8 sm:px-8 sm:py-8 lg:px-10"
-            style={{
-              background:
-                "linear-gradient(90deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%)",
-            }}
-          >
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-white/40 text-white">
-              <IconStorefront className="h-8 w-8" />
+              <ul className="min-w-0">
+                {BUSINESSES.map((biz) => (
+                  <li key={biz.label}>
+                    <div className="flex items-center gap-4 border-b border-white/25 py-3.5 first:pt-0 last:border-b-0 last:pb-0">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center">
+                        {biz.icon}
+                      </span>
+                      <span className="flex-1 font-heading text-[15px] font-bold text-white sm:text-base">
+                        {biz.label}
+                      </span>
+                      <IconChevron className="h-4 w-4 shrink-0 text-white" />
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="min-w-0 flex-1">
-              <h2 className="font-heading text-xl font-extrabold text-white sm:text-2xl">
-                Ready to Take Payments Anywhere?
-              </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/90 sm:text-[15px]">
-                Get a personalized quote on the Smart Terminal today and see how
-                Smart Quotes LLC can help you grow.
-              </p>
-            </div>
-            <QuoteCtaLink tone="onGradient" className="w-full sm:w-auto" />
-          </div>
+          </GradientPanel>
         </div>
       </section>
     </div>

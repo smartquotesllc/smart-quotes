@@ -1,18 +1,18 @@
 /**
- * Smart Terminal product page assets — approved white handheld terminal + dock.
+ * Smart Flex product page assets — approved white handheld terminal.
  * Render with object-fit: contain (never cover). Never crop the device.
  */
 export const SMART_TERMINAL_IMAGES = {
   hero: {
     src: "/images/merchant/smart-terminal/hero-terminal.png",
-    alt: "White Smart Terminal handheld POS with touchscreen and docking base",
-    width: 774,
-    height: 850,
+    alt: "Smart Flex white handheld smart terminal showing payment checkout screen",
+    width: 536,
+    height: 880,
   },
   feature: {
     src: "/images/merchant/smart-terminal/feature-terminal.png",
-    alt: "Smart Terminal showing checkout interface on docking base",
-    width: 742,
-    height: 872,
+    alt: "Smart Flex terminal with checkout amount and payment options",
+    width: 630,
+    height: 880,
   },
 } as const;
