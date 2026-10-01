@@ -172,9 +172,8 @@ export default function SmartFlexPage() {
               width={hero.width}
               height={hero.height}
               priority
-              quality={92}
-              sizes="(max-width: 767px) 78vw, (max-width: 1023px) 42vw, 400px"
-              className="block h-auto w-auto max-h-[390px] max-w-[78%] object-contain md:max-h-[380px] md:max-w-[82%] lg:max-h-[430px] lg:max-w-[88%]"
+              unoptimized
+              className="block h-[360px] w-auto max-h-[390px] max-w-[78%] object-contain md:h-[380px] md:max-w-[82%] lg:h-[410px] lg:max-h-[430px] lg:max-w-[88%]"
             />
           </div>
         </div>
@@ -267,9 +266,8 @@ export default function SmartFlexPage() {
               alt={feature.alt}
               width={feature.width}
               height={feature.height}
-              quality={92}
-              sizes="(max-width: 767px) 78vw, 320px"
-              className="block h-auto w-auto max-h-[390px] max-w-[78%] object-contain md:absolute md:bottom-[-8px] md:right-[10px] md:max-h-[390px] md:max-w-[95%] lg:right-[15px] lg:max-h-[430px]"
+              unoptimized
+              className="block h-[360px] w-auto max-h-[390px] max-w-[78%] object-contain md:absolute md:bottom-[-8px] md:right-[10px] md:h-[390px] md:max-h-[390px] md:max-w-[95%] lg:right-[15px] lg:h-[420px] lg:max-h-[430px]"
             />
           </div>
         </div>
