@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/services",
     "/services/merchant-services",
+    "/services/merchant-services/smart-terminal",
     "/services/xfinity-residential",
     "/services/comcast-business",
     "/quote",
